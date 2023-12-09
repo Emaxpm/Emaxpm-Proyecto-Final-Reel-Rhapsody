@@ -45,14 +45,14 @@ body{
 }
 
 .info-childs p{
-    width: 70%;
+    width: 80%;
     margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
     color: #555;
 }
 
-.info-childs input{
+.button-login{
     background-color: transparent;
     outline: none;
     border: solid 2px #9191bd;
@@ -63,7 +63,7 @@ body{
     transition: background-color .3s ease;
 }
 
-.info-childs input:hover{
+.button-login:hover{
     background-color: #9191bd;
     border: none;
     color: #fff;
@@ -85,7 +85,7 @@ body{
 }
 
 .forminformation-childs{
-    width: 60%;
+    width: 65%;
 }
 
 .forminformation-childs h2{
