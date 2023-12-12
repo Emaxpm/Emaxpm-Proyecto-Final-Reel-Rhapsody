@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    overflow-x: auto;
+    width: 200%;
+    white-space: nowrap;
+}
+
+.card {
+    width: 18rem;
+    margin-right: 10px;
+    background-color: gray;   
+}
