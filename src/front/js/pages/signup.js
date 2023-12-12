@@ -13,17 +13,13 @@ const Signup = () => {
   const navigate = useNavigate()
 
   const validateEmail = (email) => {
-    // Expresión regular para validar el formato del correo electrónico
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
 
   const validatePassword = (password) => {
-    // Verificar que la contraseña tenga al menos 8 caracteres
     return password.length >= 8;
   };
-
-
 
   const creatNewUser = async () => {
 
@@ -49,16 +45,14 @@ const Signup = () => {
       const result = await actions.signup(newUser);
 
       if (result.success) {
-        // Si el registro fue exitoso
-        setError(""); // Limpiar cualquier mensaje de error existente
+        setError("");
         navigate("/home");
       } else {
-        // Si hubo un error al registrar al usuario
         setError(result.message || "There was an error creating the user.");
       }
 
     } catch (error) {
-      setError("There was an error creating the user. Please try again."); // Mensaje genérico de error
+      setError("There was an error creating the user. Please try again.");
       console.log(error);
     }
   }
@@ -67,7 +61,7 @@ const Signup = () => {
 
     <>
 
-      {error && <div className="error-message">{error}</div>} {/* Mostrar mensaje de error si existe */}
+      {error && <div className="error-message">{error}</div>}
 
       <div className='container-form'>
 
@@ -75,12 +69,13 @@ const Signup = () => {
 
           <div className='info-childs'>
 
-            <h2>Welcome</h2>
+            <h2>Welcome To Reel Rhapsody</h2>
 
-            <p>Thank you for joining our community! We're thrilled to have you on board. Together, we're about to embark on an exciting journey full of possibilities.</p>
+            <p>Get ready to find your next cinematic obsession! Explore, vote for your favorites, and share your thoughts with a passionate community.</p>
+
+            <p>Welcome to your ultimate guide for movies and series!"</p>
 
             <button className="button-login">Log In</button>
-
 
           </div>
 
@@ -94,8 +89,8 @@ const Signup = () => {
 
             <div className='icons'>
               <i className="fa-brands fa-google"></i>
-              <i className="fa-brands fa-github"></i>
-              <i className="fa-brands fa-linkedin"></i>
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-instagram"></i>
             </div>
 
             <p>Use your email to register</p>
@@ -128,7 +123,7 @@ const Signup = () => {
       </div>
 
     </>
-    
+
   );
 };
 
