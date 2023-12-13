@@ -14,36 +14,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			], 
-			Character: [
+			films: [
 
 			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
+			loadSomeFilm: async () => {
 				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			loadSomePeople: async () => {
-				try{
-				const response= await fetch ("https://swapi.dev/api/people")
+				const response= await fetch ("https://api.themoviedb.org/3/trending/all/day?api_key=353ecf1e8e030c757a90feed45805f63")
 				if(response.ok){
 					const data=await response.json();
 					let store= getStore();
-					setStore({...store,Character:data.results});
-					console.log(data)
+					setStore({...store,films:data.results});
+					console.log(data.results)
 				}
 				}catch(error){
 					console.log("Error loading message from backend", error)

@@ -6,28 +6,27 @@ import "../../styles/card.css";
 export const Card = () => {
     const { store, actions } = useContext(Context)
     useEffect(() => {
-        actions.loadSomePeople()
+        actions.loadSomeFilm()
     }, [])
-    console.log(store.Character)
+    console.log(store.films)
     return (
         <div className="card-container">
-            {store.Character.map((item, index) => (
-                <div key={index} className="card" style={{ width: "18rem" }}>
-                    <img src={`https://starwars-visualguide.com/assets/img/characters/${index + 1 <= 17 ? index + 1 == 17 ? 18 : index + 1 : index + 2}.jpg`} className="card-img-top" alt="..." />
+            {store.films.map((item => <div key={item.id} className="card">
+                    <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="d-block w-100" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p className="card-text">Gender: {item.gender}</p>
-                        <p className="card-text">Height: {item.height}</p>
-                        <p className="card-text">Hair Color: {item.hair_color}</p>
-                        <div>
+                        <h5 className="card-title">{item.original_title}</h5>
+                        <p className="card-text">Release Date: {item.release_date}</p>
+                        <p className="card-text">vote: {item.vote_average}</p>
+                        <p className="card-text">Id: {item.id}</p>
+                        {/* <div>
                             <Link to={`/character/${index+1}`} className="btn btn-outline-dark me-3">Learn more!</Link>
                             <button className="btn btn-outline-warning" to="#" ><i className="fa-regular fa-heart" onClick={()=>{
                                 actions.addFavorite(item.name)
                             }} style={{ color: "#ffff00" }}></i></button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-            ))}
+            ))}           
         </div>
     );
 };
