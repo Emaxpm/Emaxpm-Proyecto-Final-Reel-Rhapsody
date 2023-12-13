@@ -16,6 +16,10 @@ CORS(api)
 @api.route('/sign_up', methods=['POST'])
 def create_one_user():
     try:
+        if request.method == 'GET':
+            # Manejar el registro con GET aquí
+            return jsonify({"msg": "Registro con GET exitoso"}), 200
+        
         body = request.get_json()
 
         required_fields = ["full_name", "email", "password"]
