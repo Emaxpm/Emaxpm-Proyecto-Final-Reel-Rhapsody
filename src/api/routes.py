@@ -13,7 +13,7 @@ bcrypt = Bcrypt()
 # Allow CORS requests to this API
 CORS(api)
 
-@api.route('/sign_up', methods=['POST', 'GET'])
+@api.route('/sign_up', methods=['POST'])
 def create_one_user():
     try:
         body = request.get_json()
