@@ -1,4 +1,4 @@
-const apiUrl = process.env.BACKEND_URL
+const apiUrl = process.env.BACKEND_URL + "/api" 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -49,21 +49,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 
-			signup: async (newUser) => {
+			apiFetch: async (endPoint, method="GET", isProtected = false, body = null ) => {
 
 				try {
 
-					const response = await fetch(apiUrl, {
-						method: "POST",
-						body: JSON.stringify(newUser),
-						headers: {
-							"Content-Type": "application/json"
-						}
+					const params = {
+						method,
+						headers:{}
+					}
+					if(body){
+						params.body = JSON.stringify(body)
+						params.headers["Content-Type"] = "application/json"
+					}
 
-					});
+					if(isProtected){
+						// Aqui hay que agregar el encabezado de autorizacion
+					}
+
+					const response = await fetch(apiUrl + endPoint, params);
 
 					if (!response.ok) {
-						let errorMessage = "Error with the request";
+						console.error(response.statusText)
 
 						if (response.headers.get('content-type')?.includes('application/json')) {
 							const errorData = await response.json();
@@ -76,13 +82,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					const data = await response.json();
-					console.log("respuesta al intentar un new user:", data);
-					return data;
+					return {data, ok:true};
 
 				} catch (error) {
 					console.error("Error al intentar registrar un nuevo usuario:", error.message);
-					throw error;
+					return{ok:false, error}
 				}
+
+			},
+
+			signup: async (newUser) => {
+
+				const {apiFetch} = getActions()
+				const data = apiFetch("/signup", "POST", false, newUser)
+				if(data.ok){
+				}else{return}
 			}
 
 		}
