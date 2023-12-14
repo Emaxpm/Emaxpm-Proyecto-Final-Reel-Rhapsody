@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/home.css";
 import { Card } from "../component/card";
-import imageCinema from "../../img/Press.png";
+import imageCinema from "../../img/presentation.png";
 
 export const Home = () => {
 	return(
