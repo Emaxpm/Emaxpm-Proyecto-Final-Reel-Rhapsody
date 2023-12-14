@@ -18,7 +18,7 @@ body{
     height: 600px;
     border-radius: 20px;
     box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
-    font-family: Montserrat, sans-serif;
+    /* font-family: Montserrat, sans-serif; */
 }
 
 .information{

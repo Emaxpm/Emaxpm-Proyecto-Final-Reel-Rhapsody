@@ -42,11 +42,12 @@ const Signup = () => {
         password: password
       }
 
-      const result = await actions.signup(newUser);
+      const result = await actions.sign_up(newUser);
 
       if (result.success) {
         setError("");
         navigate("/home");
+        alert("usuario registrado")
       } else {
         setError(result.message || "There was an error creating the user.");
       }
@@ -89,8 +90,8 @@ const Signup = () => {
 
             <div className='icons'>
               <i className="fa-brands fa-google"></i>
-              <i class="fa-brands fa-facebook"></i>
-              <i class="fa-brands fa-instagram"></i>
+              <i className="fa-brands fa-facebook"></i>
+              <i className="fa-brands fa-instagram"></i>
             </div>
 
             <p>Use your email to register</p>

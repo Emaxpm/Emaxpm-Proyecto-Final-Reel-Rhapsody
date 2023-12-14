@@ -91,12 +91,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			signup: async (newUser) => {
-
-				const {apiFetch} = getActions()
-				const data = apiFetch("/signup", "POST", false, newUser)
-				if(data.ok){
-				}else{return}
+			sign_up: async (newUser) => {
+				try{
+					//const {apiFetch} = getActions()
+					//const data = apiFetch(apiUrl + "/sign_up", "POST", false, newUser)
+					//if(data.ok){
+					//}else{return}
+					let result = await fetch(`${apiUrl}/sign_up`,{
+						method: "POST",
+						body: JSON.stringify(newUser),
+						headers:{
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await result.json()
+					
+				}catch(error){
+					console.error(error)
+				}
+				
 			}
 
 		}
