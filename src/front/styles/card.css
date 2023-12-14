@@ -1,12 +1,15 @@
+.pic {
+    height: 200px;
+    width: 300px;
+}
 .card-container {
     display: flex;
-    overflow-x: auto;
     width: 200%;
     white-space: nowrap;
 }
 
 .card {
-    width: 18rem;
-    margin-right: 10px;
-    background-color: rgb(161, 22, 22);   
+    background-color: rgb(175, 210, 226);
+    color: rgb(119, 33, 141) !important;
+    
 }

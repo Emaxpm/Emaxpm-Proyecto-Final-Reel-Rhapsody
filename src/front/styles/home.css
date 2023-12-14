@@ -3,10 +3,12 @@
     height:600px;
 }
 .title{
-    color: rgb(10, 0, 0) !important;
+    color: rgb(119, 33, 141) !important;
     font-size: 40px;
     font-family: 'Courier New', Courier, monospace !important;
     font-weight: bold;
-    background-color: lightgray !important;
+    background-color: rgb(175, 210, 226) !important;
+    align-items: center;
+    text-align: center;
 }
   
