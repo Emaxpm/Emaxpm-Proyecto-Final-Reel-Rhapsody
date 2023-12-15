@@ -1,5 +1,5 @@
 import React from "react";
-import logoPalomitas from "../../img/palomitas.png"
+import Logo from "../../img/Logo.png"
 import "../../styles/first-navbar.css"
 
 export const Navbar = () => {
@@ -11,9 +11,9 @@ export const Navbar = () => {
 
 				<div className="nav-container">
 
-					<img src={logoPalomitas} className="logo" />
+					<img src={Logo} className="logo" />
 
-					<h1>Reel Rhapsody</h1>
+					<h2>Reel Rhapsody</h2>
 
 				</div>
 
