@@ -26,8 +26,10 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+
                     {/* <Navbar /> */}
                     <SecondNavbar />
+
                     <Routes>
                         <Route element={<Signup />} path="/" />
                         <Route element={<Home />} path="home" />
@@ -35,7 +37,6 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
