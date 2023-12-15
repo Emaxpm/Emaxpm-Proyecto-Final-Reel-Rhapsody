@@ -22,14 +22,13 @@ const Signup = () => {
 			}
 			
 			await actions.sign_up(newUser)
-			//await actions.test()
 
 		} catch (error) {
 			console.log(error)
 		}
 
-    alert("usuario registrado")
-    navigate("/demo")
+     alert("usuario registrado")
+			navigate("/demo")
 
 	}
 
@@ -88,7 +87,7 @@ const Signup = () => {
                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
               </label>
 
-              <button className='input-submit' onClick={creatNewUser} type='submit'>Sign In</button>
+              <button className='input-submit' onClick={creatNewUser} type='button'>Sign In</button>
 
             </form>
 

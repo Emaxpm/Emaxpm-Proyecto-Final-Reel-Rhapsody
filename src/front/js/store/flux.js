@@ -95,10 +95,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}catch(error){
 					console.error(error)
-				}
-				
+				}		
 			}
-
 		}
 	};
 };
