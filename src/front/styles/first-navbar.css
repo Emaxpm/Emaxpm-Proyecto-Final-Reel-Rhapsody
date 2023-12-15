@@ -2,11 +2,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;  
-    padding: 8px;
     background-color: #c7eef3;
     color: #333;
 }
 
 .logo{
-    width: 70px;
+    padding: 10px;
+    width: 80px;
+    border-radius: 50%;
 }

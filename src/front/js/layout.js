@@ -10,6 +10,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import SecondNavbar from "./component/SecondNavbar.jsx";
 
 //create your first component
 const Layout = () => {
@@ -23,7 +24,8 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
+                    {/* <Navbar /> */}
+                    <SecondNavbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
