@@ -1,3 +1,4 @@
+const apiUrl = process.env.BACKEND_URL + "/api" 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -55,6 +56,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch(error) {
 					console.log("Error loading message from backend", error);
 				}
+			sign_up: async (newUser) => {
+				
+				try{
+	
+					let result = await fetch(`${apiUrl}/sign_up`,{
+						method: "POST",
+						body: JSON.stringify(newUser),
+						headers:{
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await result.json()
+					console.log("respuesta al intentar un new user:", data);
+					
+				}catch(error){
+					console.error(error)
+				}		
+
 			}
 		}
 	};

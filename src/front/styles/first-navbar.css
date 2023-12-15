@@ -1,0 +1,13 @@
+.nav-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;  
+    background-color: #c7eef3;
+    color: #333;
+}
+
+.logo{
+    padding: 10px;
+    width: 80px;
+    border-radius: 50%;
+}
