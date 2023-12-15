@@ -9,60 +9,35 @@ const Signup = () => {
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("");
   const navigate = useNavigate()
-
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
-
-  const validatePassword = (password) => {
-    return password.length >= 8;
-  };
 
   const creatNewUser = async () => {
 
-    try {
-      if (fullName == "" || email == "" || password == "") {
-        return "All spaces must be filled"
-      }
+		try {
 
-      if (!validateEmail(email)) {
-        return "Please enter a valid email address";
-      }
-
-      if (!validatePassword(password)) {
-        return "Password must be at least 8 characters long";
-      }
-
-      let newUser = {
+			let newUser = {
         fullName: fullName,
-        email: email,
-        password: password
-      }
+				email: email,
+				password: password	
+			}
+			
+			await actions.sign_up(newUser)
+			//await actions.test()
 
-      const result = await actions.sign_up(newUser);
+		} catch (error) {
+			console.log(error)
+		}
 
-      if (result.success) {
-        setError("");
-        navigate("/home");
-        alert("usuario registrado")
-      } else {
-        setError(result.message || "There was an error creating the user.");
-      }
+    alert("usuario registrado")
+    navigate("/demo")
 
-    } catch (error) {
-      setError("There was an error creating the user. Please try again.");
-      console.log(error);
-    }
-  }
+	}
 
   return (
 
     <>
 
-      {error && <div className="error-message">{error}</div>}
+      
 
       <div className='container-form'>
 

@@ -22,18 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
-			getMessage: async () => {
-				try {
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error)
-				}
-			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -49,54 +37,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 
-			apiFetch: async (endPoint, method="GET", isProtected = false, body = null ) => {
+			//apiFetch: async (endPoint, method="GET", isProtected = false, body = null ) => {
 
-				try {
+				//try {
 
-					const params = {
-						method,
-						headers:{}
-					}
-					if(body){
-						params.body = JSON.stringify(body)
-						params.headers["Content-Type"] = "application/json"
-					}
+					//const params = {
+					//	method,
+					//	headers:{}
+					//}
+					//if(body){
+					//	params.body = JSON.stringify(body)
+					//	params.headers["Content-Type"] = "application/json"
+					//}
 
-					if(isProtected){
-						// Aqui hay que agregar el encabezado de autorizacion
-					}
+					//if(isProtected){
+					//	Aqui hay que agregar el encabezado de autorizacion
+					//}
 
-					const response = await fetch(apiUrl + endPoint, params);
+					//const response = await fetch(apiUrl + endPoint, params);
 
-					if (!response.ok) {
-						console.error(response.statusText)
+					//if (!response.ok) {
+					//	console.error(response.statusText)
 
-						if (response.headers.get('content-type')?.includes('application/json')) {
-							const errorData = await response.json();
-							if (errorData && errorData.error) {
-								errorMessage = errorData.error;
-							}
-						}
+					//	if (response.headers.get('content-type')?.includes('application/json')) {
+					//		const errorData = await response.json();
+					//		if (errorData && errorData.error) {
+					//			errorMessage = errorData.error;
+					//		}
+					//	}
 
-						throw new Error(errorMessage);
-					}
+					//	throw new Error(errorMessage);
+					//}
 
-					const data = await response.json();
-					return {data, ok:true};
+					//const data = await response.json();
+					//return {data, ok:true};
 
-				} catch (error) {
-					console.error("Error al intentar registrar un nuevo usuario:", error.message);
-					return{ok:false, error}
-				}
+				//} catch (error) {
+				//	console.error("Error al intentar registrar un nuevo usuario:", error.message);
+				//	return{ok:false, error}
+				//}
 
-			},
+			//},
 
 			sign_up: async (newUser) => {
+				
 				try{
-					//const {apiFetch} = getActions()
-					//const data = apiFetch(apiUrl + "/sign_up", "POST", false, newUser)
-					//if(data.ok){
-					//}else{return}
+	
 					let result = await fetch(`${apiUrl}/sign_up`,{
 						method: "POST",
 						body: JSON.stringify(newUser),
@@ -105,6 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					const data = await result.json()
+					console.log("respuesta al intentar un new user:", data);
 					
 				}catch(error){
 					console.error(error)

@@ -17,12 +17,12 @@ CORS(api)
 def create_one_user():
     try:
         #if request.method == 'GET':
-            # Manejar el registro con GET aquí
+            #Manejar el registro con GET aquí
             #return jsonify({"msg": "Registro con GET exitoso"}), 200
         
         body = request.get_json()
 
-        required_fields = ["full_name", "email", "password"]
+        required_fields = ["fullName", "email", "password"]
         for field in required_fields:
             if field not in body or not body[field]:
                 return jsonify({"error": f"El campo '{field}' es requerido y no puede estar vacío"}), 400
@@ -32,8 +32,8 @@ def create_one_user():
         password_hash = bcrypt.generate_password_hash(raw_password).decode('utf-8')
 
         new_user = User (
-        full_name = body["fullName"],
-        email= body["email"],
+        full_name = body.get("fullName"),
+        email= body.get("email"),
         password = password_hash,
         )
 
