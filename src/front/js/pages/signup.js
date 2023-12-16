@@ -1,6 +1,7 @@
 import React, { useContext, useState, } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 import "../../styles/signup.css"
 
 const Signup = () => {
@@ -28,14 +29,14 @@ const Signup = () => {
 		}
 
      alert("usuario registrado")
-			navigate("/demo")
+			navigate("/home")
 
 	}
 
   return (
 
     <>
-
+  <Navbar/>
       
 
       <div className='container-form'>

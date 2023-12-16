@@ -56,6 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch(error) {
 					console.log("Error loading message from backend", error);
 				}
+			},
 			sign_up: async (newUser) => {
 				
 				try{
@@ -76,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			}
 		}
-	};
 };
+}
 
 export default getState;
