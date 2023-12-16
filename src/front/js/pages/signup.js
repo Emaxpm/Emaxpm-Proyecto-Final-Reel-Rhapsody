@@ -13,30 +13,28 @@ const Signup = () => {
 
   const creatNewUser = async () => {
 
-		try {
+    try {
 
-			let newUser = {
+      let newUser = {
         fullName: fullName,
-				email: email,
-				password: password	
-			}
-			
-			await actions.sign_up(newUser)
+        email: email,
+        password: password
+      }
 
-		} catch (error) {
-			console.log(error)
-		}
+      await actions.sign_up(newUser)
 
-     alert("usuario registrado")
-			navigate("/demo")
+    } catch (error) {
+      console.log(error)
+    }
 
-	}
+    alert("usuario registrado")
+    navigate("/home")
+
+  }
 
   return (
 
     <>
-
-      
 
       <div className='container-form'>
 
