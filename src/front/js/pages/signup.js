@@ -1,6 +1,7 @@
 import React, { useContext, useState, } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 import "../../styles/signup.css"
 
 const Signup = () => {
@@ -23,9 +24,13 @@ const Signup = () => {
 
       await actions.sign_up(newUser)
 
+
     } catch (error) {
       console.log(error)
     }
+     alert("usuario registrado")
+			navigate("/home")
+
 
     alert("usuario registrado")
     navigate("/home")

@@ -2,11 +2,13 @@ import React from "react";
 import "../../styles/home.css";
 import { Card } from "../component/card";
 import { Series } from "../component/series";
-import imageCinema from "../../img/presentation.png";
+import SecondNavbar from "../component/SecondNavbar.jsx";
+import imageCinema from "../../img/Vista home.png";
 
 export const Home = () => {
 	return(
 	<div>
+		<SecondNavbar/>
 		<div>
 			<img className="presentation" src={imageCinema}/>
 		</div>
