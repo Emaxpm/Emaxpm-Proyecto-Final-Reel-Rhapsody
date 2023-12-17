@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../img/Logo.png"
 import "../../styles/first-navbar.css"
 
-export const Navbar = () => {
+const Navbar = () => {
 
 	return (
 
@@ -18,6 +18,8 @@ export const Navbar = () => {
 				</div>
 
 			</nav>
+			
 		</>
 	);
 };
+export default Navbar;

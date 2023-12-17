@@ -2,8 +2,9 @@ import React, { useContext, useState, } from "react";
 import { Context, } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/signup.css"
+import Navbar from "./Navbar.jsx";
 
-const logIn = () => {
+const LogIn = () => {
 
     const { store, actions } = useContext(Context);
     const [email, setEmail] = useState("")
@@ -35,12 +36,12 @@ const logIn = () => {
                 return "Password must be at least 8 characters long";
             }
 
-            let newUser = {
+            let newLogIn = {
                 email: email,
                 password: password
             }
 
-            const result = await actions.signup(newUser);
+            const result = await actions.signup(newLogIn);
 
             if (result.success) {
                 setError("");
@@ -59,6 +60,8 @@ const logIn = () => {
 
         <>
 
+        <Navbar/>
+
             {error && <div className="error-message">{error}</div>}
 
             <div className='container-form'>
@@ -67,13 +70,18 @@ const logIn = () => {
 
                     <div className='info-childs'>
 
-                        <h2>Welcome Back</h2>
+                        <h2>Welcome To Reel Rhapsody</h2>
 
                         <p>Do not you have an account yet?</p>
 
                         <p>Register now and start exploring a universe of entertainment!"</p>
 
-                        <button className="button-login">Sign In</button>
+                        <Link to={"/signup"}>
+
+                            <button className="button-login">Sign In</button>
+
+                        </Link>
+
 
                     </div>
 
@@ -122,4 +130,4 @@ const logIn = () => {
     );
 };
 
-export default logIn
+export default LogIn

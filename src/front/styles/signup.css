@@ -199,3 +199,22 @@ body{
 .forgot{
     color: green;
 }
+
+.mi-transicion-enter {
+    opacity: 0;
+  }
+  
+  .mi-transicion-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
+  
+  .mi-transicion-exit {
+    opacity: 1;
+  }
+  
+  .mi-transicion-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+  
