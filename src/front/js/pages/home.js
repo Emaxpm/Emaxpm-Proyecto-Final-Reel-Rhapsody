@@ -1,12 +1,13 @@
 import React from "react";
 import "../../styles/home.css";
-import { Card } from "../component/card";
-import { Series } from "../component/series";
+import  Card  from "../component/Card.jsx";
+import  Series  from "../component/Series.jsx";
 import SecondNavbar from "../component/SecondNavbar.jsx";
 import imageCinema from "../../img/Vista home.png";
 
 export const Home = () => {
 	return(
+	
 	<div>
 		<SecondNavbar/>
 		<div>
