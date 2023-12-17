@@ -1,5 +1,5 @@
 import React, { useContext, useState, } from "react";
-import { Context, } from "../store/appContext";
+import { Context, } from "../store/appContext.js";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/signup.css"
 import Navbar from "./Navbar.jsx";
@@ -9,7 +9,6 @@ const LogIn = () => {
     const { store, actions } = useContext(Context);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState("");
     const navigate = useNavigate()
 
     const validateEmail = (email) => {
@@ -21,9 +20,10 @@ const LogIn = () => {
         return password.length >= 8;
     };
 
-    const logInNewUser = async () => {
+    const handlerlogInNewUser = async () => {
 
         try {
+            
             if (email == "" || password == "") {
                 return "All spaces must be filled"
             }
@@ -43,16 +43,22 @@ const LogIn = () => {
 
             const result = await actions.logIn(newLogIn);
 
-            if (result.success) {
-                setError("");
+            if(result.access_token) {
+                // Si se recibe un token en la respuesta
+                localStorage.setItem("token", result.access_token);
+    
+                // También puedes hacer algo con la información del usuario
+                console.log("Usuario logueado:", result.fullName);
+    
+                // Redirigir al usuario a la página de inicio o a donde sea necesario
                 navigate("/home");
             } else {
-                setError(result.message || "There was an error creating the user.");
-            }
+                // Manejar posibles casos de error o mensajes adicionales desde el servidor
+                console.log("Hubo un problema al iniciar sesión");
+            }   
 
-        } catch (error) {
-            setError("There was an error creating the user. Please try again.");
-            console.log(error);
+        } catch (e) {
+            console.error(e);
         }
     }
 
@@ -61,8 +67,6 @@ const LogIn = () => {
         <>
 
         <Navbar/>
-
-            {error && <div className="error-message">{error}</div>}
 
             <div className='container-form'>
 
@@ -115,7 +119,8 @@ const LogIn = () => {
 
                             <p className="text-primary mt-4">Forgot your password?</p>
 
-                            <button className='input-submit' onClick={logInNewUser} type='submit'>Log In</button>
+                            {/* <button className='input-submit' onClick={logInNewUser} type='button'>Log In</button> */}
+                            <button className='input-submit' onClick={handlerlogInNewUser} type='button'>Log In</button>
 
                         </form>
 

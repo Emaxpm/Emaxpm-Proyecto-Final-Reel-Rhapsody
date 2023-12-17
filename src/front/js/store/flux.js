@@ -80,31 +80,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let result = await fetch(`${apiUrl}/log_in`, {
+					let result = await fetch(`${apiUrl}/login`, {
 						method: "POST",
 						body: JSON.stringify(newLogIn),
 						headers: {
 							"Content-Type": "application/json"
 						}
+					})
 
-					});
-
-					if (result.ok) {
-						const data = await result.json();
-						console.log("respuesta al intentar iniciar sesión:", data);
-
-						localStorage.setItem("token", data.token);
-
-						return data;
-					} else {
-						console.error("Error al iniciar sesión:", result.statusText);
-						return null;
-					}
+					const data = await result.json();
+					console.log("respuesta al intentar iniciar sesión:", data);
+					localStorage.setItem("token", data.token);
+					return data;
+					
 				} catch (e) {
 					console.error(e);
-					return null;
 				}
 			},
+
 		}
 	};
 }

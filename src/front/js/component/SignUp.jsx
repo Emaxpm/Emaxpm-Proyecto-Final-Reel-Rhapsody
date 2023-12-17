@@ -77,7 +77,7 @@ const Signup = () => {
   
             <div className='info-childs'>
   
-              <h2>Welcome To Reel Rhapsody</h2>
+              <h2>Welcome!</h2>
   
               <p>Get ready to find your next cinematic obsession! Explore, vote for your favorites, and share your thoughts with a passionate community.</p>
   
