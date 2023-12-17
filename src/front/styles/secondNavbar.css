@@ -15,9 +15,9 @@
   
   .dropdown-btn {
     background-color: rgb(168, 95, 187);
-    color: #0856a3;
+    color: #c7eef3;
     padding: 8px 12px;
-    border: 2px solid #0856a3;
+    border: 2px solid #c7eef3;
     border-radius: 4px;
     cursor: pointer;
     margin-right: 40px;
@@ -37,6 +37,8 @@
     margin-top: 5px;
     left: 0;
     right: 0;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-weight: bold;
   }
   
   .dropdown-menu li {
@@ -44,7 +46,7 @@
   }
   
   .dropdown-menu li a {
-    color: #0856a3;
+    color: #c7eef3;
     text-decoration:none;
     display: block;
   }
