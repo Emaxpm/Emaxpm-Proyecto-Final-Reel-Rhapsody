@@ -77,13 +77,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logIn: async (newLogIn) => {
+
 				try {
+
 					let result = await fetch(`${apiUrl}/log_in`, {
 						method: "POST",
 						body: JSON.stringify(newLogIn),
 						headers: {
 							"Content-Type": "application/json"
 						}
+
 					});
 
 					if (result.ok) {
@@ -102,8 +105,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return null;
 				}
 			},
-
-
 		}
 	};
 }

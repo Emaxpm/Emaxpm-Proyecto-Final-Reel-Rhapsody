@@ -41,7 +41,7 @@ const LogIn = () => {
                 password: password
             }
 
-            const result = await actions.signup(newLogIn);
+            const result = await actions.logIn(newLogIn);
 
             if (result.success) {
                 setError("");
