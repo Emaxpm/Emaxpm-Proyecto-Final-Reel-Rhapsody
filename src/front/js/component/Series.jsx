@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
 
-export const Series = () => {
+const Series = () => {
     const { store, actions } = useContext(Context)
     useEffect(() => {
         actions.loadSomeSerie()
@@ -23,3 +23,5 @@ export const Series = () => {
         </div>
     );
 };
+
+export default Series

@@ -6,11 +6,11 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import Signup from "./pages/signup";
+import Signup from "./component/SignUp.jsx";
+import LogIn from "./component/LogIn.jsx";
 
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import SecondNavbar from "./component/SecondNavbar.jsx";
 
@@ -26,13 +26,10 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-
-                    {/* <Navbar /> */}
-                    {/* <SecondNavbar /> */}
-
                     <Routes>
-                        <Route element={<Signup />} path="/" />
-                        <Route element={<Home />} path="home" />
+                        <Route element={<LogIn />} path="/" />
+                        <Route element={<Home />} path="/home" />
+                        <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

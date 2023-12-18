@@ -3,10 +3,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "workbench.editorAssociations": {   
         "*.md": "vscode.markdown.preview.editor"
-
     },
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
+<<<<<<< HEAD
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -14,4 +14,7 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+=======
+    }
+>>>>>>> d1cd822cb89b8d9ae73a8786cfa8c18738ff1f57
 }

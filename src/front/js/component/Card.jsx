@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
 
-export const Card = () => {
+const Card = () => {
     const { store, actions } = useContext(Context)
     useEffect(() => {
         actions.loadSomeFilm()
@@ -23,3 +23,5 @@ export const Card = () => {
         </div>
     );
 };
+
+export default Card
