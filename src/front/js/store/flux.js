@@ -117,8 +117,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
-		}
-	};
-}
+			logout: async () => {
+                try {
+                    localStorage.removeItem('token');
+                    return true;
+                } catch (error) {
+                    console.error('Error during logout:', error);
+                    return false;
+                }
+            }
+        }
+    };
+};
+
 
 export default getState;
