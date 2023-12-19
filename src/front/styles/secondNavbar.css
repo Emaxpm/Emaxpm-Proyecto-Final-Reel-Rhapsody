@@ -1,56 +1,73 @@
-.main-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #c7eef3;
-    color: #333;
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c7eef3;
+  color: #333;
 }
-.second-button{
-    margin: 0 10px;
+
+.button {
+  background-color: rgb(168, 95, 187);
+  color: #c7eef3;
+  border: none;
+  cursor: pointer;
+  margin-right: 40px;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+  font-size: medium;
 }
+
+.button:hover {
+  background-color: rgb(98, 57, 109);
+}
+
+.second-button {
+  margin: 0 10px;
+}
+
 .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-btn {
-    background-color: rgb(168, 95, 187);
-    color: #c7eef3;
-    padding: 8px 12px;
-    border: 2px solid #c7eef3;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 40px;
-    font-family: 'Courier New', Courier, monospace !important;
-    font-weight: bold;
-    font-size: larger;
-  }
-  
-  .dropdown-menu {
-    display: block;
-    position: absolute;
-    background-color:rgb(168, 95, 187);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 8px 0;
-    border-radius: 4px;
-    list-style-type: none;
-    margin-top: 5px;
-    left: 0;
-    right: 0;
-    font-family: 'Courier New', Courier, monospace !important;
-    font-weight: bold;
-  }
-  
-  .dropdown-menu li {
-    padding: 8px 16px;
-  }
-  
-  .dropdown-menu li a {
-    color: #c7eef3;
-    text-decoration:none;
-    display: block;
-  }
-  
-  .dropdown-menu li a:hover {
-    background-color: rgb(98, 57, 109);
-  }
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: rgb(168, 95, 187);
+  color: #c7eef3;
+  padding: 8px 12px;
+  border: 2px solid #c7eef3;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 40px;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  background-color: rgb(168, 95, 187);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  border-radius: 4px;
+  list-style-type: none;
+  margin-top: 5px;
+  left: 0;
+  right: 0;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.dropdown-menu li a {
+  color: #c7eef3;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgb(98, 57, 109);
+}

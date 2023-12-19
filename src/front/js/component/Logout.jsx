@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
 import { Context } from '../store/appContext'; // Asegúrate de tener la importación correcta del contexto
-import { useHistory } from 'react-router-dom'; // Importa useHistory para redireccionar
+import { useNavigate, Link } from "react-router-dom";
+import "../../styles/secondNavbar.css"
 
 const Logout = () => {
     const { actions } = useContext(Context);
-    const history = useHistory();
-
+    const navigate = useNavigate()
+   
     const handleLogout = async () => {
         try {
             const success = await actions.logout();
 
             if (success) {
-                history.push("/..");
+                navigate("/");
             } else {
                 console.error('Error during logout');
             }
@@ -21,7 +22,7 @@ const Logout = () => {
     };
 
     return (
-        <button onClick={handleLogout}>Logout</button>
+        <button className="button" onClick={handleLogout}>Log Out</button>
     );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Logo from "../../img/Logo.png"
+import Logout from './Logout.jsx';
 import "../../styles/secondNavbar.css"
 
 const SecondNavbar = () => {
@@ -44,7 +45,7 @@ const SecondNavbar = () => {
                             </li>
                             <hr/>
                             <li>
-                                <a href="#">Log Out</a>
+                            <Logout/>
                             </li>
                         </ul>
                     )}
