@@ -17,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			films: [],
 			series: [],
+			userFavorites:[]
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -98,6 +99,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			loadUserFavorites: async (userId) => {
+				try {
+					const token = localStorage.getItem("token");
+			
+					if (!token) {
+						console.log("No se encontró un token");
+						return;
+					}
+			
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: `Bearer ${token}`
+						}
+					};
+			
+					const response = await fetch(`${apiUrl}/user/${userId}/favorites`, options);
+			
+					if (response.status === 404) {
+						console.log("No se encontraron favoritos para el usuario");
+						return;
+					}
+			
+					const favoritesData = await response.json();
+					setStore({ userFavorites: favoritesData }); // Almacena los favoritos del usuario en el store
+			
+				} catch (error) {
+					console.error("Error al cargar los favoritos del usuario:", error);
+				}
+			},
+			
 		}
 	};
 }
