@@ -98,6 +98,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
+			logout: async () => {
+                try {
+                    localStorage.removeItem('token');
+                    return true;
+                } catch (error) {
+                    console.error('Error during logout:', error);
+                    return false;
+                }
+            },
 
 			loadUserFavorites: async (userId) => {
 				try {
@@ -130,9 +139,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error al cargar los favoritos del usuario:", error);
 				}
 			},
-			
-		}
-	};
-}
+
+        }
+    };
+};
 
 export default getState;

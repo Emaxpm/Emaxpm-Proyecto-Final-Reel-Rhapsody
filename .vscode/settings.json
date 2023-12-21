@@ -9,5 +9,10 @@
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    },
+
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+
 }
