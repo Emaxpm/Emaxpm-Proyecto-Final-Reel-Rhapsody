@@ -27,28 +27,18 @@ const SecondNavbar = () => {
 
                 </div>
                 <div className="dropdown">
-                    <button className="dropdown-btn" onClick={toggleDropdown}>
+                    <button className="dropdown-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         MENU&nbsp;
-                        <i className={`fas fa-chevron-${dropdownOpen ? 'up' : 'down'}`}></i>
                     </button>
-
-                    {dropdownOpen && (
-                        <ul className="dropdown-menu">
-                            <li>
-                                <a href="#">Categories</a>
-                            </li>
-                            <li>
-                                <a href="#">Actors</a>
-                            </li>
-                            <li>
-                                <a href="#">Favorites</a>
-                            </li>
-                            <hr/>
-                            <li>
-                            <Logout/>
-                            </li>
-                        </ul>
-                    )}
+                    <ul className="dropdown-menu">
+                        <li><a href="#">Categories</a></li>
+                        <li><Link to="/demo">Actors</Link></li>
+                        <li><a href="#">Favorites</a></li>
+                        <hr />
+                        <li>
+                        <Logout/>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </>

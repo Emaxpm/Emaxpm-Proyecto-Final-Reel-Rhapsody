@@ -6,23 +6,14 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
->>>>>>> 0a40eec9a9954c11a744f7545e386ce4984bf833
+
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-<<<<<<< HEAD
-    "[javascriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-=======
-=======
->>>>>>> 0a40eec9a9954c11a744f7545e386ce4984bf833
-    }
->>>>>>> d1cd822cb89b8d9ae73a8786cfa8c18738ff1f57
+
 }
