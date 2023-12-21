@@ -124,7 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 			
 					const favoritesData = await response.json();
-					setStore({ userFavorites: favoritesData }); // Almacena los favoritos del usuario en el store
+					setStore({ userFavorites: favoritesData }); 
 			
 				} catch (error) {
 					console.error("Error al cargar los favoritos del usuario:", error);
