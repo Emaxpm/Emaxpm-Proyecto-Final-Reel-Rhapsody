@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
 
 const Card = () => {
     const { store, actions } = useContext(Context)
+    const navigate = useNavigate()
     useEffect(() => {
         actions.loadSomeFilm()
     }, [])
@@ -12,43 +13,43 @@ const Card = () => {
     return (
 
         <>
-            {/* // <div className="card-container">
-            //     {store.films.map((item => <div key={item.id} className="card">
-            //         <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="pic" alt="..." />
-            //         <div className="card-body">
-            //             <h5 className="card-title">{item.original_title}</h5>
-            //             <p className="card-text">Release Date: {item.release_date}</p>
-            //             <p className="card-text">vote: {item.vote_average}</p>
-            //         </div>
-            //     </div>
-            //     ))}
-            // </div> */}
-
-            <div className="d-flex flex-row overflow-auto my-5 mx-5">
+            <div className="row d-flex flex-wrap justify-content-center">
                 {store.films.map((item) => (
-                    <div key={item.id} className="cards mx-5">
-                        <div className="card mb-5" style={{ width: "20rem" }}>
-                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
-                            <div className="card-body">
-                                <h5 className="card-title">{item.original_title}</h5>
-                                <p className="card-text"> Release Date: {item.release_date}</p>
-                                <p className="card-text"> vote: {item.vote_average}</p>
+                    <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
+                        <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title">{item.original_title}</h5>
+                            <p className="card-text"> Release Date: {item.release_date}</p>
+                            <p className="card-text"> vote: {item.vote_average}</p>
 
-                                <div className="buttons">
-                                    <Link to="/details" className="btn btn-outline-primary">
+                            <div className="buttons">
+
+                                <Link to={"/viewBigList"}>
+
+                                    <button className="btn btn-outline-primary mt-3 button">
                                         More!
-                                    </Link>
-                                    <button className="btn btn-outline-primary mt-3">
+                                    </button>
+
+                                </Link>
+
+                                <Link to={"/viewBigList"}>
+
+                                    <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                        actions.addFavorite(item)
+                                        navigate("/viewBigList")
+
+                                    }}>
                                         Reserved for popcorn
                                     </button>
-                                </div>
+
+                                </Link>
+
                             </div>
                         </div>
                     </div>
+
                 ))}
             </div>
-
-
         </>
     );
 };

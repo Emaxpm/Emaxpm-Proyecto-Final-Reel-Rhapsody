@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			films: [],
 			series: [],
-			userFavorites:[]
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -93,55 +93,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("respuesta al intentar iniciar sesión:", data);
 					localStorage.setItem("token", data.token);
 					return data;
-					
+
 				} catch (e) {
 					console.error(e);
 				}
 			},
 			logout: async () => {
-                try {
-                    localStorage.removeItem('token');
-                    return true;
-                } catch (error) {
-                    console.error('Error during logout:', error);
-                    return false;
-                }
-            },
-
-			loadUserFavorites: async (userId) => {
 				try {
-					const token = localStorage.getItem("token");
-			
-					if (!token) {
-						console.log("No se encontró un token");
-						return;
-					}
-			
-					const options = {
-						method: 'GET',
-						headers: {
-							accept: 'application/json',
-							Authorization: `Bearer ${token}`
-						}
-					};
-			
-					const response = await fetch(`${apiUrl}/user/${userId}/favorites`, options);
-			
-					if (response.status === 404) {
-						console.log("No se encontraron favoritos para el usuario");
-						return;
-					}
-			
-					const favoritesData = await response.json();
-					setStore({ userFavorites: favoritesData }); 
-			
+					localStorage.removeItem('token');
+					return true;
 				} catch (error) {
-					console.error("Error al cargar los favoritos del usuario:", error);
+					console.error('Error during logout:', error);
+					return false;
 				}
 			},
 
-        }
-    };
+			addFavorite: (item) => {
+				const store = getStore();
+
+				// Verifica si 'item' tiene una propiedad 'id' definida y no es 'undefined' o 'null'
+				if (item && item.id !== undefined && item.id !== null) {
+					const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
+
+					if (!isAlreadyAdded) {
+						setStore({ ...store, favorites: [...store.favorites, item] });
+					}
+				} else {
+					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+				}
+			},
+
+
+		}
+	};
 };
 
 export default getState;

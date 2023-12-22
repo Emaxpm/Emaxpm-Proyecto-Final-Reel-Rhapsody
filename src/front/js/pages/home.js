@@ -26,7 +26,7 @@ export const Home = () => {
 				</div>
 			</div>
 
-			<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+			<div className="">
 				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 			</div>
 
