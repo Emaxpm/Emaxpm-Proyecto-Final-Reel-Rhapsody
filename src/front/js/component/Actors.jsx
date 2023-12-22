@@ -9,43 +9,27 @@ const Actors = () => {
         actions.loadSomeActors()
     }, [])
     console.log(store.actor)
+
+    const actorCards = store.actor.map((item) => (
+        <div key={item.id} className="card">
+            <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} className="pic" alt="..." />
+            <div className="card-body">
+                <h5 className="card-title">{item.name}</h5>
+                <p className="card-text">vote: {item.popularity}</p>
+                <div className="buttons">
+                    <Link to={`/VActor/${item.id}`} className="btn-details">
+                        More!
+                    </Link>
+                </div>
+            </div>
+        </div>
+    ));
+
     return (
         <div className="card-container">
             <div className="container text-center">
-                <div className="row">
-                    <div className="col-3">
-                        {store.actor.slice(0, Math.ceil(store.actor.length / 3)).map((item) => (
-                            <div key={item.id} className="card">
-                                <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} className="pic" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.name}</h5>
-                                    <p className="card-text">vote: {item.popularity}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="col-3">
-                        {store.actor.slice(Math.ceil(store.actor.length / 3), Math.ceil(store.actor.length * 2 / 3)).map((item) => (
-                            <div key={item.id} className="card">
-                                <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} className="pic" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.name}</h5>
-                                    <p className="card-text">vote: {item.popularity}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="col-3">
-                        {store.actor.slice(Math.ceil(store.actor.length * 2 / 3)).map((item) => (
-                            <div key={item.id} className="card">
-                                <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} className="pic" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.name}</h5>
-                                    <p className="card-text">vote: {item.popularity}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="grid-container">
+                    {actorCards}
                 </div>
             </div>
         </div>

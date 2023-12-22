@@ -34,7 +34,7 @@ const SecondNavbar = () => {
                         <li><a href="#">Categories</a></li>
                         <li><Link to="/demo">Actors</Link></li>
                         <li><a href="#">Favorites</a></li>
-                        <hr />
+                        <hr/>
                         <li>
                         <Logout/>
                         </li>
