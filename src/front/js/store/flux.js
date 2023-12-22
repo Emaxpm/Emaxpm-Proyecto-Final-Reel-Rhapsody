@@ -109,9 +109,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFavorite: (item) => {
+
 				const store = getStore();
 
-				// Verifica si 'item' tiene una propiedad 'id' definida y no es 'undefined' o 'null'
 				if (item && item.id !== undefined && item.id !== null) {
 					const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
 
@@ -123,6 +123,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			updateFavorites: (itemToRemove) => {
+				console.log("Item received to remove:", itemToRemove);
+				const store = getStore();
+
+				if (
+					itemToRemove &&
+					Object.prototype.hasOwnProperty.call(itemToRemove, 'id') &&
+					itemToRemove.id !== undefined &&
+					itemToRemove.id !== null
+				) {
+					const updatedFavorites = store.favorites.filter(
+						favorite => favorite.id !== itemToRemove.id
+					);
+
+					setStore({ ...store, favorites: updatedFavorites });
+				} else {
+					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+				}
+			},
 
 		}
 	};
