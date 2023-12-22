@@ -17,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			films: [],
 			series: [],
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -92,23 +93,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("respuesta al intentar iniciar sesión:", data);
 					localStorage.setItem("token", data.token);
 					return data;
-					
+
 				} catch (e) {
 					console.error(e);
 				}
 			},
 			logout: async () => {
-                try {
-                    localStorage.removeItem('token');
-                    return true;
-                } catch (error) {
-                    console.error('Error during logout:', error);
-                    return false;
-                }
-            }
-        }
-    };
-};
+				try {
+					localStorage.removeItem('token');
+					return true;
+				} catch (error) {
+					console.error('Error during logout:', error);
+					return false;
+				}
+			},
 
+			addFavorite: (item) => {
+
+				const store = getStore();
+
+				if (item && item.id !== undefined && item.id !== null) {
+					const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
+
+					if (!isAlreadyAdded) {
+						setStore({ ...store, favorites: [...store.favorites, item] });
+					}
+				} else {
+					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+				}
+			},
+
+			updateFavorites: (itemToRemove) => {
+				console.log("Item received to remove:", itemToRemove);
+				const store = getStore();
+
+				if (
+					itemToRemove &&
+					Object.prototype.hasOwnProperty.call(itemToRemove, 'id') &&
+					itemToRemove.id !== undefined &&
+					itemToRemove.id !== null
+				) {
+					const updatedFavorites = store.favorites.filter(
+						favorite => favorite.id !== itemToRemove.id
+					);
+
+					setStore({ ...store, favorites: updatedFavorites });
+				} else {
+					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+				}
+			},
+
+		}
+	};
+};
 
 export default getState;
