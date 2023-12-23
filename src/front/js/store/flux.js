@@ -17,6 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			films: [],
 			series: [],
+			actor: [],
+			OneActor:[],
 			favorites: []
 		},
 		actions: {
@@ -58,6 +60,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error);
 				}
 			},
+			loadSomeActors: async () => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+						  accept: 'application/json',
+						  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					  };
+					  
+					  fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options)
+						.then(response => response.json())
+						.then(response => setStore({ actor: response.results }))
+						.catch(err => console.error(err));
+
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+			loadOneActor: async (id) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+						  accept: 'application/json',
+						  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					  };					  
+					  fetch(`https://api.themoviedb.org/3/person/${id}?language=en-US`, options)
+					  .then(response => response.json())
+					  .then(response => setStore({ OneActor: response }))
+					  .catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},	
 
 			sign_up: async (newUser) => {
 				try {
