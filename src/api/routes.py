@@ -1,8 +1,9 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Favorites 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -118,11 +119,41 @@ def login():
 
         # Devolver un mensaje detallado al cliente
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
-    
-@api.route('/user/<int:user_id>', methods=['GET'])
-def get_one_user(user_id):
-    user = User.query.get(user_id)
-    if user is None:
-        return jsonify({"msg": f"user with id {user_id} not found"}), 404
-    serialized_user = user.serialize()
-    return serialized_user, 200
+
+
+@api.route('/user/<int:user_id>/favorites', methods=['GET'])
+def get_all_favorites(user_id):
+    favorites = Favorites.query.filter_by(user_id = user_id).all()
+    if len(favorites) < 1:
+        return jsonify({"msg": "not found"}), 404
+    serialized_favorites = list(map(lambda x: x.serialize(), favorites))
+    return serialized_favorites, 200
+
+@api.route('/favorites', methods=['POST'])
+def add_favorites():
+    body = request.json 
+    new_favorite = Favorites(
+        user_id = body["user_id"],
+        movies_id = body["movies_id"],
+        series_id = body["series_id"],
+        actors_id = body["actors_id"] 
+    )
+    if new_favorite.movies_id is None and new_favorite.series_id is None and new_favorite.actors_id is None:
+      return jsonify({"msg": "eres boludo"}), 400
+    db.session.add(new_favorite)
+    db.session.commit()
+    return jsonify({"msg": "sos un capo", "added_favorite": new_favorite})
+
+@api.route('/favorite/<int:favorite_id>', methods=['DELETE'])
+def delete_one_favorite(favorite_id):
+    favorite = Favorites.query.get(favorite_id)
+    if favorite is None:
+        return jsonify({"msg": f"favorite with id {favorite_id} not found"}), 404
+    db.session.delete(favorite)
+    db.session.commit()
+    return jsonify({"msg": "favorite deleted"}), 200
+
+# this only runs if `$ python src/app.py` is executed
+if __name__ == '__main__':
+    PORT = int(os.environ.get('PORT', 3000))
+    api.run(host='0.0.0.0', port=PORT, debug=False)

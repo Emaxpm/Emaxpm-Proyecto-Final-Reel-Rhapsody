@@ -1,7 +1,7 @@
-.pic {
+/* .pic {
     height: 200px;
     width: 300px;
-}
+} */
 .card-container {
     white-space: nowrap;
 }
@@ -13,5 +13,14 @@
     border-radius: 7px;
     font-family: 'Courier New', Courier, monospace !important;
     font-weight: bold;
-    width: 300px;
 }
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    width: 100%;
+}
+

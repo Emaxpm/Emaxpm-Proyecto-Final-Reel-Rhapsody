@@ -6,9 +6,10 @@ import "../../styles/secondNavbar.css"
 const Logout = () => {
     const { actions } = useContext(Context);
     const navigate = useNavigate()
-   
+
     const handleLogout = async () => {
         try {
+            
             const success = await actions.logout();
 
             if (success) {

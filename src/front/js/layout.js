@@ -10,10 +10,9 @@ import { VActor } from "./pages/VActor.js";
 import Payment  from "./pages/payment.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
+import ViewBigList from "./pages/viewBigList.js";
 
 import injectContext from "./store/appContext";
-
-import { Footer } from "./component/footer";
 import SecondNavbar from "./component/SecondNavbar.jsx";
 
 //create your first component
@@ -35,10 +34,10 @@ const Layout = () => {
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />
+                        <Route element={<ViewBigList />} path="/viewBigList" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer/>
                 </ScrollToTop>
             </BrowserRouter>
         </div>

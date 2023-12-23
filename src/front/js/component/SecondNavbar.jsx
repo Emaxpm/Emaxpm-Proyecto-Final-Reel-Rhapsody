@@ -8,6 +8,7 @@ const SecondNavbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
+        console.log("funciona el boton")
         setDropdownOpen(!dropdownOpen);
     };
     return (
@@ -41,6 +42,7 @@ const SecondNavbar = () => {
                     </ul>
                 </div>
             </nav>
+
         </>
     )
 }
