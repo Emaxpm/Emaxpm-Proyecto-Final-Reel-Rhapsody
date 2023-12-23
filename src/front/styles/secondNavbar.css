@@ -44,7 +44,6 @@
 }
 
 .dropdown-menu {
-  display: block;
   position: absolute;
   background-color: rgb(168, 95, 187) !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
