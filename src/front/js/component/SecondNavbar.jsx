@@ -1,51 +1,50 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import Logo from "../../img/Logo.png"
+import { Link } from 'react-router-dom';
+import Logo from "../../img/Logo.png";
 import Logout from './Logout.jsx';
-import "../../styles/secondNavbar.css"
+import "../../styles/secondNavbar.css";
 
 const SecondNavbar = () => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
-        console.log("funciona el boton")
-        setDropdownOpen(!dropdownOpen);
+        setIsDropdownOpen(!isDropdownOpen);
     };
+
+    const closeDropdown = () => {
+        setIsDropdownOpen(false);
+    };
+
     return (
         <>
-
             <nav className="main-nav">
-
                 <div className="nav-container">
-
                     <Link to={"/home"}>
-
                         <img src={Logo} className="logo" />
-
                     </Link>
-
                     <h2>Reel Rhapsody</h2>
-
                 </div>
                 <div className="dropdown">
-                    <button className="dropdown-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button
+                        className={`dropdown-btn dropdown-toggle ${isDropdownOpen ? 'active' : ''}`}
+                        type="button"
+                        onClick={toggleDropdown}
+                    >
                         MENU&nbsp;
                     </button>
-                    <ul className="dropdown-menu">
-                        <li><a href="#">Categories</a></li>
+                    <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
+                        <li></li>
                         <li><Link to="/demo">Actors</Link></li>
-                        <li><a href="#">Favorites</a></li>
-                        <hr/>
+                        <li></li>
+                        <hr />
                         <li>
-                        <Logout/>
+                            <Logout />
                         </li>
                     </ul>
                 </div>
             </nav>
-
         </>
-    )
-}
+    );
+};
 
-
-export default SecondNavbar
+export default SecondNavbar;
