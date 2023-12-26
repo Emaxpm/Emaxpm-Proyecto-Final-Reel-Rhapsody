@@ -21,8 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			OneActor:[],
 			favorites: []
 		},
-		actions: {
-			// Use getActions to call a function within a function
+		actions: {	
+			
 			loadSomeFilm: async () => {
 				try {
 					const options = {
