@@ -12,28 +12,6 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
   
-    // const creatNewUser = async () => {
-  
-    //   try {
-  
-    //     let newUser = {
-    //       fullName: fullName,
-    //       email: email,
-    //       password: password
-    //     }
-  
-    //     await actions.sign_up(newUser)
-
-    //     alert("usuario registrado")
-    //     navigate("/home")
-  
-  
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-  
-    // }
-
     const handlerCreateUser = async()=> {
         try{
 
@@ -123,8 +101,6 @@ const Signup = () => {
                   <i className="fa-solid fa-lock"></i>
                   <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-  
-                {/* <button className='input-submit' type='submit'>Sign In</button> */}
 
                 <button className='input-submit' onClick={handlerCreateUser} type='button'>Sign In</button>
   
