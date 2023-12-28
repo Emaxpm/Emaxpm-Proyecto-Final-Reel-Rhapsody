@@ -14,7 +14,7 @@ from flask import current_app
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt()
 jwt = JWTManager()
-# Allow CORS requests to this API
+
 CORS(api)
 
 @api.route('/sign_up', methods=['POST'])
@@ -96,17 +96,14 @@ def add_favorites():
     body = request.json 
     new_favorite = Favorites(
         user_id = user_id,
-        movies_id = body["movies_id"],
-        series_id = body["series_id"],
-        actors_id = body["actors_id"] 
+        movie_id = body["movie_id"],
+        serie_id = body["serie_id"],
     )
-    if new_favorite.movies_id is None and new_favorite.series_id is None and new_favorite.actors_id is None:
-      return jsonify({"msg": "eres boludo"}), 400
     db.session.add(new_favorite)
     db.session.commit()
-    return jsonify({"msg": "sos un capo", "added_favorite": new_favorite})
+    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
 
-@api.route('/favorite/<int:favorite_id>', methods=['DELETE'])
+@api.route('/user/favorite', methods=['DELETE'])
 @jwt_required()
 def delete_one_favorite(favorite_id):
     user_id = get_jwt_identity()

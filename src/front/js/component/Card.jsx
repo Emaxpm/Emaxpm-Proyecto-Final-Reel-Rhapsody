@@ -35,7 +35,7 @@ const Card = () => {
                                 <Link to={"/viewBigList"}>
 
                                     <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                        actions.addFavorite(item)
+                                        actions.addFavorite(item, "movie")
                                         navigate("/viewBigList")
 
                                     }}>

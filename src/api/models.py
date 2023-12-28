@@ -22,6 +22,8 @@ class User(db.Model):
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    movie_id = db.Column(db.Integer, nullable=True)
+    serie_id = db.Column(db.Integer, nullable=True)
     
     def __repr__(self):
         return '<Favorites %r>' % self.id
@@ -29,8 +31,7 @@ class Favorites(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
-            "movies_id": self.movies_id,
-            "series_id": self.series_id,
-            "actors_id": self.actors_id,
+            "user_id": self.user_id, 
+            "movie_id": self.movie_id,
+            "serie_id" : self.serie_id   
         }

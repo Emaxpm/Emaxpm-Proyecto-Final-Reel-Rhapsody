@@ -7,10 +7,6 @@ const TheBigWaitingList = () => {
 
     const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        actions.addFavorite();
-    }, []);
-
     const removeFromFavorites = (itemToRemove) => {
         if (itemToRemove && itemToRemove.id !== undefined && itemToRemove.id !== null) {
             actions.updateFavorites(itemToRemove); // Pasar el objeto directamente
@@ -43,11 +39,9 @@ const TheBigWaitingList = () => {
 
             <Link to={"/home"}>
 
-                <button type="button" class="btn btn-primary">Back</button>
+                <button type="button" className="btn btn-primary">Back</button>
 
             </Link>
-
-
         </>
     );
 };
