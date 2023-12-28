@@ -21,7 +21,7 @@ const Card = () => {
             <div>
                 <div className="row d-flex flex-wrap justify-content-center">
                     <div className="container-title">
-                        <button onClick={selectRandomFilm}>Random</button>
+                        <button className="RandomButton" onClick={selectRandomFilm}>Random</button>
                     </div>
                     {randomFilm ? (
                         <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
