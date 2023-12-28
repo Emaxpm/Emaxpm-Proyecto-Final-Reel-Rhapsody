@@ -15,12 +15,41 @@
     font-weight: bold;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: column;
 }
 
-.button{
+.button {
     width: 100%;
 }
 
+.RandomButton {
+    margin: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #c7eef3;
+    background-color: rgb(168, 95, 187);
+    color: #c7eef3;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.RandomButton:active {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.RandomButton:hover {
+    background: #c7eef3;
+    color: rgb(168, 95, 187);
+    font-weight: bold;
+    border: 2px solid rgb(168, 95, 187);
+}

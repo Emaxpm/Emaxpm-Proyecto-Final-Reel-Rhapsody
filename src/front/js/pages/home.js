@@ -18,11 +18,11 @@ export const Home = () => {
 				</div>
 				<div className="container-title">
 					<h2 className="title">MOVIES</h2>
-					<div><Card /></div>
+					<div><Card/></div>
 				</div>
 				<div className="container-title">
 					<h2 className=" title">SERIES</h2>
-					<div><Series /></div>
+					<div><Series/></div>
 				</div>
 			</div>
 
