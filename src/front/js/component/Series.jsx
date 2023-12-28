@@ -6,10 +6,6 @@ import "../../styles/card.css";
 const Series = () => {
     const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        actions.loadSomeSerie();
-    }, []);
-
     console.log(store.series);
 
     return (

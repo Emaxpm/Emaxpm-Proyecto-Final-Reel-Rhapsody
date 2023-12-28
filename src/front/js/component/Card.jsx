@@ -6,9 +6,6 @@ import "../../styles/card.css";
 const Card = () => {
     const { store, actions } = useContext(Context)
     const navigate = useNavigate()
-    useEffect(() => {
-        actions.loadSomeFilm()
-    }, [])
     console.log(store.films)
     return (
 

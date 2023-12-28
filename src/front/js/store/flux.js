@@ -175,28 +175,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorite: async (item, type) => {
 				try {
 					const token = localStorage.getItem("token");
-					const response = await fetch(apiUrl + '/user/favorites', {
-						body: JSON.stringify({
-							movie_id: type === "movie" ? item.id : null,
-							serie_id: type === "serie" ? item.id : null
-						}),
-						method: "POST",
-						headers: {
-							'Content-type': 'application/json; charset=UTF-8',
-							"Authorization": `Bearer ${token}`,
-						}
-					});
-					console.log(response);
-					const res = await response.json();
-					console.log(res);
+					if (store.favorites.some(favorite => favorite.movie_id !== item.id && favorite.serie_id !== item.id)) {
+						const response = await fetch(apiUrl + '/user/favorites', {
+							body: JSON.stringify({
+								movie_id: type === "movie" ? item.id : null,
+								serie_id: type === "serie" ? item.id : null
+							}),
+							method: "POST",
+							headers: {
+								'Content-type': 'application/json; charset=UTF-8',
+								"Authorization": `Bearer ${token}`,
+							}
+						});
+						console.log(response);
+						const res = await response.json();
+						console.log(res);
 
-					const store = getStore();
-					// if (item && item.id !== undefined && item.id !== null) {
-					// 	const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
-					// 	if (!isAlreadyAdded) {
-					setStore({ favorites: [...store.favorites, item] });
-					// 	}
-					// }
+						const store = getStore();
+
+						setStore({
+							favorites: [...store.favorites, {
+								movie_id: type === "movie" ? item.id : null,
+								serie_id: type === "serie" ? item.id : null
+							}]
+						});
+					} else {
+						alert("ese favorito ya existe")
+					}
+
 
 				} catch (e) {
 					console.error(e);

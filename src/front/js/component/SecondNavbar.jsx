@@ -33,7 +33,7 @@ const SecondNavbar = () => {
                         MENU&nbsp;
                     </button>
                     <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
-                        <li></li>
+                        <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
                         <li><Link to="/demo">Actors</Link></li>
                         <li></li>
                         <hr />
