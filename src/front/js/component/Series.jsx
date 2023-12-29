@@ -34,7 +34,7 @@ const Series = () => {
                                     </Link>
                                     <Link to={"/viewBigList"}>
                                         <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(randomSerie);
+                                            actions.addFavorite(randomSerie, "serie");
                                             navigate("/viewBigList");
                                         }}>
                                             Reserved for popcorn
@@ -67,7 +67,7 @@ const Series = () => {
                                     <Link to={"/viewBigList"}>
 
                                         <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(item)
+                                            actions.addFavorite(item, "serie")
                                             navigate("/viewBigList")
 
                                         }}>

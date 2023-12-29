@@ -105,11 +105,20 @@ def add_favorites():
 
 @api.route('/user/favorite', methods=['DELETE'])
 @jwt_required()
-def delete_one_favorite(favorite_id):
+def delete_one_favorite():
     user_id = get_jwt_identity()
-    favorite = Favorites.query.get(favorite_id)
+    body = request.json 
+    if "movie_id" in body:
+        if body["movie_id"] is not None:
+            favorite = Favorites.query.filter_by(movie_id = body["movie_id"]).first()
+
+    if "serie_id" in body:
+        if body["serie_id"] is not None:
+            favorite = Favorites.query.filter_by(serie_id = body["serie_id"]).first()
+            
+
     if favorite is None:
-        return jsonify({"msg": f"favorite with id {favorite_id} not found"}), 404
+        return jsonify({"msg": f"favorite not found"}), 404
     
     if favorite.user_id != user_id:
         return jsonify({"msg": "Unauthorized"}), 401

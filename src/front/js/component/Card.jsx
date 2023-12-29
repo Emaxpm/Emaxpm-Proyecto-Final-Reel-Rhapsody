@@ -35,7 +35,7 @@ const Card = () => {
                                     </Link>
                                     <Link to={"/viewBigList"}>
                                         <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(randomFilm);
+                                            actions.addFavorite(randomFilm, "movie");
                                             navigate("/viewBigList");
                                         }}>
                                             Reserved for popcorn
@@ -68,7 +68,7 @@ const Card = () => {
                                     <Link to={"/viewBigList"}>
 
                                         <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(item)
+                                            actions.addFavorite(item, "movie")
                                             navigate("/viewBigList")
 
                                         }}>
