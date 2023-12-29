@@ -7,9 +7,6 @@ const Card = () => {
     const { store, actions } = useContext(Context)
     const navigate = useNavigate()
     const [randomFilm, setRandomFilm] = useState(null);
-    useEffect(() => {
-        actions.loadSomeFilm()
-    }, []);
     const selectRandomFilm = () => {
         const randomIndex = Math.floor(Math.random() * store.films.length);
         setRandomFilm(store.films[randomIndex]);

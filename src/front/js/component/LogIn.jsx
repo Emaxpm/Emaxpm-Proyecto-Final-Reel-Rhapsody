@@ -43,15 +43,15 @@ const LogIn = () => {
 
             const result = await actions.logIn(newLogIn);
 
-            if(result) {
-                    
-                // También puedes hacer algo con la información del usuario
-                console.log("Usuario logueado:", result);
+            if(result.access_token) {
+                
+                localStorage.setItem("token", result.access_token);
+
+                console.log("Usuario logueado:", result.fullName);
     
-                // Redirigir al usuario a la página de inicio o a donde sea necesario
                 navigate("/home");
             } else {
-                // Manejar posibles casos de error o mensajes adicionales desde el servidor
+               
                 console.log("Hubo un problema al iniciar sesión");
             }   
 
@@ -83,7 +83,6 @@ const LogIn = () => {
                             <button className="button-login">Sign In</button>
 
                         </Link>
-
 
                     </div>
 
@@ -117,7 +116,6 @@ const LogIn = () => {
 
                             <p className="text-primary mt-4">Forgot your password?</p>
 
-                            {/* <button className='input-submit' onClick={logInNewUser} type='button'>Log In</button> */}
                             <button className='input-submit' onClick={handlerlogInNewUser} type='button'>Log In</button>
 
                         </form>
@@ -127,9 +125,7 @@ const LogIn = () => {
                 </div>
 
             </div>
-
         </>
-
     );
 };
 

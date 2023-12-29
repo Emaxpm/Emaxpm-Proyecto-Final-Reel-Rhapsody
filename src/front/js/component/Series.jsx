@@ -7,9 +7,6 @@ const Series = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate()
     const [randomSerie, setRandomSerie] = useState(null);
-    useEffect(() => {
-        actions.loadSomeSerie();
-    }, []);
     const selectRandomSerie = () => {
         const randomIndex = Math.floor(Math.random() * store.series.length);
         setRandomSerie(store.series[randomIndex]);
@@ -18,7 +15,7 @@ const Series = () => {
     return (
         <>
             <div>
-            <div className="row d-flex flex-wrap justify-content-center">
+                <div className="row d-flex flex-wrap justify-content-center">
                     <div className="container-title">
                         <button className="RandomButton" onClick={selectRandomSerie}>Random</button>
                     </div>
