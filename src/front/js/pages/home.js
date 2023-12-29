@@ -8,9 +8,7 @@ import imageCinema from "../../img/Vista home.png";
 
 export const Home = () => {
 	return (
-
 		<>
-
 			<div>
 				<SecondNavbar />
 				<div>
@@ -29,7 +27,6 @@ export const Home = () => {
 			<div className="">
 				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 			</div>
-
 		</>
 	);
 };

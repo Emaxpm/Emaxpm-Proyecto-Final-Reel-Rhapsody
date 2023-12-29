@@ -111,7 +111,7 @@ def login():
 
         access_token = create_access_token(identity=user.id)
 
-        return jsonify({"access_token": access_token, "fullName": user.full_name, "id": user.id}), 200
+        return jsonify({"access_token": access_token, "user": user.serialize()}), 200
 
     except Exception as e:
         # Registrar detalles específicos del error en los registros del servidor
@@ -120,6 +120,14 @@ def login():
         # Devolver un mensaje detallado al cliente
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
 
+@api.route('/isAuth', methods=['GET'])
+@jwt_required()
+def is_auth():
+    user_id=get_jwt_identity()
+    user = User.query.get(user_id)
+    if user is None:
+        return False, 404
+    return jsonify(user.serialize()), 200
 
 @api.route('/user/<int:user_id>/favorites', methods=['GET'])
 def get_all_favorites(user_id):

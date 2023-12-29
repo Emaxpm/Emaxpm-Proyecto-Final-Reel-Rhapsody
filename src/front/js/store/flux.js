@@ -3,18 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+			currentUser: null,
 			films: [],
 			series: [],
 			actor: [],
@@ -96,7 +85,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 				}
-			},	
+			},
+
+			isAuth: async () => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+						  accept: 'application/json',
+						  Authorization: 'Bearer '+localStorage.getItem("token")
+						}
+					  };					  
+					 const response = await fetch(`${apiUrl}/isAuth`, options)
+					 console.log(response)
+					 const res = await response.json()
+					 console.log(res)
+					 setStore({currentUser: res})
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					setStore({currentUser: false})
+				}
+			},
 
 			sign_up: async (newUser) => {
 				try {
@@ -129,12 +138,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 					const data = await result.json();
-					console.log("respuesta al intentar iniciar sesión:", data);
-					localStorage.setItem("token", data.token);
-					return data;
-
+					if (result.ok){
+						console.log("respuesta al intentar iniciar sesión:", data);
+						localStorage.setItem("token", data.access_token);
+						setStore({currentUser: data.user})
+						return true;	
+					}
+					return false;
 				} catch (e) {
 					console.error(e);
+					return false;
 				}
 			},
 			logout: async () => {

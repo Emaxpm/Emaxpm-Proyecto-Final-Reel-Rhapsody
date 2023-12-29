@@ -43,12 +43,10 @@ const LogIn = () => {
 
             const result = await actions.logIn(newLogIn);
 
-            if(result.access_token) {
-                // Si se recibe un token en la respuesta
-                localStorage.setItem("token", result.access_token);
-    
+            if(result) {
+                    
                 // También puedes hacer algo con la información del usuario
-                console.log("Usuario logueado:", result.fullName);
+                console.log("Usuario logueado:", result);
     
                 // Redirigir al usuario a la página de inicio o a donde sea necesario
                 navigate("/home");
