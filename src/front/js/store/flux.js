@@ -19,11 +19,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			series: [],
 			actor: [],
 			OneActor: [],
-			favorites: []
+			favorites: [],
+			pagesMovies: 1,
+			totalPagesMovies: 1,
+			pagesSeries: 1,
+			totalPagesSeries: 1
 		},
 		actions: {
+			loadSomeFilm: async (numberOfPage = 1) => {
 
-			loadSomeFilm: async () => {
 				try {
 					const options = {
 						method: 'GET',
@@ -32,16 +36,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
 						}
 					};
-					fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+					fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${numberOfPage}`, options)
 						.then(response => response.json())
-						.then(response => setStore({ films: response.results }))
+						.then(response => setStore({ films: response.results, pagesMovies: response.page, totalPagesMovies: response["total_pages"] }))
 						.catch(err => console.error(err));
 
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 				}
 			},
-			loadSomeSerie: async () => {
+			loadSomeSerie: async (numberOfPage = 1) => {
 				try {
 					const options = {
 						method: 'GET',
@@ -51,9 +55,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					};
 
-					fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
+					fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${numberOfPage}`, options)
 						.then(response => response.json())
-						.then(response => setStore({ series: response.results }))
+						.then(response => setStore({ series: response.results, pagesSeries: response.page, totalPagesSeries: response["total_pages"] }))
 						.catch(err => console.error(err));
 
 				} catch (error) {

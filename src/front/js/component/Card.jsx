@@ -5,13 +5,45 @@ import "../../styles/card.css";
 
 const Card = () => {
     const { store, actions } = useContext(Context)
+    const totalPagesMovies = store.totalPagesMovies;
     const navigate = useNavigate()
     const [randomFilm, setRandomFilm] = useState(null);
     const selectRandomFilm = () => {
         const randomIndex = Math.floor(Math.random() * store.films.length);
         setRandomFilm(store.films[randomIndex]);
     };
-    console.log(store.films)
+    const [min, setMin] = useState(1);
+    const [max, setMax] = useState(5);
+
+    const generateNumber = () => {
+        const numbers = [];
+        for (let i = min; i <= max; i++) {
+            numbers.push(
+                <li key={i} onClick={() => actions.loadSomeFilm(i)}>
+                    {i}
+                </li>
+            );
+        }
+        return numbers;
+    };
+
+    const handlePreviousClick = () => {
+        if (min > 1) {
+            setMin(min - 5);
+            setMax(max - 5);
+        }
+    };
+
+    const handleNextClick = () => {
+        if (max < totalPagesMovies || max < totalPagesMovies) {
+            setMin(min + 5);
+            setMax(max + 5);
+        }
+    };
+
+
+
+
     return (
 
         <>
@@ -84,6 +116,22 @@ const Card = () => {
                     ))}
                 </div>
             </div>
+
+            <nav aria-label="...">
+                <ul className="pagination">
+                    <li className={`page-item ${min <= 1 ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handlePreviousClick} tabIndex="-1" aria-disabled={min <= 1}>Previous</a>
+                    </li>
+
+                    {/* Aquí se generan los elementos de lista para los números de página */}
+                    <li className="page-item"><a className="page-link" href="#">{generateNumber()}</a></li>
+
+                    <li className={`page-item ${max >= (totalPagesMovies || totalPagesSeries) ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handleNextClick}>Next</a>
+                    </li>
+                </ul>
+            </nav>
+
         </>
     );
 };
