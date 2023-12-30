@@ -10,26 +10,38 @@ export const Home = () => {
 	return (
 
 		<>
+			<SecondNavbar />
 
-			<div>
-				<SecondNavbar />
-				<div>
-					<img className="presentation" src={imageCinema} />
+			<div className="d-flex mt-3 px-3">
+				<p className="Parrafo-home">
+					"Embark on an enchanting journey through cinematic wonders with Reel Rhapsody. Our curated selection awaits your discovery, offering the best random choices in movies and series. Let serendipity guide your entertainment experience as you explore the realms of storytelling magic."
+				</p>
+
+				<img className="presentation px-3" src={imageCinema} />
+
+			</div>
+
+			<div className="linsk-ms mt-3">
+
+				<h2>Que te gustaria ver?</h2>
+
+				<div className="butons-ms px-5 py-5">
+
+					<Link to={"/movies"}>
+						<button type="button" class="btn btn-primary px-3 py-3 mx-2">Movies</button>
+					</Link>
+
+					<Link to={"/series"}>
+						<button type="button" class="btn btn-primary px-3 py-3">Series</button>
+					</Link>
+
 				</div>
-				<div className="container-title">
-					<h2 className="title">MOVIES</h2>
-					<div><Card/></div>
-				</div>
-				<div className="container-title">
-					<h2 className=" title">SERIES</h2>
-					<div><Series/></div>
-				</div>
+
 			</div>
 
 			<div className="">
 				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 			</div>
-
 		</>
 	);
 };
