@@ -5,6 +5,7 @@ import "../../styles/card.css";
 import SecondNavbar from "./SecondNavbar.jsx";
 
 const Card = () => {
+    const [moviesOnPage, setMoviesOnPage] = useState([]);
     const { store, actions } = useContext(Context)
     const totalPagesMovies = store.totalPagesMovies;
     const navigate = useNavigate()
@@ -38,7 +39,7 @@ const Card = () => {
     };
 
     const handleNextClick = () => {
-        if (max < totalPagesMovies || max < totalPagesSeries) {
+        if (max < totalPagesMovies || max < totalPagesMovies) {
             setMin(min + 5);
             setMax(max + 5);
         }
@@ -142,7 +143,7 @@ const Card = () => {
             </div>
 
             <Link to={"/home"}>
-                <button type="button" class="btn btn-primary">Back</button>
+                <button type="button" className="btn btn-primary">Back</button>
             </Link>
         </>
     );

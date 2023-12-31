@@ -94,10 +94,14 @@ def get_all_favorites():
 def add_favorites():
     user_id = get_jwt_identity()
     body = request.json 
+
+    if not body.get("movie_id") and not body.get("serie_id"):
+        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos"}), 400
+ 
     new_favorite = Favorites(
         user_id = user_id,
-        movie_id = body["movie_id"],
-        serie_id = body["serie_id"],
+        movie_id = body.get("movie_id"),
+        serie_id = body.get("serie_id"),
     )
     db.session.add(new_favorite)
     db.session.commit()
@@ -105,27 +109,23 @@ def add_favorites():
 
 @api.route('/user/favorite', methods=['DELETE'])
 @jwt_required()
-def delete_one_favorite():
+def delete_favorite():
     user_id = get_jwt_identity()
-    body = request.json 
+    body = request.json
+
+    # Verificar si el body tiene la clave 'movie_id' o 'serie_id'
     if "movie_id" in body:
         if body["movie_id"] is not None:
-            favorite = Favorites.query.filter_by(movie_id = body["movie_id"]).first()
+            favorite = Favorites.query.filter_by(movie_id=body["movie_id"], user_id=user_id).first()
 
     if "serie_id" in body:
         if body["serie_id"] is not None:
-            favorite = Favorites.query.filter_by(serie_id = body["serie_id"]).first()
-            
+            favorite = Favorites.query.filter_by(serie_id=body["serie_id"], user_id=user_id).first()
+
     if favorite is None:
-        return jsonify({"msg": f"favorite not found"}), 404
-    
-    if favorite.user_id != user_id:
-        return jsonify({"msg": "Unauthorized"}), 401
-    
+        return jsonify({"msg": "Favorite not found"}), 404
+
     db.session.delete(favorite)
     db.session.commit()
-    return jsonify({"msg": "favorite deleted"}), 200
+    return jsonify({"msg": "Favorite deleted"}), 200
 
-if __name__ == '__main__':
-    PORT = int(os.environ.get('PORT', 3000))
-    api.run(host='0.0.0.0', port=PORT, debug=False)
