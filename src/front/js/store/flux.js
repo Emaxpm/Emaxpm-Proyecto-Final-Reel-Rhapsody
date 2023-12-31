@@ -23,7 +23,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			pagesMovies: 1,
 			totalPagesMovies: 1,
 			pagesSeries: 1,
-			totalPagesSeries: 1
+			totalPagesSeries: 1,
+			pagesActors: 1,
+			totalPagesActors: 1
 		},
 		actions: {
 			loadSomeFilm: async (numberOfPage = 1) => {
@@ -64,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error);
 				}
 			},
-			loadSomeActors: async () => {
+			loadSomeActors: async (numberOfPage = 1) => {
 				try {
 					const options = {
 						method: 'GET',
@@ -74,9 +76,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					};
 
-					fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options)
+					fetch(`https://api.themoviedb.org/3/person/popular?language=en-US&page=${numberOfPage}`, options)
 						.then(response => response.json())
-						.then(response => setStore({ actor: response.results }))
+						.then(response => setStore({ actor: response.results, pagesActors: response.page, totalPagesActors: response["total_pages"] }))
 						.catch(err => console.error(err));
 
 				} catch (error) {

@@ -28,19 +28,27 @@ export const Home = () => {
 				<div className="butons-ms px-5 py-5">
 
 					<Link to={"/movies"}>
-						<button type="button" class="btn btn-primary px-3 py-3 mx-2">Movies</button>
+						<button type="button" className="btn btn-primary px-3 py-3 mx-2">Movies</button>
 					</Link>
 
 					<Link to={"/series"}>
-						<button type="button" class="btn btn-primary px-3 py-3">Series</button>
+						<button type="button" className="btn btn-primary px-3 py-3">Series</button>
 					</Link>
 
 				</div>
 
 			</div>
 
-			<div className="">
-				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+			<div className="paypal mt-5">
+
+				<h2>Te gusta nuestra aplicacion? nos ayudarias con una donacion para seguir mejorando la aplicacion y que llegue a mas personas</h2>
+
+				<div>
+
+					<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+
+				</div>
+
 			</div>
 		</>
 	);

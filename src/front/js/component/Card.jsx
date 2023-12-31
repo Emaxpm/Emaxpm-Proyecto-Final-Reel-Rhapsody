@@ -21,9 +21,9 @@ const Card = () => {
         for (let i = min; i <= max; i++) {
             numbers.push(
                 <li key={i} className="page-item">
-                    <button className="page-link" onClick={() => actions.loadSomeFilm(i)}>
+                    <a className="page-link" href="#" onClick={() => actions.loadSomeFilm(i)}>
                         {i}
-                    </button>
+                    </a>
                 </li>
             );
         }
@@ -33,16 +33,17 @@ const Card = () => {
     const handlePreviousClick = () => {
         if (min > 1) {
             setMin(min - 5);
-            setMax(max - 5);
+            setMax(max - 5)
         }
     };
 
     const handleNextClick = () => {
-        if (max < totalPagesMovies || max < totalPagesMovies) {
+        if (max < totalPagesMovies || max < totalPagesSeries) {
             setMin(min + 5);
             setMax(max + 5);
         }
-    };
+    }
+
 
     return (
 

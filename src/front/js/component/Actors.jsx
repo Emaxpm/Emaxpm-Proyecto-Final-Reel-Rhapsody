@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/actors.css";
@@ -6,10 +6,42 @@ import SecondNavbar from "./SecondNavbar.jsx";
 
 const Actors = () => {
     const { store, actions } = useContext(Context)
-    useEffect(() => {
-        actions.loadSomeActors()
-    }, [])
-    console.log(store.actor)
+    const totalPagesActors = store.totalPagesActors
+
+    const [min, setMin] = useState(1);
+    const [max, setMax] = useState(5);
+
+    const generateNumber = () => {
+        const numbers = [];
+        for (let i = min; i <= max; i++) {
+            numbers.push(
+                <li key={i} className="page-item">
+                    <button className="page-link" onClick={() => actions.loadSomeActors(i)}>
+                        {i}
+                    </button>
+                </li>
+            );
+        }
+        return numbers;
+    };
+
+    const handlePreviousClick = () => {
+        if (min > 1) {
+            const newMin = Math.max(min - 5, 1);
+            setMin(newMin);
+            setMax(newMin + 4);
+        }
+    };
+
+    const handleNextClick = () => {
+        if (max < totalPagesActors) {
+            const newMax = Math.min(max + 5, totalPagesActors);
+            setMax(newMax);
+            setMin(newMax - 4);
+        }
+    };
+
+
 
     const actorCards = store.actor.map((item) => (
         <div key={item.id} className="card mx-2 my-2">
@@ -30,6 +62,25 @@ const Actors = () => {
         <>
             <SecondNavbar />
             <h2 className="title">Actors</h2>
+
+            <nav aria-label="...">
+                <ul className="pagination d-flex justify-content-center mt-5">
+                    <li className={`page-item ${min <= 1 ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handlePreviousClick} tabIndex="-1" aria-disabled={min <= 1}>Previous</a>
+                    </li>
+
+                    {generateNumber().map((number, index) => (
+                        <React.Fragment key={index}>{number}</React.Fragment>
+                    ))}
+
+                    <li className={`page-item ${max >= totalPagesActors ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handleNextClick}>Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
             <div className="card-container">
                 <div className="container text-center">
                     <div className="grid-container">

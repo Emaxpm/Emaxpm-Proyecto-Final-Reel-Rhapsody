@@ -116,7 +116,6 @@ def delete_one_favorite():
         if body["serie_id"] is not None:
             favorite = Favorites.query.filter_by(serie_id = body["serie_id"]).first()
             
-
     if favorite is None:
         return jsonify({"msg": f"favorite not found"}), 404
     
