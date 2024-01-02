@@ -7,13 +7,15 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { VActor } from "./pages/VActor.js";
-import Payment  from "./pages/payment.js";
+import Payment from "./pages/payment.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
 import ViewBigList from "./pages/viewBigList.js";
 
 import injectContext from "./store/appContext";
 import SecondNavbar from "./component/SecondNavbar.jsx";
+import Card from "./component/Card.jsx";
+import Series from "./component/Series.jsx";
 
 //create your first component
 const Layout = () => {
@@ -30,6 +32,8 @@ const Layout = () => {
                     <Routes>
                         <Route element={<LogIn />} path="/" />
                         <Route element={<Home />} path="/home" />
+                        <Route element={<Card />} path="/movies" />
+                        <Route element={<Series />} path="/series" />
                         <Route element={<Payment />} path="/payment" />
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
