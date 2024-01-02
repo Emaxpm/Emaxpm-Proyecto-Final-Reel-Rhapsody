@@ -37,7 +37,7 @@ const SecondNavbar = () => {
                                 MENU&nbsp;
                             </button>
                             <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
-                                <li></li>
+                                <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
                                 <li><Link to="/demo">Actors</Link></li>
                                 <li></li>
                                 <hr />
@@ -47,18 +47,11 @@ const SecondNavbar = () => {
                             </ul>
                         </div>
                         <div>
-                            <button className='user-btn'>
-                                {store.currentUser.full_name}
-                            </button>
-                            <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
-                                <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
-                                <li><Link to="/demo">Actors</Link></li>
-                                <li></li>
-                                <hr />
-                                <li>
-                                    <Logout />
-                                </li>
-                            </ul>
+                            <Link to={"/CustUser"}>
+                                <button className='user-btn'>
+                                    {store.currentUser.full_name}
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 }

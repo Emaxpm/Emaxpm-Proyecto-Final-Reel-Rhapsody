@@ -126,6 +126,21 @@ def delete_one_favorite(favorite_id):
     db.session.commit()
     return jsonify({"msg": "favorite deleted"}), 200
 
+@api.route('/user', methods=['PUT'])
+@jwt_required()
+def add_():
+    user_id = get_jwt_identity()
+    body = request.json 
+    new_favorite = Favorites(
+        user_id = user_id,
+        movie_id = body["movie_id"],
+        serie_id = body["serie_id"],
+    )
+    db.session.add(new_favorite)
+    db.session.commit()
+    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
+
+#debajo de estas líneas no puede haber nada
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     api.run(host='0.0.0.0', port=PORT, debug=False)

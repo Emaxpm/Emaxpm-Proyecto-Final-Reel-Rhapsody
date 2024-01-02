@@ -8,7 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			series: [],
 			actor: [],
 			OneActor: [],
-			favorites: []
+			favorites: [],
+			custom: [],
+			currentEdit: {
+			}
 		},
 		actions: {
 
@@ -92,20 +95,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const options = {
 						method: 'GET',
 						headers: {
-						  accept: 'application/json',
-						  Authorization: 'Bearer '+localStorage.getItem("token")
+							accept: 'application/json',
+							Authorization: 'Bearer ' + localStorage.getItem("token")
 						}
-					  };					  
-					 const response = await fetch(`${apiUrl}/isAuth`, options)
-					 console.log(response)
-					 const res = await response.json()
-					 console.log(res)
-					 setStore({currentUser: res})
+					};
+					const response = await fetch(`${apiUrl}/isAuth`, options)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					setStore({ currentUser: res })
 				} catch (error) {
 					console.log("Error loading message from backend", error);
-					setStore({currentUser: false})
+					setStore({ currentUser: false })
 				}
 			},
+
+			editUser: async (userId, newData) => {
+                try {
+                    const response = await fetch(`${apiUrl}/user/${userId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: 'Bearer ' + localStorage.getItem("token")
+                        },
+                        body: JSON.stringify(newData)
+                    });
+
+                    if (response.ok) {
+                        const updatedUser = await response.json();
+                        const store = getStore();
+                        
+                        setStore({ ...store, currentUser: updatedUser });
+                    } else {
+                        
+                        console.error('Error editing user:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error editing user:', error);
+                }
+            },
+
 
 			sign_up: async (newUser) => {
 				try {
@@ -124,7 +153,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e)
 				}
 			},
-
+			
 			logIn: async (newLogIn) => {
 
 				try {
@@ -138,18 +167,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 					const data = await result.json();
-					if (result.ok){
-						console.log("respuesta al intentar iniciar sesión:", data);
-						localStorage.setItem("token", data.access_token);
-						setStore({currentUser: data.user})
-						return true;	
-					}
-					return false;
+					console.log("respuesta al intentar iniciar sesión:", data);
+					localStorage.setItem("token", data.token);
+					return data;
+
 				} catch (e) {
 					console.error(e);
-					return false;
 				}
 			},
+
 			logout: async () => {
 				try {
 					localStorage.removeItem('token');
@@ -159,31 +185,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-
-			// addFavorite: async (item, type) => {
-			// 	try {
-			// 		const token = localStorage.getItem("token")
-			// 		const response = await fetch(apiUrl + '/user/favorites', {
-			// 			body: JSON.stringify(
-			// 				{
-			// 					movie_id: type == "movie" ? item.id : null,
-			// 					serie_id: type == "serie" ? item.id : null
-			// 				}),
-			// 			method: "POST",
-			// 			headers: {
-			// 				'Content-type': 'application/json; charset=UTF-8',
-			// 				"Authorization": `Bearer ${token}`,
-			// 			}
-			// 		})
-			// 		console.log(response)
-			// 		const res = await response.json()
-			// 		console.log(res)
-
-
-			// 	} catch (e) {
-			// 		console.error(e)
-			// 	}
-			// },
 
 			addFavorite: async (item, type) => {
 				try {
@@ -216,7 +217,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert("ese favorito ya existe")
 					}
 
-
 				} catch (e) {
 					console.error(e);
 				}
@@ -242,20 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
-
-			// addFavorite: (item) => {
-
-			// 	const store = getStore();
-
-			// 	if (item && item.id !== undefined && item.id !== null) {
-			// 		const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
-
-			// 		if (!isAlreadyAdded) {
-			// 			setStore({ ...store, favorites: [...store.favorites, item] });
-			// 		}
-			// 	} return
-			// },
-
+		
 			updateFavorites: (itemToRemove) => {
 				console.log("Item received to remove:", itemToRemove);
 				const store = getStore();
