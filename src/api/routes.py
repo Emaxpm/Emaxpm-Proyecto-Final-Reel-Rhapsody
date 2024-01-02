@@ -142,14 +142,18 @@ def delete_favorite():
 def add_():
     user_id = get_jwt_identity()
     body = request.json 
-    new_favorite = Favorites(
-        user_id = user_id,
-        movie_id = body["movie_id"],
-        serie_id = body["serie_id"],
-    )
-    db.session.add(new_favorite)
+    user = User.query.get(user_id)
+    if not user:
+            return jsonify({"error": "Usuario no encontrado."}), 404
+    for key in body:
+        for col in user.serialize():
+            if key == col and key != "id":
+                # if col == "password":
+                #     new_password = bcrypt.generate_password_hash(body[key]).decode('utf-8')
+                #     print(new_password)
+                setattr(user, col, body[key])
     db.session.commit()
-    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
+    return jsonify({"msg": "Modificado exitosamente"})
 
 #debajo de estas líneas no puede haber nada
 if __name__ == '__main__':
