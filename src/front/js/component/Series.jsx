@@ -2,49 +2,102 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
+import SecondNavbar from "./SecondNavbar.jsx";
 
 const Series = () => {
     const { store, actions } = useContext(Context);
+    const totalPagesSeries = store.totalPagesSeries;
     const navigate = useNavigate()
     const [randomSerie, setRandomSerie] = useState(null);
     const selectRandomSerie = () => {
         const randomIndex = Math.floor(Math.random() * store.series.length);
         setRandomSerie(store.series[randomIndex]);
     };
-    console.log(store.series);
+    const [min, setMin] = useState(1);
+    const [max, setMax] = useState(5);
+
+    const generateNumber = () => {
+        const numbers = [];
+        for (let i = min; i <= max; i++) {
+            numbers.push(
+                <li key={i} className="page-item">
+                    <a className="page-link" href="#" onClick={() => actions.loadSomeSerie(i)}>
+                        {i}
+                    </a>
+                </li>
+            );
+        }
+        return numbers;
+    };
+
+    const handlePreviousClick = () => {
+        if (min > 1) {
+            setMin(min - 5);
+            setMax(max - 5)
+        }
+    };
+
+    const handleNextClick = () => {
+        if (max < totalPagesSeries || max < totalPagesSeries) {
+            setMin(min + 5);
+            setMax(max + 5);
+        }
+    }
+
     return (
         <>
-            <div>
-                <div className="row d-flex flex-wrap justify-content-center">
-                    <div className="container-title">
-                        <button className="RandomButton" onClick={selectRandomSerie}>Random</button>
-                    </div>
-                    {randomSerie ? (
-                        <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
-                            <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
-                            <div className="card-body">
-                                <h5 className="card-title">{randomSerie.original_name}</h5>
-                                <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
-                                <p className="card-text"> vote: {randomSerie.vote_average}</p>
-                                <div className="buttons">
-                                    <Link to={"/viewBigList"}>
-                                        <button className="btn btn-outline-primary mt-3 button">
-                                            More!
-                                        </button>
-                                    </Link>
-                                    <Link to={"/viewBigList"}>
-                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(randomSerie);
-                                            navigate("/viewBigList");
-                                        }}>
-                                            Reserved for popcorn
-                                        </button>
-                                    </Link>
-                                </div>
+            <SecondNavbar />
+
+            <h2 className=" title">SERIES</h2>
+
+            <div className="row d-flex flex-wrap justify-content-center mt-5">
+                <div className="container-title">
+                    <button className="RandomButton" onClick={selectRandomSerie}>Random</button>
+                </div>
+                {randomSerie ? (
+                    <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
+                        <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title">{randomSerie.original_name}</h5>
+                            <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
+                            <p className="card-text"> vote: {randomSerie.vote_average}</p>
+                            <div className="buttons">
+                                <Link to={"/viewBigList"}>
+                                    <button className="btn btn-outline-primary mt-3 button">
+                                        More!
+                                    </button>
+                                </Link>
+                                <Link to={"/viewBigList"}>
+                                    <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                        actions.addFavorite(randomSerie, "serie");
+                                        navigate("/viewBigList");
+                                    }}>
+                                        Reserved for popcorn
+                                    </button>
+                                </Link>
                             </div>
                         </div>
-                    ) : null}
-                </div>
+                    </div>
+                ) : null}
+            </div>
+
+            <nav aria-label="...">
+                <ul className="pagination d-flex justify-content-center mt-5">
+                    <li className={`page-item ${min <= 1 ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handlePreviousClick} tabIndex="-1" aria-disabled={min <= 1}>Previous</a>
+                    </li>
+
+                    {/* Aquí se generan los elementos de lista para los números de página */}
+                    {generateNumber()}
+
+                    <li className={`page-item ${max >= (totalPagesSeries || totalPagesSeries) ? 'disabled' : ''}`}>
+                        <a className="page-link" href="#" onClick={handleNextClick}>Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div>
+
                 <div className="row d-flex flex-wrap justify-content-center">
                     {store.series.map((item) => (
                         <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
@@ -67,7 +120,7 @@ const Series = () => {
                                     <Link to={"/viewBigList"}>
 
                                         <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(item)
+                                            actions.addFavorite(item, "serie")
                                             navigate("/viewBigList")
 
                                         }}>
@@ -82,6 +135,10 @@ const Series = () => {
                     ))}
                 </div>
             </div>
+
+            <Link to={"/home"}>
+                <button type="button" className="btn btn-primary">Back</button>
+            </Link>
         </>
     );
 };

@@ -35,6 +35,8 @@ const injectContext = PassedComponent => {
 			state.actions.getFavorite();
 			state.actions.loadSomeFilm();
 			state.actions.loadSomeSerie();
+			state.actions.loadSomeActors()
+
 
 		}, []);
 
