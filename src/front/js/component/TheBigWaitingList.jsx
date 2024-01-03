@@ -8,12 +8,6 @@ const TheBigWaitingList = () => {
 
     const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        if (store.loggedUserId) {
-            actions.getFavorite(store.loggedUserId);
-        }
-    }, [store.loggedUserId, actions]);
-
     const removeFromFavorites = (itemToRemove) => {
         if (itemToRemove && itemToRemove.id !== undefined && itemToRemove.id !== null) {
             actions.updateFavorites(itemToRemove);

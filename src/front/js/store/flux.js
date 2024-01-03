@@ -40,6 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadSomeFilm: async (numberOfPage = 1) => {
 
 				try {
+					const store = getStore();
 					const options = {
 						method: 'GET',
 						headers: {
@@ -168,6 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorite: async (item, type) => {
 				try {
 					const store = getStore();
+					const actions = getActions();
 					const token = localStorage.getItem("token");
 
 					if (!isDuplicate(store.favorites, item, type)) {
@@ -186,12 +188,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							const res = await response.json();
 							console.log(res);
-							setStore({
-								favorites: [...store.favorites, {
-									movie_id: type === "movie" ? item.id : null,
-									serie_id: type === "serie" ? item.id : null
-								}]
-							});
+							// setStore({
+							// 	favorites: [...store.favorites, {
+							// 		movie_id: type === "movie" ? item.id : null,
+							// 		serie_id: type === "serie" ? item.id : null
+							// 	}]
+							// });
+							actions.getFavorite(store.loggedUserId);
 						} else {
 							console.error("Failed to add favorite");
 						}
@@ -215,10 +218,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					const res = await response.json();
 					if (response.ok) {
-						const currentFavorites = getStore().favorites;
-						if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
-							setStore({ favorites: res });
-						}
+						setStore({ favorites: res })
+						// const currentFavorites = getStore().favorites;
+						// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
+						// 	setStore({ favorites: res });
+						// }
 					}
 				} catch (e) {
 					console.error(e);

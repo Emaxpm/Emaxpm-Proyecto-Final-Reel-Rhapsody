@@ -7,7 +7,7 @@
  .card {
      border-radius: 5px;
      border-color: rgb(119, 33, 141);
-     border-style: dashed;
+     /* border-style: dashed; */
      border-width: 2px;
      color: rgb(73, 32, 83) !important;
      margin-bottom: 30px;
