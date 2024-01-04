@@ -148,9 +148,6 @@ def add_():
     for key in body:
         for col in user.serialize():
             if key == col and key != "id":
-                # if col == "password":
-                #     new_password = bcrypt.generate_password_hash(body[key]).decode('utf-8')
-                #     print(new_password)
                 setattr(user, col, body[key])
     db.session.commit()
     return jsonify({"msg": "Modificado exitosamente"})
