@@ -147,7 +147,7 @@ def add_():
             return jsonify({"error": "Usuario no encontrado."}), 404
     for key in body:
         for col in user.serialize():
-            if key == col and key != "id":
+            if key == col and body[key] != "" and body[key] is not None and key != "id":
                 setattr(user, col, body[key])
     db.session.commit()
     return jsonify({"msg": "Modificado exitosamente"})

@@ -32,6 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadSomeFilm: async (numberOfPage = 1) => {
 
 				try {
+					const store = getStore();
 					const options = {
 						method: 'GET',
 						headers: {
@@ -125,22 +126,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			editUser: async (userId, newData) => {
-                try {
-                    const response = await fetch(`${apiUrl}/user/${userId}`, {
+			editUser: async (formData) => {
+				try {
+					const actions = getActions()
+                    const response = await fetch(apiUrl+"/user", {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
                             Authorization: 'Bearer ' + localStorage.getItem("token")
                         },
-                        body: JSON.stringify(newData)
+                        body: JSON.stringify(formData)						
                     });
-
+					console.log(formData)
                     if (response.ok) {
-                        const updatedUser = await response.json();
-                        const store = getStore();
-                        
-                        setStore({ ...store, currentUser: updatedUser });
+                        const res = await response.json();
+                        actions.isAuth()
+						console.log(res)
+						return res
                     } else {
                         
                         console.error('Error editing user:', response.statusText);
@@ -149,7 +151,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error('Error editing user:', error);
                 }
             },
-
 
 			sign_up: async (newUser) => {
 				try {
@@ -207,6 +208,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorite: async (item, type) => {
 				try {
 					const store = getStore();
+					const actions = getActions();
 					const token = localStorage.getItem("token");
 
 					if (!isDuplicate(store.favorites, item, type)) {
@@ -225,12 +227,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							const res = await response.json();
 							console.log(res);
-							setStore({
-								favorites: [...store.favorites, {
-									movie_id: type === "movie" ? item.id : null,
-									serie_id: type === "serie" ? item.id : null
-								}]
-							});
+							// setStore({
+							// 	favorites: [...store.favorites, {
+							// 		movie_id: type === "movie" ? item.id : null,
+							// 		serie_id: type === "serie" ? item.id : null
+							// 	}]
+							// });
+							actions.getFavorite(store.loggedUserId);
 						} else {
 							console.error("Failed to add favorite");
 						}
@@ -254,10 +257,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					const res = await response.json();
 					if (response.ok) {
-						const currentFavorites = getStore().favorites;
-						if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
-							setStore({ favorites: res });
-						}
+						setStore({ favorites: res })
+						// const currentFavorites = getStore().favorites;
+						// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
+						// 	setStore({ favorites: res });
+						// }
 					}
 				} catch (e) {
 					console.error(e);

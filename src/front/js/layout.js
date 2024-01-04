@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { VActor } from "./pages/VActor.js";
-// import { CustUser } from "./pages/CustUser.js";
+import { CustUser } from "./pages/CustUser.js";
 import Payment  from "./pages/payment.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
@@ -39,7 +39,7 @@ const Layout = () => {
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />
-                        {/* <Route element={<CustUser />} path="/CustUser/:id" /> */}
+                        <Route element={<CustUser />} path="/CustUser" />
                         <Route element={<ViewBigList />} path="/viewBigList" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

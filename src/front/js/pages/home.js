@@ -1,54 +1,127 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
-import Card from "../component/Card.jsx";
-import Series from "../component/Series.jsx";
+import { Context } from "../store/appContext.js";
 import SecondNavbar from "../component/SecondNavbar.jsx";
-import imageCinema from "../../img/Vista home.png";
 
 export const Home = () => {
+
+	const { store, actions } = useContext(Context)
+	const navigate = useNavigate()
+
 	return (
 		<>
 			<SecondNavbar />
 
-			<div className="d-flex mt-3 px-3">
-				<p className="Parrafo-home">
-					"Embark on an enchanting journey through cinematic wonders with Reel Rhapsody. Our curated selection awaits your discovery, offering the best random choices in movies and series. Let serendipity guide your entertainment experience as you explore the realms of storytelling magic."
-				</p>
+			<Link to={"/movies"}>
 
-				<img className="presentation px-3" src={imageCinema} />
+				<h2 className="title-p mx-5 my-5">Movies</h2>
+
+			</Link>
+
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5 movies-con">
+
+				{store.films.map((item) => (
+
+					<div className="cards mx-5">
+
+						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+							<div className="card-body">
+								<h4 className="card-title">{item.original_title}</h4>
+								<p className="card-text"> Release Date: {item.release_date}</p>
+								<p className="card-text"> Popularity: {item.popularity}</p>
+								<p className="card-text"> Overview: {item.overview}</p>
+
+								<div className="buttons">
+									<Link to={"/singleCharacter/"}>
+										<button className="button p-2">
+
+											Learn more!
+
+										</button>
+									</Link>
+
+									<Link to={"/viewBigList"}>
+
+										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+											actions.addFavorite(item, "movie")
+											navigate("/viewBigList")
+
+										}}>
+											Reserved for popcorn
+										</button>
+
+									</Link>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				))}
+			</div>
+
+			<Link to={"/series"}>
+
+				<h2 className="title-p mx-5 my-5">Series</h2>
+
+			</Link>
+
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
+
+				{store.series.map((item) => (
+
+					<div className="cards mx-5">
+
+						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+							<div className="card-body">
+								<h4 className="card-title">{item.original_name}</h4>
+								<p className="card-text"> Release Date: {item.release_date}</p>
+								<p className="card-text"> Popularity: {item.popularity}</p>
+								<p className="card-text"> Overview: {item.overview}</p>
+
+								<div className="buttons">
+									<Link to={"/singleCharacter/"}>
+										<button className="button p-2">
+
+											Learn more!
+
+										</button>
+									</Link>
+
+									<Link to={"/viewBigList"}>
+
+										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+											actions.addFavorite(item, "serie")
+											navigate("/viewBigList")
+
+										}}>
+											Reserved for popcorn
+										</button>
+
+									</Link>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				))}
+			</div>
+
+
+
+
+			<div>
+
+				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 
 			</div>
 
-			<div className="linsk-ms mt-3">
-
-				<h2>Que te gustaria ver?</h2>
-
-				<div className="butons-ms px-5 py-5">
-
-					<Link to={"/movies"}>
-						<button type="button" className="btn btn-primary px-3 py-3 mx-2">Movies</button>
-					</Link>
-
-					<Link to={"/series"}>
-						<button type="button" className="btn btn-primary px-3 py-3">Series</button>
-					</Link>
-
-				</div>
-
-			</div>
-
-			<div className="paypal mt-5">
-
-				<h2>Te gusta nuestra aplicacion? nos ayudarias con una donacion para seguir mejorando la aplicacion y que llegue a mas personas</h2>
-
-				<div>
-
-					<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
-
-				</div>
-
-			</div>
 		</>
 	);
 };

@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import React, { useState, useContext } from 'react';
-import { Context } from '../store/appContext';
 
 const CustomizeUser = () => {
     const { store, actions } = useContext(Context);
     const [formData, setFormData] = useState({
-        fullName: '',
-        // avatar: '' 
+        full_name: '',
+        avatar: '' 
     });
 
     const handleChange = e => {
@@ -20,9 +18,9 @@ const CustomizeUser = () => {
  
     const handleSubmit = e => {
         e.preventDefault();
-        actions.editUser(store.currentEdit.id, formData);
-    };
-
+        actions.editUser(formData);
+        
+    };  
     return (
         <div>
             <h1>Editar Perfil</h1>
@@ -31,14 +29,20 @@ const CustomizeUser = () => {
                     <label>Nombre:</label>
                     <input
                         type="text"
-                        name="fullName"
-                        value={formData.fullName}
+                        name="full_name"
+                        value={formData.full_name}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    {}
-                </div>
+                    <label>Avatar:</label>
+                    <input
+                        type="text"
+                        name="avatar"
+                        value={formData.avatar}
+                        onChange={handleChange}
+                    />
+                </div>                
                 <button onClick={handleSubmit} type="submit">Guardar Cambios</button>
             </form>
         </div>
@@ -46,3 +50,4 @@ const CustomizeUser = () => {
 };
 
 export default CustomizeUser;
+

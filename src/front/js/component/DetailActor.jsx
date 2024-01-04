@@ -12,8 +12,8 @@ const DetailActor = () => {
     console.log(store.OneActor)
 
     return (
-        <div className="primero"> 
-            <div className="jumbotron text-white">
+        <div className="primero">
+            <div className="text-white">
                 <div className="top d-flex align-items-center my-4">
                     <div className="left">
                         <img src={'https://image.tmdb.org/t/p/w500' + store.OneActor.profile_path} className="pic" alt="..." style={{ width: "300px", height: "300px" }}></img>
