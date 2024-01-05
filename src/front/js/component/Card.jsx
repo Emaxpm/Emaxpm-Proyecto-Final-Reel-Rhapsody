@@ -14,6 +14,10 @@ const Card = () => {
         const randomIndex = Math.floor(Math.random() * store.films.length);
         setRandomFilm(store.films[randomIndex]);
     };
+    const imagenError = (e) => {
+        e.target.src = "https://picsum.photos/id/237/200/100"
+    }
+
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(5);
 
@@ -106,7 +110,7 @@ const Card = () => {
                 <div className="row d-flex flex-wrap justify-content-center">
                     {store.films.map((item) => (
                         <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
-                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} onError={imagenError} className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{item.original_title}</h5>
                                 <p className="card-text"> Release Date: {item.release_date}</p>

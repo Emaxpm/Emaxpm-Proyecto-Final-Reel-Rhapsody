@@ -22,11 +22,11 @@ export const Home = () => {
 
 			<div className=" d-flex flex-row overflow-auto my-3 mx-5 movies-con">
 
-				{store.films.map((item) => (
+				{store.films.map((item, index) => (
 
-					<div className="cards mx-5">
+					<div key={index}  className="cards mx-5">
 
-						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+						<div className="card mb-5" style={{ width: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_title}</h4>
@@ -72,11 +72,11 @@ export const Home = () => {
 
 			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
 
-				{store.series.map((item) => (
+				{store.series.map((item, index) => (
 
-					<div className="cards mx-5">
+					<div key={index} className="cards mx-5">
 
-						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+						<div className="card mb-5" style={{ width: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_name}</h4>

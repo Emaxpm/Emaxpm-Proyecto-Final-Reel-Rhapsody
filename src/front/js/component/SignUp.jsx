@@ -12,7 +12,7 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
   
-    const handlerCreateUser = async()=> {
+    const handlerCreateUser = async ()=> {
         try{
 
           if (!fullName || !email || !password) {

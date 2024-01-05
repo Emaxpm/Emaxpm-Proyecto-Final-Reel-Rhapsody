@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User, Favorites 
+from api.models import db, User, Favorites
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -97,7 +97,7 @@ def add_favorites():
 
     if not body.get("movie_id") and not body.get("serie_id"):
         return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos"}), 400
- 
+    
     new_favorite = Favorites(
         user_id = user_id,
         movie_id = body.get("movie_id"),

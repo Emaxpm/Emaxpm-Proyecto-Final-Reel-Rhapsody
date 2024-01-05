@@ -15,7 +15,7 @@ const TheBigWaitingList = () => {
             console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
         }
     };
-
+    console.log(store.favorites)
     return (
         <>
             <SecondNavbar />

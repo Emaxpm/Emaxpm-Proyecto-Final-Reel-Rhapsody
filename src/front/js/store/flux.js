@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			totalPagesSeries: 1,
 			pagesActors: 1,
 			totalPagesActors: 1,
-			loggedUserId: null
+			loggedUserId: null,
 		},
 		actions: {
 			loadSomeFilm: async (numberOfPage = 1) => {
@@ -216,14 +216,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": `Bearer ${token}`,
 						}
 					});
-					const res = await response.json();
-					if (response.ok) {
-						setStore({ favorites: res })
-						// const currentFavorites = getStore().favorites;
-						// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
-						// 	setStore({ favorites: res });
-						// }
+
+
+					if (!response.ok) {
+						console.error(response.statusText)
+						return
 					}
+					const res = await response.json();
+					setStore({ favorites: res })
+					// const currentFavorites = getStore().favorites;
+					// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
+					// 	setStore({ favorites: res });
+					// }
+
 				} catch (e) {
 					console.error(e);
 				}
