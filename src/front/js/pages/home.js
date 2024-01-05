@@ -10,7 +10,6 @@ export const Home = () => {
 	const navigate = useNavigate()
 
 	return (
-
 		<>
 			<SecondNavbar />
 

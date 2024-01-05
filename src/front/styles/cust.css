@@ -1,0 +1,25 @@
+.texto{
+    color:aliceblue
+}
+
+.botcust{
+    background-color: rgb(168, 95, 187);
+    color: #c7eef3;
+    border: none;
+    cursor: pointer;
+    margin-right: 50px;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 10%;
+    height: 50px;
+    width: 150px;
+}
+
+.botcust:hover {
+  background-color: rgb(98, 57, 109);
+}
+
+.inputstyle{
+    max-width: 150px;
+}

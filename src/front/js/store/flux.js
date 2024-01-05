@@ -11,23 +11,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+			currentUser: null,
 			films: [],
 			series: [],
 			actor: [],
 			OneActor: [],
 			favorites: [],
+			custom: [],
+			currentEdit: {
+			},
 			pagesMovies: 1,
 			totalPagesMovies: 1,
 			pagesSeries: 1,
@@ -114,6 +106,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			isAuth: async () => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer ' + localStorage.getItem("token")
+						}
+					};
+					const response = await fetch(`${apiUrl}/isAuth`, options)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					setStore({ currentUser: res })
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					setStore({ currentUser: false })
+				}
+			},
+
+			editUser: async (formData) => {
+				try {
+					const actions = getActions()
+                    const response = await fetch(apiUrl+"/user", {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: 'Bearer ' + localStorage.getItem("token")
+                        },
+                        body: JSON.stringify(formData)						
+                    });
+					console.log(formData)
+                    if (response.ok) {
+                        const res = await response.json();
+                        actions.isAuth()
+						console.log(res)
+						return res
+                    } else {
+                        
+                        console.error('Error editing user:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error editing user:', error);
+                }
+            },
+
 			sign_up: async (newUser) => {
 				try {
 
@@ -131,7 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e)
 				}
 			},
-
+			
 			logIn: async (newLogIn) => {
 
 				try {
@@ -154,6 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
+
 			logout: async () => {
 				try {
 					localStorage.removeItem('token');
