@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import CustomizeUser from "../component/CustomizeUser.jsx";
+import "../../styles/cust.css"
 
 import { Context } from "../store/appContext";
 
@@ -13,7 +14,7 @@ export const CustUser = () => {
 			</div>
 			<br />
 			<Link to="/home">
-				<button className="btn btn-primary">Back Home</button>
+				<button className="botcust">Back Home</button>
 			</Link>
 		</div>
 	);
