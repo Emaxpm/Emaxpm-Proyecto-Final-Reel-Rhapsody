@@ -7,7 +7,9 @@ class User(db.Model):
     full_name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
+    avatar = db.Column(db.String(500), unique=False, nullable=True)
     favorites = db.relationship("Favorites", backref = "user")
+    
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -17,6 +19,7 @@ class User(db.Model):
             "id": self.id,
             "full_name": self.full_name,
             "email": self.email,
+            "avatar": self.avatar,
         }
     
 class Favorites(db.Model):

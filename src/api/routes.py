@@ -71,13 +71,21 @@ def login():
 
         access_token = create_access_token(identity=user.id)
 
-        return jsonify({"access_token": access_token, "fullName": user.full_name, "id": user.id}), 200
+        return jsonify({"access_token": access_token, "user": user.serialize()}), 200
 
     except Exception as e:
         print(f"Error en la ruta /login: {str(e)}")
 
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
 
+@api.route('/isAuth', methods=['GET'])
+@jwt_required()
+def is_auth():
+    user_id=get_jwt_identity()
+    user = User.query.get(user_id)
+    if user is None:
+        return False, 404
+    return jsonify(user.serialize()), 200
 
 @api.route('/user/favorites', methods=['GET'])
 @jwt_required()
@@ -129,3 +137,22 @@ def delete_favorite():
     db.session.commit()
     return jsonify({"msg": "Favorite deleted"}), 200
 
+@api.route('/user', methods=['PUT'])
+@jwt_required()
+def add_():
+    user_id = get_jwt_identity()
+    body = request.json 
+    user = User.query.get(user_id)
+    if not user:
+            return jsonify({"error": "Usuario no encontrado."}), 404
+    for key in body:
+        for col in user.serialize():
+            if key == col and body[key] != "" and body[key] is not None and key != "id":
+                setattr(user, col, body[key])
+    db.session.commit()
+    return jsonify({"msg": "Modificado exitosamente"})
+
+#debajo de estas líneas no puede haber nada
+if __name__ == '__main__':
+    PORT = int(os.environ.get('PORT', 3000))
+    api.run(host='0.0.0.0', port=PORT, debug=False)
