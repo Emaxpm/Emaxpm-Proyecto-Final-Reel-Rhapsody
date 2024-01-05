@@ -23,9 +23,9 @@ export const Home = () => {
 
 				{store.films.map((item) => (
 
-					<div className="cards mx-5">
+					<div className="cards mx-5" key={item.id} >
 
-						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+						<div className="card mb-5" style={{ width: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_title}</h4>
@@ -73,9 +73,9 @@ export const Home = () => {
 
 				{store.series.map((item) => (
 
-					<div className="cards mx-5">
+					<div className="cards mx-5" key={item.id}>
 
-						<div className="card mb-5" key={item.id} style={{ width: "25rem" }}>
+						<div className="card mb-5"  style={{ width: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_name}</h4>

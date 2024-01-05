@@ -196,7 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: async () => {
 				try {
 					localStorage.removeItem('token');
-					setStore({ loggedUserId: null, favorites: [] }); // Limpiar datos del usuario al cerrar sesión
+					setStore({ loggedUserId: null, favorites: [] });
 					return true;
 				} catch (error) {
 					console.error('Error during logout:', error);
