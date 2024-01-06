@@ -176,7 +176,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logIn: async (newLogIn) => {
 
 				try {
-
 					let result = await fetch(`${apiUrl}/login`, {
 						method: "POST",
 						body: JSON.stringify(newLogIn),
@@ -198,8 +197,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: async () => {
 				try {
+					const actions = getActions()
 					localStorage.removeItem('token');
 					setStore({ loggedUserId: null, favorites: [] });
+					actions.isAuth()
 					return true;
 				} catch (error) {
 					console.error('Error during logout:', error);

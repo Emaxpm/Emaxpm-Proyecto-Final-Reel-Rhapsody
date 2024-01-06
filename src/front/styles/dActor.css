@@ -1,7 +1,12 @@
-.primero{
+.primero {
     margin: auto;
 }
 
-.right{
+.right {
     padding-left: 20px;
+}
+
+.accordion-button {
+    color: rgb(168, 95, 187);
+    font-size: 25px;
 }

@@ -113,3 +113,14 @@
   background-color: #c7eef3;
   color: #333;
 }
+
+.btn-nav {
+  background-color: rgb(168, 95, 187);
+  padding: 10px;
+  color: #fff;
+}
+
+.btn-nav:hover {
+  background-color: #fff;
+  color: rgb(168, 95, 187);
+}

@@ -60,9 +60,9 @@ const Signup = () => {
 
             <p>Welcome to your ultimate guide for movies and series!"</p>
 
-            <Link to={"/"}>
+            <Link to={"/login"}>
 
-              <button className="button-login">Log In</button>
+              <button className="button-login input-submit">Log In</button>
 
             </Link>
 

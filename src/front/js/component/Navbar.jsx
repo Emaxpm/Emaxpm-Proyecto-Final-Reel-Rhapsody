@@ -32,7 +32,7 @@ const Navbar = () => {
                     </Link>
                     <h2>Reel Rhapsody</h2>
                 </div>
-                {store.currentUser &&
+                {store.currentUser ?
                     <div className='cont-btns'>
                         <div className="dropdown">
                             <button
@@ -58,6 +58,25 @@ const Navbar = () => {
                             </button>
                         </div>
                     </div>
+
+                    :
+                    
+                    <div className="nav-butons">
+
+                        <Link to="/login">
+
+                            <button type="button" className="btn btn-nav">Log In</button>
+
+                        </Link>
+
+                        <Link to="/signup">
+
+                            <button type="button" className="btn mx-2 btn-nav">Sign Up</button>
+
+                        </Link>
+
+                    </div>
+
                 }
             </nav>
         </>

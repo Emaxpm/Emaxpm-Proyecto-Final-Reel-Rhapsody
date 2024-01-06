@@ -20,7 +20,7 @@ export const Home = () => {
 
 			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
 
-				{store.films.map((item, index) => (
+				{store.films.map((item) => (
 
 					<div className="cards mx-5" key={item.id} >
 
@@ -42,17 +42,20 @@ export const Home = () => {
 									</button>
 								</Link>
 
-								<Link to={"/viewBigList"}>
+								{store.currentUser &&
 
-									<button className="btn btn-outline-primary mt-3 button" onClick={() => {
-										actions.addFavorite(item, "movie")
-										navigate("/viewBigList")
+									<Link to={"/viewBigList"}>
 
-									}}>
-										Reserved for popcorn
-									</button>
+										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+											actions.addFavorite(item, "movie")
+											navigate("/viewBigList")
 
-								</Link>
+										}}>
+											Reserved for popcorn
+										</button>
+
+									</Link>
+								}
 
 							</div>
 						</div>
@@ -69,7 +72,7 @@ export const Home = () => {
 
 			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
 
-				{store.series.map((item, index) => (
+				{store.series.map((item) => (
 
 					<div className="cards mx-5" key={item.id}>
 
@@ -91,17 +94,20 @@ export const Home = () => {
 									</button>
 								</Link>
 
-								<Link to={"/viewBigList"}>
+								{store.currentUser &&
 
-									<button className="btn btn-outline-primary mt-3 button" onClick={() => {
-										actions.addFavorite(item, "serie")
-										navigate("/viewBigList")
+									<Link to={"/viewBigList"}>
 
-									}}>
-										Reserved for popcorn
-									</button>
+										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+											actions.addFavorite(item, "serie")
+											navigate("/viewBigList")
 
-								</Link>
+										}}>
+											Reserved for popcorn
+										</button>
+
+									</Link>
+								}
 
 							</div>
 						</div>
