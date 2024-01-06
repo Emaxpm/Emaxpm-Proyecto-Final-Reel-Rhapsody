@@ -8,13 +8,13 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { VActor } from "./pages/VActor.js";
 import { CustUser } from "./pages/CustUser.js";
-import Payment  from "./pages/payment.js";
+import Payment from "./pages/payment.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
 import ViewBigList from "./pages/viewBigList.js";
 
 import injectContext from "./store/appContext";
-import SecondNavbar from "./component/SecondNavbar.jsx";
+import Navbar from "./component/Navbar.jsx";
 import Card from "./component/Card.jsx";
 import Series from "./component/Series.jsx";
 
@@ -30,9 +30,10 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <Navbar />
                     <Routes>
-                        <Route element={<LogIn />} path="/" />
-                        <Route element={<Home />} path="/home" />
+                        <Route element={<LogIn />} path="/login" />
+                        <Route element={<Home />} path="/" />
                         <Route element={<Card />} path="/movies" />
                         <Route element={<Series />} path="/series" />
                         <Route element={<Payment />} path="/payment" />

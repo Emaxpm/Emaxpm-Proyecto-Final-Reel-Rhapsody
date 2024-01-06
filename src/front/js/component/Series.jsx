@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
-import SecondNavbar from "./SecondNavbar.jsx";
+import SecondNavbar from "./Navbar.jsx";
 
 const Series = () => {
     const { store, actions } = useContext(Context);
@@ -46,7 +46,6 @@ const Series = () => {
 
     return (
         <>
-            <SecondNavbar />
 
             <h2 className=" title">SERIES</h2>
 

@@ -1,14 +1,11 @@
-import React from 'react' 
+import React from 'react'
 import Series from '../component/Series.jsx'
-import SecondNavbar from '../component/SecondNavbar.jsx'
+import SecondNavbar from '../component/Navbar.jsx'
 
 const series = () => {
   return (
     <>
-    <SecondNavbar/>
-
-    <Series/>
-    
+      <Series />
     </>
   )
 }

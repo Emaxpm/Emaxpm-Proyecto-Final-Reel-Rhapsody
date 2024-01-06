@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
-import SecondNavbar from "./SecondNavbar.jsx";
+import SecondNavbar from "./Navbar.jsx";
 
 const Card = () => {
     const [moviesOnPage, setMoviesOnPage] = useState([]);
@@ -53,7 +53,7 @@ const Card = () => {
     return (
 
         <>
-            <SecondNavbar />
+
 
             <h2 className="title">MOVIES</h2>
 
@@ -74,14 +74,18 @@ const Card = () => {
                                         More!
                                     </button>
                                 </Link>
-                                <Link to={"/viewBigList"}>
-                                    <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                        actions.addFavorite(randomFilm, "movie");
-                                        navigate("/viewBigList");
-                                    }}>
-                                        Reserved for popcorn
-                                    </button>
-                                </Link>
+
+                                {store.currentUser &&
+                                    <Link to={"/viewBigList"}>
+                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            actions.addFavorite(randomFilm, "movie");
+                                            navigate("/viewBigList");
+                                        }}>
+                                            Reserved for popcorn
+                                        </button>
+                                    </Link>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -126,17 +130,20 @@ const Card = () => {
 
                                     </Link>
 
-                                    <Link to={"/viewBigList"}>
+                                    {store.currentUser &&
+                                        <Link to={"/viewBigList"}>
 
-                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                            actions.addFavorite(item, "movie")
-                                            navigate("/viewBigList")
+                                            <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                                actions.addFavorite(item, "movie")
+                                                navigate("/viewBigList")
 
-                                        }}>
-                                            Reserved for popcorn
-                                        </button>
+                                            }}>
+                                                Reserved for popcorn
+                                            </button>
 
-                                    </Link>
+                                        </Link>
+
+                                    }
 
                                 </div>
                             </div>

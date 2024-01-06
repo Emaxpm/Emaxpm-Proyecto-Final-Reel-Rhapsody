@@ -23,7 +23,7 @@ const LogIn = () => {
     const handlerlogInNewUser = async () => {
 
         try {
-            
+
             if (email == "" || password == "") {
                 return "All spaces must be filled"
             }
@@ -43,17 +43,17 @@ const LogIn = () => {
 
             const result = await actions.logIn(newLogIn);
 
-            if(result.access_token) {
-                
+            if (result.access_token) {
+
                 localStorage.setItem("token", result.access_token);
 
                 console.log("Usuario logueado:", result.fullName);
-    
-                navigate("/home");
+
+                navigate("/");
             } else {
-               
+
                 console.log("Hubo un problema al iniciar sesión");
-            }   
+            }
 
         } catch (e) {
             console.error(e);
@@ -63,8 +63,6 @@ const LogIn = () => {
     return (
 
         <>
-
-        <Navbar/>
 
             <div className='container-form'>
 

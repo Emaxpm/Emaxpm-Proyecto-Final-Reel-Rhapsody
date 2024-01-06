@@ -111,7 +111,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const options = {
 						method: 'GET',
 						headers: {
-							accept: 'application/json',
 							Authorization: 'Bearer ' + localStorage.getItem("token")
 						}
 					};
@@ -119,7 +118,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response)
 					const res = await response.json()
 					console.log(res)
-					setStore({ currentUser: res })
+					if (response.ok) {
+						setStore({ currentUser: res })
+						return null
+					}
+					setStore({ currentUser: false })
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 					setStore({ currentUser: false })
@@ -129,28 +132,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			editUser: async (formData) => {
 				try {
 					const actions = getActions()
-                    const response = await fetch(apiUrl+"/user", {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: 'Bearer ' + localStorage.getItem("token")
-                        },
-                        body: JSON.stringify(formData)						
-                    });
+					const response = await fetch(apiUrl + "/user", {
+						method: 'PUT',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(formData)
+					});
 					console.log(formData)
-                    if (response.ok) {
-                        const res = await response.json();
-                        actions.isAuth()
+					if (response.ok) {
+						const res = await response.json();
+						actions.isAuth()
 						console.log(res)
 						return res
-                    } else {
-                        
-                        console.error('Error editing user:', response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error editing user:', error);
-                }
-            },
+					} else {
+
+						console.error('Error editing user:', response.statusText);
+					}
+				} catch (error) {
+					console.error('Error editing user:', error);
+				}
+			},
 
 			sign_up: async (newUser) => {
 				try {
@@ -169,7 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e)
 				}
 			},
-			
+
 			logIn: async (newLogIn) => {
 
 				try {
@@ -196,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: async () => {
 				try {
 					localStorage.removeItem('token');
-					setStore({ loggedUserId: null, favorites: [] }); // Limpiar datos del usuario al cerrar sesión
+					setStore({ loggedUserId: null, favorites: [] });
 					return true;
 				} catch (error) {
 					console.error('Error during logout:', error);
@@ -227,12 +230,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							const res = await response.json();
 							console.log(res);
-							// setStore({
-							// 	favorites: [...store.favorites, {
-							// 		movie_id: type === "movie" ? item.id : null,
-							// 		serie_id: type === "serie" ? item.id : null
-							// 	}]
-							// });
 							actions.getFavorite(store.loggedUserId);
 						} else {
 							console.error("Failed to add favorite");
@@ -263,11 +260,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const res = await response.json();
 					setStore({ favorites: res })
-					// const currentFavorites = getStore().favorites;
-					// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
-					// 	setStore({ favorites: res });
-					// }
-
 				} catch (e) {
 					console.error(e);
 				}

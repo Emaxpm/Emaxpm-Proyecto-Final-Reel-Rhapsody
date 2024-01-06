@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import SecondNavbar from "../component/SecondNavbar.jsx";
+import SecondNavbar from "./Navbar.jsx";
 import "../../styles/TheBigWaitingList.css"
 
 const TheBigWaitingList = () => {
@@ -18,7 +18,7 @@ const TheBigWaitingList = () => {
     console.log(store.favorites)
     return (
         <>
-            <SecondNavbar />
+
 
             <h2 className="title">Pending Popcorn</h2>
             <div className="row d-flex flex-wrap justify-content-center">
@@ -50,7 +50,7 @@ const TheBigWaitingList = () => {
                 }
             </div>
 
-            <Link to={"/home"}>
+            <Link to={"/"}>
 
                 <button type="button" className="btn btn-primary">Back</button>
 

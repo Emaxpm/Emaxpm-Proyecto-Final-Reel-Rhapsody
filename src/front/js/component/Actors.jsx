@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/actors.css";
-import SecondNavbar from "./SecondNavbar.jsx";
+import SecondNavbar from "./Navbar.jsx";
 
 const Actors = () => {
     const { store, actions } = useContext(Context)
@@ -60,7 +60,7 @@ const Actors = () => {
 
     return (
         <>
-            <SecondNavbar />
+
             <h2 className="title">Actors</h2>
 
             <nav aria-label="...">
