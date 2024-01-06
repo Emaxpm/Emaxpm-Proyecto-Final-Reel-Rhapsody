@@ -12,6 +12,7 @@ const DetailActor = () => {
     console.log(store.OneActor)
 
     return (
+
         <div className="primero">
             <div className="text-white">
                 <div className="top d-flex align-items-center my-4">
@@ -20,13 +21,28 @@ const DetailActor = () => {
                     </div>
                     <div className="right">
                         <h2 className="display-4">{store.OneActor.name}</h2>
-                        <p className="fs-4" style={{ width: "700px" }}>Biography: {store.OneActor.biography}</p>
+                        {/* <p className="fs-4" style={{ width: "700px" }}>Biography: {store.OneActor.biography}</p> */}
+                        <div className="accordion" id="accordionExample">
+                            <div className="accordion-item">
+                                <h2 className="accordion-header" id="headingOne">
+                                    <button className="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Biography:
+                                    </button>
+                                </h2>
+
+                                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body ">
+                                        <p className="text-dark">{store.OneActor.biography}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr className="my-4" />
+                        <div className="text-center">
+                            <p className="display-4">Birthday: {store.OneActor.birthday} </p>
+                            <p className="display-4">Place of birth: {store.OneActor.place_of_birth} </p>
+                        </div>
                     </div>
-                </div>
-                <hr className="my-4" />
-                <div className="text-center">
-                    <p className="display-4">Birthday: {store.OneActor.birthday} </p>
-                    <p className="display-4">Place of birth: {store.OneActor.place_of_birth} </p>
                 </div>
             </div>
         </div>

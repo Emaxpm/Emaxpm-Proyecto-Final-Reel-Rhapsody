@@ -10,10 +10,10 @@ export const CustUser = () => {
 		<div className="container">
 			<div className="container-fluid row">
 				<h2 className="col-12 title">Customize</h2>
-				<div><CustomizeUser/></div>
+				<div><CustomizeUser /></div>
 			</div>
 			<br />
-			<Link to="/home">
+			<Link to="/">
 				<button className="botcust">Back Home</button>
 			</Link>
 		</div>

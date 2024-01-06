@@ -144,7 +144,7 @@ body {
 }
 
 .input-submit {
-    background-color: #9191bd;
+    background-color: rgb(119, 33, 141);
     color: #fff;
     border-radius: 20px;
     border: none;
@@ -155,7 +155,8 @@ body {
 }
 
 .input-submit:hover {
-    background-color: #7a7a9a;
+    background-color: #fff;
+    color: rgb(119, 33, 141);
 }
 
 /* RESPONSIve FORM */

@@ -24,8 +24,8 @@ const CustomizeUser = () => {
 
     };
 
-   const renderAvatarOptions = () => {
-        return avatars.map((avatar, index)  => (
+    const renderAvatarOptions = () => {
+        return avatars.map((avatar, index) => (
             <div className="form-check form-check-inline" key={index}>
                 <input
                     className="form-check-input"
@@ -44,32 +44,44 @@ const CustomizeUser = () => {
     };
 
     return (
-        <div className="texto">
-            <form onSubmit={handleSubmit}>
-                <h1>Edit Profile</h1>
-                <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput" className="form-label">Name:</label>
-                    <input type="text" className="form-control inputstyle" id="formGroupExampleInput" placeholder="Name"
-                        name="full_name"
-                        value={formData.full_name}
-                        onChange={handleChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput2" className="form-label">Choose your Avatar:</label>
-                </div>
-                <div>
-                <input type="text" className="form-control mb-5" id="formGroupExampleInput2" 
-                        placeholder="Avatar URL"
-                        name="avatar"
-                        value={formData.avatar}
-                        onChange={handleChange}/>
-                </div>
-                <div className="mb-3">
-                    {renderAvatarOptions()}
-                </div>
-                <button className="botcust" type="submit">Save</button>
-            </form>
-        </div>
+        <>
+
+            <div>
+
+                {store.currentUser && (
+                    <>
+                        <div className="texto">
+                            <form onSubmit={handleSubmit}>
+                                <h1>Edit Profile</h1>
+                                <div className="mb-3">
+                                    <label htmlFor="formGroupExampleInput" className="form-label">Name:</label>
+                                    <input type="text" className="form-control inputstyle" id="formGroupExampleInput" placeholder="Name"
+                                        name="full_name"
+                                        value={formData.full_name}
+                                        onChange={handleChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="formGroupExampleInput2" className="form-label">Choose your Avatar:</label>
+                                </div>
+                                <div>
+                                    <input type="text" className="form-control mb-5" id="formGroupExampleInput2"
+                                        placeholder="Avatar URL"
+                                        name="avatar"
+                                        value={formData.avatar}
+                                        onChange={handleChange} />
+                                </div>
+                                <div className="mb-3">
+                                    {renderAvatarOptions()}
+                                </div>
+                                <button className="botcust" type="submit">Save</button>
+                            </form>
+                        </div>
+
+                    </>
+                )}
+            </div>
+
+        </>
     );
 };
 
