@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/cust.css"
+import avatars from "../../img/json/avatars.json"
 
 const CustomizeUser = () => {
     const { store, actions } = useContext(Context);
@@ -22,50 +23,51 @@ const CustomizeUser = () => {
         actions.editUser(formData);
 
     };
+
+   const renderAvatarOptions = () => {
+        return avatars.map((avatar, index)  => (
+            <div className="form-check form-check-inline" key={index}>
+                <input
+                    className="form-check-input"
+                    type="radio"
+                    name="avatar"
+                    id={`inlineRadio${index}`}
+                    value={avatar.url}
+                    checked={formData.avatar === avatar.url}
+                    onChange={handleChange}
+                />
+                <label className="form-check-label" htmlFor={`inlineRadio${index}`}>
+                    <img src={avatar.url} alt={`Avatar ${avatar.name}`} />
+                </label>
+            </div>
+        ));
+    };
+
     return (
         <div className="texto">
             <form onSubmit={handleSubmit}>
                 <h1>Edit Profile</h1>
                 <div className="mb-3">
-                    <label for="formGroupExampleInput" className="form-label">Name:</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label">Name:</label>
                     <input type="text" className="form-control inputstyle" id="formGroupExampleInput" placeholder="Name"
                         name="full_name"
                         value={formData.full_name}
                         onChange={handleChange} />
-
                 </div>
                 <div className="mb-3">
-                    <label for="formGroupExampleInput2" className="form-label">Avatar:</label>
-                    <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Avatar"
+                    <label htmlFor="formGroupExampleInput2" className="form-label">Choose your Avatar:</label>
+                </div>
+                <div>
+                <input type="text" className="form-control mb-5" id="formGroupExampleInput2" 
+                        placeholder="Avatar URL"
                         name="avatar"
                         value={formData.avatar}
-                        onChange={handleChange} />
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
-                            <label className="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
-                            <label className="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"/>
-                            <label className="form-check-label" for="inlineRadio3">3 </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"/>
-                            <label className="form-check-label" for="inlineRadio4">4</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5"/>
-                            <label className="form-check-label" for="inlineRadio5">5</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option6"/>
-                            <label className="form-check-label" for="inlineRadio6">6</label>
-                    </div>
+                        onChange={handleChange}/>
                 </div>
-                <button className="botcust" onClick={handleSubmit} type="submit">Save</button>
+                <div className="mb-3">
+                    {renderAvatarOptions()}
+                </div>
+                <button className="botcust" type="submit">Save</button>
             </form>
         </div>
     );

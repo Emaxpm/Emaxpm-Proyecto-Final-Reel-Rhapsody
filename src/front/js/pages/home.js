@@ -22,10 +22,11 @@ export const Home = () => {
 
 				{store.films.map((item, index) => (
 
-					<div className="card mb-5 mx-5" key={index} style={{ minWidth: "25rem" }}>
-						<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
-						<div className="card-body">
-							<div className="body-content">
+					<div className="cards mx-5" key={item.id} >
+
+						<div className="card mb-5" style={{ width: "25rem" }}>
+							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+							<div className="card-body">
 								<h4 className="card-title">{item.original_title}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
@@ -70,10 +71,11 @@ export const Home = () => {
 
 				{store.series.map((item, index) => (
 
-					<div className="card mb-5 mx-5" key={index} style={{ minWidth: "25rem" }}>
-						<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
-						<div className="card-body">
-							<div className="body-content">
+					<div className="cards mx-5" key={item.id}>
+
+						<div className="card mb-5" style={{ width: "25rem" }}>
+							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+							<div className="card-body">
 								<h4 className="card-title">{item.original_name}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
