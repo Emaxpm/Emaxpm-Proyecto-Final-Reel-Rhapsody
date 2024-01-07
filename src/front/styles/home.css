@@ -8,9 +8,10 @@
     font-size: 40px;
     font-family: 'Courier New', Courier, monospace !important;
     font-weight: bold;
-    background-color: rgb(175, 210, 226) !important;
+    /* background-color: rgb(175, 210, 226) !important; */
     align-items: center;
     text-align: center;
+    margin-top: 40px;
 }
 
 .Parrafo-home {
@@ -41,6 +42,13 @@
 }
 
 .title-p {
-    color: #fff;
+    color: rgb(168, 95, 187);
 }
 
+.cards p {
+    font-size: larger;
+}
+
+h4 {
+    color: black;
+}

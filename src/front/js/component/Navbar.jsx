@@ -30,37 +30,42 @@ const Navbar = () => {
                     <Link to={"/"}>
                         <img src={Logo} className="logo" />
                     </Link>
-                    <h2>Reel Rhapsody</h2>
+                    <h2 className='nav-title'>Reel Rhapsody</h2>
                 </div>
                 {store.currentUser ?
-                    <div className='cont-btns'>
-                        <div className="dropdown">
-                            <button
-                                className={`dropdown-btn dropdown-toggle ${isDropdownOpen ? 'active' : ''}`}
-                                type="button"
-                                onClick={toggleDropdown}
-                            >
-                                MENU&nbsp;
-                            </button>
-                            <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
-                                <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
-                                <li><Link to="/demo">Actors</Link></li>
-                                <li></li>
-                                <hr />
-                                <li>
-                                    <Logout />
-                                </li>
-                            </ul>
+                    <div className='logouser-drop'>
+                        <div className='cont-btns'>
+                            <div className="dropdown">
+                                <button
+                                    className={`dropdown-btn dropdown-toggle ${isDropdownOpen ? 'active' : ''}`}
+                                    type="button"
+                                    onClick={toggleDropdown}
+                                >
+                                    MENU&nbsp;
+                                </button>
+                                <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
+                                    <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
+                                    <li><Link to="/demo">Actors</Link></li>
+                                    <li></li>
+                                    <hr />
+                                    <li>
+                                        <Logout />
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
+
                         <div>
                             <button className='user-btn' onClick={() => handlerEdit(store.currentUser)}>
                                 <img className="w-100 h-100 rounded-circle" src={store.currentUser?.avatar ? store.currentUser.avatar : defaultAvatar} alt="" />
                             </button>
                         </div>
+
                     </div>
 
                     :
-                    
+
                     <div className="nav-butons">
 
                         <Link to="/login">
@@ -71,7 +76,7 @@ const Navbar = () => {
 
                         <Link to="/signup">
 
-                            <button type="button" className="btn mx-2 btn-nav">Sign Up</button>
+                            <button type="button" className="btn btn-nav button-right">Sign Up</button>
 
                         </Link>
 

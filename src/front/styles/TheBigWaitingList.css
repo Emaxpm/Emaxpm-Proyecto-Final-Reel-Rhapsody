@@ -1,5 +1,20 @@
-.Favorites-butons{
+.Favorites-butons {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: end;
+
+}
+
+.not-favorites {
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 50px;
+    width: 40%;
+}
+
+.card-fav {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
 }

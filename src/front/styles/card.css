@@ -7,7 +7,7 @@
     color: rgb(73, 32, 83) !important;
     display: inline-block;
     border-radius: 7px;
-    font-family: 'Courier New', Courier, monospace !important;
+    /* font-family: 'Courier New', Courier, monospace !important; */
     font-weight: bold;
 }
 
@@ -22,7 +22,7 @@
 
 .RandomButton {
     margin: auto;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
@@ -50,3 +50,6 @@
     border: 2px solid rgb(168, 95, 187);
 }
 
+h4 {
+    color: rgb(73, 32, 83)
+}

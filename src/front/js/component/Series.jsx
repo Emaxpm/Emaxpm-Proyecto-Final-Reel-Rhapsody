@@ -61,7 +61,7 @@ const Series = () => {
                 <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
                     <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">{randomSerie.original_name}</h5>
+                        <h4 className="card-title">{randomSerie.original_name}</h4>
                         <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
                         <p className="card-text"> vote: {randomSerie.vote_average}</p>
                         <div className="buttons">
@@ -103,14 +103,15 @@ const Series = () => {
 
             <div>
 
-                <div className="row d-flex flex-wrap justify-content-center">
+                <div className=" d-flex flex-wrap justify-content-center">
                     {store.series.map((item) => (
                         <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
                             <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{item.original_name}</h5>
-                                <p className="card-text"> Release Date: {item.first_air_date}</p>
-                                <p className="card-text"> vote: {item.vote_average}</p>
+                                <p className="card-text"> First Air Date: {item.first_air_date}</p>
+                                <p className="card-text"> Popularity: {item.popularity}</p>
+                                <p className="card-text"> Vote Average: {item.vote_average}</p>
 
                                 <div className="buttons">
 
@@ -145,7 +146,7 @@ const Series = () => {
                 </div>
             </div>
 
-            <Link to={"/home"}>
+            <Link to={"/"}>
                 <button type="button" className="btn btn-primary">Back</button>
             </Link>
         </>

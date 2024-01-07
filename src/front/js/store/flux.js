@@ -1,11 +1,3 @@
-const isDuplicate = (favorites, item, type) => {
-	if (type === 'movie') {
-		return favorites.some(favorite => favorite.movie_id === item.id);
-	} else if (type === 'serie') {
-		return favorites.some(favorite => favorite.serie_id === item.id);
-	}
-	return false;
-};
 const apiUrl = process.env.BACKEND_URL + "/api"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -215,7 +207,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const actions = getActions();
 					const token = localStorage.getItem("token");
 
-					if (!isDuplicate(store.favorites, item, type)) {
 						const response = await fetch(apiUrl + '/user/favorites', {
 							body: JSON.stringify({
 								movie_id: type === "movie" ? item.id : null,
@@ -231,13 +222,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							const res = await response.json();
 							console.log(res);
-							actions.getFavorite(store.loggedUserId);
+							actions.getFavorite();
 						} else {
 							console.error("Failed to add favorite");
-						}
-					} else {
-						alert("¡Ese favorito ya existe!");
-					}
+						}		
 
 				} catch (e) {
 					console.error(e);
@@ -255,12 +243,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 
-					if (!response.ok) {
-						console.error(response.statusText)
-						return
-					}
+					// if (!response.ok) {
+					// 	console.error(response.statusText)
+					// 	return
+					// }
 					const res = await response.json();
-					setStore({ favorites: res })
+					// sacarle a res los ids y pedirle a la api externa las peliculas y series correspondientes a los mismos
+					// guardar este array peliculas / series en una propiedad store 
+					// mapear desde componentes favorito la propieadd store que fue creada  
+					const store = getStore()
+					setStore({...store, favorites: res })
 				} catch (e) {
 					console.error(e);
 				}
