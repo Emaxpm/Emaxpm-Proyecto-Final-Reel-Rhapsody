@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext.js";
 import SecondNavbar from "../component/Navbar.jsx";
+import Footer from "../component/Footer.js";
 
 export const Home = () => {
 
@@ -116,11 +117,68 @@ export const Home = () => {
 				))}
 			</div>
 
-			<div>
+			<footer class="footer">
+					<div class= "footer-section">
+						<article class="footer-section">
 
-				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+							<div class="Containers_views_numbers">
+								<div class="number-container hide">
+									<div class="Actualnumbers">
+										<span class="number"><span>6535</span></span>
+									</div>
+									<span class="label">Watchers</span>
+									</div>
 
-			</div>
+								<div class="number-container hide">
+									<div class="Actualnumbers">
+										<span class="number"><span>1800</span></span>
+										<span class="number">k+</span>
+									</div>
+									<span class="label">Shows watched</span>
+									</div>
+
+								<div class="number-container">
+									<div class="actualnumbers">
+										<span class="number"><span>97</span></span>
+									</div>
+									<span class="label">Countries</span>
+								</div>
+
+								<div class="number-container">
+									<div class="Actualnumbers">
+										<span class="number"><span>1.2</span></span>
+										<span class="number">M+</span>
+									</div>
+									<span class="label">Page Views</span>
+								</div>
+							</div>	
+
+							<div class="line"></div>
+							
+							<div class="lowerfooter">
+								<div class="Informationaboutus">
+									<div>
+										<h2>Reel Rhapsody</h2>
+									</div>
+									<span class="brooklyn sm">Made with <i class="nes-icon is-small heart"></i> by RR's team.</span>
+								</div>
+
+								<div class="Links-footer">
+									<a target="_blank" href="">BLOG</a>
+									<a target="_blank" href="">COMMUNITY</a>
+									<a target="_blank" href="/payment">DONATIONS</a>
+									<a target="_blank" href="">HELP CENTER</a>
+									<a target="_blank" href="">ABOUT</a>
+								</div>
+										
+									<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+							</div>
+						</article>
+					</div>
+			
+			</footer>
+
+			
 
 		</>
 	);
