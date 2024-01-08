@@ -5,9 +5,10 @@
 .card {
     background-color: #c7eef3;
     color: rgb(73, 32, 83) !important;
+    border: solid 2px rgb(168, 95, 187);
     display: inline-block;
     border-radius: 7px;
-    font-family: 'Courier New', Courier, monospace !important;
+    font-family: 'Courier New', Courier, monospace ;
     font-weight: bold;
 }
 
@@ -22,7 +23,7 @@
 
 .RandomButton {
     margin: auto;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
@@ -50,3 +51,10 @@
     border: 2px solid rgb(168, 95, 187);
 }
 
+h4 {
+    color: rgb(73, 32, 83)
+}
+
+.random-card {
+    text-align: center;
+}

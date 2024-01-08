@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
-import SecondNavbar from "./Navbar.jsx";
+
 
 const Card = () => {
-    const [moviesOnPage, setMoviesOnPage] = useState([]);
     const { store, actions } = useContext(Context)
     const totalPagesMovies = store.totalPagesMovies;
     const navigate = useNavigate()
@@ -64,31 +63,36 @@ const Card = () => {
             )}
 
             {randomFilm ? (
-                <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
-                    <img src={'https://image.tmdb.org/t/p/w500' + randomFilm.backdrop_path} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h5 className="card-title">{randomFilm.original_title}</h5>
-                        <p className="card-text"> Release Date: {randomFilm.release_date}</p>
-                        <p className="card-text"> vote: {randomFilm.vote_average}</p>
-                        <div className="buttons">
-                            <Link to={"/viewBigList"}>
-                                <button className="btn btn-outline-primary mt-3 button">
-                                    More!
-                                </button>
-                            </Link>
 
-                            {store.currentUser && (
-                                <Link to={"/viewBigList"}>
-                                    <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                        actions.addFavorite(randomFilm, "movie");
-                                        navigate("/viewBigList");
-                                    }}>
-                                        Reserved for popcorn
+                <div className="random-card">
+                    <div className="card  my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
+                        <img src={'https://image.tmdb.org/t/p/w500' + randomFilm.backdrop_path} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title">{randomFilm.original_title}</h5>
+                            <p className="card-text"> Release Date: {randomFilm.release_date}</p>
+                            <p className="card-text"> Popularity: {randomFilm.popularity}</p>
+                            <p className="card-text"> Vote Average: {randomFilm.vote_average}</p>
+                            <div className="buttons">
+                                <Link to={`/single/${randomFilm.id}`}>
+                                    <button className="btn btn-outline-primary mt-3 button">
+                                        Learn more!
                                     </button>
                                 </Link>
-                            )}
+
+                                {store.currentUser && (
+                                    <Link to={"/viewBigList"}>
+                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            actions.addFavorite(randomFilm, "movie");
+                                            navigate("/viewBigList");
+                                        }}>
+                                            Reserved for popcorn
+                                        </button>
+                                    </Link>
+                                )}
+                            </div>
                         </div>
                     </div>
+
                 </div>
             ) : null}
 
@@ -108,18 +112,19 @@ const Card = () => {
                 </ul>
             </nav>
 
-            <div className="row d-flex flex-wrap justify-content-center">
+            <div className=" d-flex flex-wrap justify-content-center">
                 {store.films.map((item) => (
-                    <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
+                    <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
                         <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} onError={imagenError} className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <h5 className="card-title">{item.original_title}</h5>
+                            <h4 className="card-title">{item.original_title}</h4>
                             <p className="card-text"> Release Date: {item.release_date}</p>
-                            <p className="card-text"> vote: {item.vote_average}</p>
+                            <p className="card-text"> Popularity: {item.popularity}</p>
+                            <p className="card-text"> Vote Average: {item.vote_average}</p>
                             <div className="buttons">
-                                <Link to={"/viewBigList"}>
+                                <Link to={`/single/${item.id}`}>
                                     <button className="btn btn-outline-primary mt-3 button">
-                                        More!
+                                        Learn more!
                                     </button>
                                 </Link>
 
@@ -139,7 +144,7 @@ const Card = () => {
                 ))}
             </div>
 
-            <Link to={"/home"}>
+            <Link to={"/"}>
                 <button type="button" className="btn btn-primary">Back</button>
             </Link>
         </>
