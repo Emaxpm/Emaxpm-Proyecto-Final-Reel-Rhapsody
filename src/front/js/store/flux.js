@@ -1,11 +1,3 @@
-const isDuplicate = (favorites, item, type) => {
-	if (type === 'movie') {
-		return favorites.some(favorite => favorite.movie_id === item.id);
-	} else if (type === 'serie') {
-		return favorites.some(favorite => favorite.serie_id === item.id);
-	}
-	return false;
-};
 const apiUrl = process.env.BACKEND_URL + "/api"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -13,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			currentUser: null,
 			films: [],
+			film: [],
+			serie: [],
 			series: [],
 			actor: [],
 			OneActor: [],
@@ -26,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			totalPagesSeries: 1,
 			pagesActors: 1,
 			totalPagesActors: 1,
-			loggedUserId: null
+			loggedUserId: null,
 		},
 		actions: {
 			loadSomeFilm: async (numberOfPage = 1) => {
@@ -38,6 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							accept: 'application/json',
 							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+							// agregar bearear en variable de entorno 
 						}
 					};
 					fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${numberOfPage}`, options)
@@ -106,12 +101,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			isAuth: async () => {
+			loadOneMovie: async (id,) => {
+				console.log(id)
 				try {
 					const options = {
 						method: 'GET',
 						headers: {
 							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ film: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
+			isAuth: async () => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
 							Authorization: 'Bearer ' + localStorage.getItem("token")
 						}
 					};
@@ -119,7 +132,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response)
 					const res = await response.json()
 					console.log(res)
-					setStore({ currentUser: res })
+					if (response.ok) {
+						setStore({ currentUser: res })
+						return null
+					}
+					setStore({ currentUser: false })
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 					setStore({ currentUser: false })
@@ -129,28 +146,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			editUser: async (formData) => {
 				try {
 					const actions = getActions()
-                    const response = await fetch(apiUrl+"/user", {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: 'Bearer ' + localStorage.getItem("token")
-                        },
-                        body: JSON.stringify(formData)						
-                    });
+					const response = await fetch(apiUrl + "/user", {
+						method: 'PUT',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(formData)
+					});
 					console.log(formData)
-                    if (response.ok) {
-                        const res = await response.json();
-                        actions.isAuth()
+					if (response.ok) {
+						const res = await response.json();
+						actions.isAuth()
 						console.log(res)
 						return res
-                    } else {
-                        
-                        console.error('Error editing user:', response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error editing user:', error);
-                }
-            },
+					} else {
+
+						console.error('Error editing user:', response.statusText);
+					}
+				} catch (error) {
+					console.error('Error editing user:', error);
+				}
+			},
 
 			sign_up: async (newUser) => {
 				try {
@@ -169,11 +186,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e)
 				}
 			},
-			
+
 			logIn: async (newLogIn) => {
 
 				try {
-
 					let result = await fetch(`${apiUrl}/login`, {
 						method: "POST",
 						body: JSON.stringify(newLogIn),
@@ -195,8 +211,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: async () => {
 				try {
+					const actions = getActions()
 					localStorage.removeItem('token');
 					setStore({ loggedUserId: null, favorites: [] });
+					actions.isAuth()
 					return true;
 				} catch (error) {
 					console.error('Error during logout:', error);
@@ -211,34 +229,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const actions = getActions();
 					const token = localStorage.getItem("token");
 
-					if (!isDuplicate(store.favorites, item, type)) {
-						const response = await fetch(apiUrl + '/user/favorites', {
-							body: JSON.stringify({
-								movie_id: type === "movie" ? item.id : null,
-								serie_id: type === "serie" ? item.id : null
-							}),
-							method: "POST",
-							headers: {
-								'Content-type': 'application/json; charset=UTF-8',
-								"Authorization": `Bearer ${token}`,
-							}
-						});
-
-						if (response.ok) {
-							const res = await response.json();
-							console.log(res);
-							// setStore({
-							// 	favorites: [...store.favorites, {
-							// 		movie_id: type === "movie" ? item.id : null,
-							// 		serie_id: type === "serie" ? item.id : null
-							// 	}]
-							// });
-							actions.getFavorite(store.loggedUserId);
-						} else {
-							console.error("Failed to add favorite");
+					const response = await fetch(apiUrl + '/user/favorites', {
+						body: JSON.stringify({
+							movie_id: type === "movie" ? item.id : null,
+							serie_id: type === "serie" ? item.id : null
+						}),
+						method: "POST",
+						headers: {
+							'Content-type': 'application/json; charset=UTF-8',
+							"Authorization": `Bearer ${token}`,
 						}
+					});
+
+					if (response.ok) {
+						const res = await response.json();
+						console.log(res);
+						actions.getFavorite();
 					} else {
-						alert("¡Ese favorito ya existe!");
+						console.error("Failed to add favorite");
 					}
 
 				} catch (e) {
@@ -255,14 +263,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": `Bearer ${token}`,
 						}
 					});
+
+
+					// if (!response.ok) {
+					// 	console.error(response.statusText)
+					// 	return
+					// }
 					const res = await response.json();
-					if (response.ok) {
-						setStore({ favorites: res })
-						// const currentFavorites = getStore().favorites;
-						// if (JSON.stringify(currentFavorites) !== JSON.stringify(res)) {
-						// 	setStore({ favorites: res });
-						// }
-					}
+					// sacarle a res los ids y pedirle a la api externa las peliculas y series correspondientes a los mismos
+					// guardar este array peliculas / series en una propiedad store 
+					// mapear desde componentes favorito la propieadd store que fue creada  
+					const store = getStore()
+					setStore({ ...store, favorites: res })
 				} catch (e) {
 					console.error(e);
 				}

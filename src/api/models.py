@@ -22,7 +22,6 @@ class User(db.Model):
             "email": self.email,
             "avatar": self.avatar,
         }
-  
     
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)

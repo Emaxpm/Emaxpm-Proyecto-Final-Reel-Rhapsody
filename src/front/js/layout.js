@@ -5,16 +5,16 @@ import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { Single } from "./pages/single.js";
 import { VActor } from "./pages/VActor.js";
 import { CustUser } from "./pages/CustUser.js";
-import Payment  from "./pages/payment.js";
+import Payment from "./pages/payment.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
 import ViewBigList from "./pages/viewBigList.js";
 
 import injectContext from "./store/appContext";
-import SecondNavbar from "./component/SecondNavbar.jsx";
+import Navbar from "./component/Navbar.jsx";
 import Card from "./component/Card.jsx";
 import Series from "./component/Series.jsx";
 
@@ -30,9 +30,10 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <Navbar />
                     <Routes>
-                        <Route element={<LogIn />} path="/" />
-                        <Route element={<Home />} path="/home" />
+                        <Route element={<LogIn />} path="/login" />
+                        <Route element={<Home />} path="/" />
                         <Route element={<Card />} path="/movies" />
                         <Route element={<Series />} path="/series" />
                         <Route element={<Payment />} path="/payment" />
@@ -41,7 +42,7 @@ const Layout = () => {
                         <Route element={<VActor />} path="/VActor/:id" />
                         <Route element={<CustUser />} path="/CustUser" />
                         <Route element={<ViewBigList />} path="/viewBigList" />
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Single />} path="/single/:id" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

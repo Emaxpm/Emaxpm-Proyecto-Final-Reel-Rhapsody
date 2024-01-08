@@ -37,7 +37,7 @@
   border: 2px solid #c7eef3;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 40px;
+  margin-right: 20px;
   font-family: 'Courier New', Courier, monospace !important;
   font-weight: bold;
   font-size: larger;
@@ -47,7 +47,7 @@
   position: absolute;
   background-color: rgb(168, 95, 187) !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
+  /* padding: 8px 0; */
   border-radius: 4px;
   list-style-type: none;
   margin-top: 5px;
@@ -71,16 +71,16 @@
   background-color: rgb(98, 57, 109);
 }
 
-.user-btn{
+.user-btn {
   width: 50px;
-  height: 50px; 
+  height: 50px;
   border-radius: 50%;
   background-color: rgb(168, 95, 187);
   color: #c7eef3;
   font-size: 12px;
-  border: 2px solid #c7eef3; 
+  border: 2px solid #c7eef3;
   cursor: pointer;
-  margin-right: 15px;
+  margin: 10px;
 }
 
 .user-btn:active {
@@ -98,4 +98,42 @@
 .cont-btns {
   display: flex;
   margin-top: 5px;
+}
+
+.logo {
+  padding: 10px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #c7eef3;
+  color: #333;
+}
+
+.btn-nav {
+  background-color: rgb(168, 95, 187);
+  padding: 10px;
+  color: #fff;
+}
+
+.btn-nav:hover {
+  background-color: #fff;
+  color: rgb(168, 95, 187);
+}
+
+.nav-title {
+  color: rgb(168, 95, 187);
+}
+
+.button-right {
+  margin: 10px;
+}
+
+.logouser-drop {
+  display: flex;
+  align-items: baseline;
 }
