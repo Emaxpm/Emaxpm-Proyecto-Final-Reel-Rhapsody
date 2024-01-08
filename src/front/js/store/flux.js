@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			currentUser: null,
 			films: [],
+			film: [],
+			serie: [],
 			series: [],
 			actor: [],
 			OneActor: [],
@@ -30,6 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						headers: {
 							accept: 'application/json',
 							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+							// agregar bearear en variable de entorno 
 						}
 					};
 					fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${numberOfPage}`, options)
@@ -92,6 +95,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch(`https://api.themoviedb.org/3/person/${id}?language=en-US`, options)
 						.then(response => response.json())
 						.then(response => setStore({ OneActor: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
+			loadOneMovie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ film: response }))
 						.catch(err => console.error(err));
 				} catch (error) {
 					console.log("Error loading message from backend", error);
@@ -207,25 +229,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const actions = getActions();
 					const token = localStorage.getItem("token");
 
-						const response = await fetch(apiUrl + '/user/favorites', {
-							body: JSON.stringify({
-								movie_id: type === "movie" ? item.id : null,
-								serie_id: type === "serie" ? item.id : null
-							}),
-							method: "POST",
-							headers: {
-								'Content-type': 'application/json; charset=UTF-8',
-								"Authorization": `Bearer ${token}`,
-							}
-						});
+					const response = await fetch(apiUrl + '/user/favorites', {
+						body: JSON.stringify({
+							movie_id: type === "movie" ? item.id : null,
+							serie_id: type === "serie" ? item.id : null
+						}),
+						method: "POST",
+						headers: {
+							'Content-type': 'application/json; charset=UTF-8',
+							"Authorization": `Bearer ${token}`,
+						}
+					});
 
-						if (response.ok) {
-							const res = await response.json();
-							console.log(res);
-							actions.getFavorite();
-						} else {
-							console.error("Failed to add favorite");
-						}		
+					if (response.ok) {
+						const res = await response.json();
+						console.log(res);
+						actions.getFavorite();
+					} else {
+						console.error("Failed to add favorite");
+					}
 
 				} catch (e) {
 					console.error(e);
@@ -252,7 +274,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// guardar este array peliculas / series en una propiedad store 
 					// mapear desde componentes favorito la propieadd store que fue creada  
 					const store = getStore()
-					setStore({...store, favorites: res })
+					setStore({ ...store, favorites: res })
 				} catch (e) {
 					console.error(e);
 				}

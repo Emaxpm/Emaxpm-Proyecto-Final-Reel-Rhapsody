@@ -23,7 +23,7 @@ export const Home = () => {
 
 					<div className="cards mx-5" key={item.id} >
 
-						<div className="card mb-5" style={{ minWidth: "28rem" }}>
+						<div className="card mb-5" style={{ minWidth: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_title}</h4>
@@ -76,7 +76,7 @@ export const Home = () => {
 
 					<div className="cards mx-5" key={item.id}>
 
-						<div className="card mb-5" style={{ minWidth: "28rem", }}>
+						<div className="card mb-5" style={{ minWidth: "25rem", }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_name}</h4>

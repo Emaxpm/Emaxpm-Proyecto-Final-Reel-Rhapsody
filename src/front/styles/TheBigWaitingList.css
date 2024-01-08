@@ -18,3 +18,13 @@
     flex-wrap: wrap;
     align-content: space-between;
 }
+
+.fav-button {
+    background-color: rgb(119, 33, 141);
+    border: none;
+}
+
+.fav-button:hover {
+    background-color: white;
+    color: rgb(119, 33, 141);
+}

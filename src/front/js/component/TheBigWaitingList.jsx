@@ -43,10 +43,10 @@ const TheBigWaitingList = () => {
                                                 <p className="card-text">Popularity: {item.movie_id ? store.films[idx]?.popularity : store.series[idx]?.popularity}</p>
                                                 <p className="card-text">Vote Average: {item.movie_id ? store.films[idx]?.vote_average : store.series[idx]?.vote_average}</p>
                                                 <div className="Favorites-butons">
-                                                    <button className="btn btn-outline-primary mt-3">
-                                                        More!
+                                                    <button className="btn btn-primary fav-button">
+                                                    Learn more!
                                                     </button>
-                                                    <button className="btn btn-primary" onClick={() => removeFromFavorites(item)}>Watched</button>
+                                                    <button className="btn btn-primary fav-button" onClick={() => removeFromFavorites(item)}>Watched</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@ const TheBigWaitingList = () => {
 
                         <Link to={"/"}>
 
-                            <button type="button" className="btn btn-primary">Back</button>
+                            <button type="button" className="btn btn-primary fav-button">Back</button>
 
                         </Link>
 

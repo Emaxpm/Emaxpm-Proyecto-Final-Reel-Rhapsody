@@ -45,10 +45,10 @@
     color: rgb(168, 95, 187);
 }
 
-.cards p {
+.card p {
     font-size: larger;
 }
 
-h4 {
-    color: black;
+.movie-container {
+    background-color: #4C0260;
 }

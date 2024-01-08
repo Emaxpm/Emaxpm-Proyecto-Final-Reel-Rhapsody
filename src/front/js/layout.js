@@ -5,7 +5,7 @@ import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { Single } from "./pages/single.js";
 import { VActor } from "./pages/VActor.js";
 import { CustUser } from "./pages/CustUser.js";
 import Payment from "./pages/payment.js";
@@ -42,7 +42,7 @@ const Layout = () => {
                         <Route element={<VActor />} path="/VActor/:id" />
                         <Route element={<CustUser />} path="/CustUser" />
                         <Route element={<ViewBigList />} path="/viewBigList" />
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Single />} path="/single/:id" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
