@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User, Favorites 
+from api.models import db, User, Favorites, Review 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -151,6 +151,17 @@ def add_():
                 setattr(user, col, body[key])
     db.session.commit()
     return jsonify({"msg": "Modificado exitosamente"})
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['GET'])
+def get_all_reviews(type, media_id):
+    if type == "movie":
+        reviews = Review.query.filter_by(movie_id = media_id).all()
+    elif type == "serie":
+        reviews = Review.query.filter_by(serie_id = media_id).all()
+    if len(reviews) < 1:
+        return jsonify({"msg": "not found"}), 404
+    serialized_reviews = list(map(lambda x: x.serialize(), reviews))
+    return serialized_reviews, 200
 
 #debajo de estas líneas no puede haber nada
 if __name__ == '__main__':

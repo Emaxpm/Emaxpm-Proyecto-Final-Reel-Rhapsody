@@ -9,6 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(250), unique=False, nullable=False)
     avatar = db.Column(db.String(500), unique=False, nullable=True)
     favorites = db.relationship("Favorites", backref = "user")
+    review = db.relationship("Review", backref = "user")
     
 
     def __repr__(self):
@@ -36,6 +37,27 @@ class Favorites(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id, 
+            "movie_id": self.movie_id,
+            "serie_id" : self.serie_id   
+        }
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    rate = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.String(300), nullable=False)
+    movie_id = db.Column(db.Integer, nullable=True)
+    serie_id = db.Column(db.Integer, nullable=True)
+    
+    def __repr__(self):
+        return '<Review %r>' % self.id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id, 
+            "rate": self.rate,
+            "comment" : self.comment,
             "movie_id": self.movie_id,
             "serie_id" : self.serie_id   
         }
