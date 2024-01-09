@@ -1,0 +1,139 @@
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c7eef3;
+  color: #333;
+}
+
+.button {
+  background-color: rgb(168, 95, 187);
+  color: #c7eef3;
+  border: none;
+  cursor: pointer;
+  margin-right: 40px;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.button:hover {
+  background-color: rgb(98, 57, 109);
+}
+
+.second-button {
+  margin: 0 10px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: rgb(168, 95, 187);
+  color: #c7eef3;
+  padding: 8px 12px;
+  border: 2px solid #c7eef3;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: rgb(168, 95, 187) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* padding: 8px 0; */
+  border-radius: 4px;
+  list-style-type: none;
+  margin-top: 5px;
+  left: 0;
+  right: 0;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.dropdown-menu li a {
+  color: #c7eef3;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgb(98, 57, 109);
+}
+
+.user-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(168, 95, 187);
+  color: #c7eef3;
+  font-size: 12px;
+  border: 2px solid #c7eef3;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.user-btn:active {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.user-btn:hover {
+  background: #c7eef3;
+  color: rgb(168, 95, 187);
+  font-weight: bold;
+  border: 2px solid rgb(168, 95, 187);
+}
+
+.cont-btns {
+  display: flex;
+  margin-top: 5px;
+}
+
+.logo {
+  padding: 10px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #c7eef3;
+  color: #333;
+}
+
+.btn-nav {
+  background-color: rgb(168, 95, 187);
+  padding: 10px;
+  color: #fff;
+}
+
+.btn-nav:hover {
+  background-color: #fff;
+  color: rgb(168, 95, 187);
+}
+
+.nav-title {
+  color: rgb(168, 95, 187);
+}
+
+.button-right {
+  margin: 10px;
+}
+
+.logouser-drop {
+  display: flex;
+  align-items: baseline;
+}

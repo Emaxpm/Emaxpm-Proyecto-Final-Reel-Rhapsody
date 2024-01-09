@@ -1,7 +1,54 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.presentation {
+    width: 100%;
+    height: 600px;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.title {
+    color: rgb(119, 33, 141) !important;
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-weight: bold;
+    /* background-color: rgb(175, 210, 226) !important; */
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.Parrafo-home {
+    color: #ddd;
+    font-size: 2rem;
+    text-align: justify;
+}
+
+.linsk-ms {
+    background-color: aqua;
+    width: 40%;
+    height: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+.paypal {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    width: 40%;
+    background-color: magenta;
+    margin: auto;
+}
+
+.paypal h2 {
+    width: 500px;
+}
+
+.title-p {
+    color: rgb(168, 95, 187);
+}
+
+.card p {
+    font-size: larger;
+}
+
+.movie-container {
+    background-color: #4C0260;
+}
