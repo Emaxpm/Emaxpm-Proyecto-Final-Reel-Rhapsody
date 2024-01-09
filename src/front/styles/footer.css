@@ -1,0 +1,33 @@
+.footer {
+    background-color: rgb(182, 117, 243);
+}
+.Containers_views_numbers {
+    display: flex;
+    text-align: start;
+    flex-flow: wrap;
+    justify-content: space-around;
+    padding: calc(20px - 1rem) 0px 20px;
+}
+.actualnumbers{
+    font-size: 32px;
+    line-height: 50px;
+}
+.line{
+    border-top: 1px solid lightgray;
+    width: 100%;
+}
+.lowerfooter{
+    display: flex;
+    text-align: start;
+    flex-flow: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-around;
+    -webkit-box-align: end;
+    align-items: end;
+}
+.Linksfooter{
+    display: flex;
+}
+.Linksfooter.button {
+    padding: 0px 0rem;
+}
