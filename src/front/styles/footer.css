@@ -21,7 +21,13 @@
     text-align: start;
     flex-flow: wrap;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: space-around;
     -webkit-box-align: end;
     align-items: end;
+}
+.Linksfooter{
+    display: flex;
+}
+.Linksfooter.button {
+    padding: 0px 0rem;
 }

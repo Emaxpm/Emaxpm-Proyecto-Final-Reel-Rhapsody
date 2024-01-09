@@ -117,58 +117,62 @@ export const Home = () => {
 				))}
 			</div>
 
-			<footer class="footer">
-					<div class= "footer-section">
-						<article class="footer-section">
+			<footer className="footer">
+					<div className= "footer-section">
+						<article className="footer-section">
 
-							<div class="Containers_views_numbers">
-								<div class="number-container hide">
-									<div class="Actualnumbers">
-										<span class="number"><span>6535</span></span>
+							<div className="Containers_views_numbers">
+								<div className="number-container hide">
+									<div className="actualnumbers">
+										<span className="number"><span>6535</span></span>
 									</div>
-									<span class="label">Watchers</span>
-									</div>
-
-								<div class="number-container hide">
-									<div class="Actualnumbers">
-										<span class="number"><span>1800</span></span>
-										<span class="number">k+</span>
-									</div>
-									<span class="label">Shows watched</span>
+									<span className="label">Watchers</span>
 									</div>
 
-								<div class="number-container">
-									<div class="actualnumbers">
-										<span class="number"><span>97</span></span>
+								<div className="number-container hide">
+									<div className="actualnumbers">
+										<span className="number"><span>1800</span></span>
+										<span className="number">k+</span>
 									</div>
-									<span class="label">Countries</span>
+									<span className="label">Shows watched</span>
+									</div>
+
+								<div className="number-container">
+									<div className="actualnumbers">
+										<span className="number"><span>97</span></span>
+									</div>
+									<span className="label">Countries</span>
 								</div>
 
-								<div class="number-container">
-									<div class="Actualnumbers">
-										<span class="number"><span>1.2</span></span>
-										<span class="number">M+</span>
+								<div className="number-container">
+									<div className="actualnumbers">
+										<span className="number"><span>1.2</span></span>
+										<span className="number">M+</span>
 									</div>
-									<span class="label">Page Views</span>
+									<span className="label">Page Views</span>
 								</div>
 							</div>	
 
-							<div class="line"></div>
+							<div className="line"></div>
 							
-							<div class="lowerfooter">
-								<div class="Informationaboutus">
+							<div className="lowerfooter">
+								<div className="Informationaboutus">
 									<div>
 										<h2>Reel Rhapsody</h2>
 									</div>
-									<span class="brooklyn sm">Made with <i class="nes-icon is-small heart"></i> by RR's team.</span>
+									<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
 								</div>
 
-								<div class="Links-footer">
-									<a target="_blank" href="">BLOG</a>
-									<a target="_blank" href="">COMMUNITY</a>
-									<a target="_blank" href="/payment">DONATIONS</a>
-									<a target="_blank" href="">HELP CENTER</a>
-									<a target="_blank" href="">ABOUT</a>
+								<div className="Linksfooter">
+										<button target="_blank" href="">BLOG</button>
+										<button target="_blank" href="">COMMUNITY</button>
+									<Link to="/payment">
+										<button target="_blank" href="/payment">DONATIONS</button>
+									</Link>
+		
+									<button target="_blank" href="">HELP CENTER</button>
+
+										<button target="_blank" href="">ABOUT</button>
 								</div>
 										
 									<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
