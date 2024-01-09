@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/card.css";
-import SecondNavbar from "./Navbar.jsx";
 
 const Series = () => {
     const { store, actions } = useContext(Context);
@@ -58,31 +57,37 @@ const Series = () => {
 
             )}
             {randomSerie ? (
-                <div className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
-                    <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
-                    <div className="card-body">
-                        <h5 className="card-title">{randomSerie.original_name}</h5>
-                        <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
-                        <p className="card-text"> vote: {randomSerie.vote_average}</p>
-                        <div className="buttons">
-                            <Link to={"/viewBigList"}>
-                                <button className="btn btn-outline-primary mt-3 button">
-                                    More!
-                                </button>
-                            </Link>
 
-                            {store.currentUser && (
+                <div className="random-card">
+
+                    <div className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
+                        <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h4 className="card-title">{randomSerie.original_name}</h4>
+                            <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
+                            <p className="card-text"> Popularity: {randomSerie.popularity}</p>
+                            <p className="card-text"> Vote Average: {randomSerie.vote_average}</p>
+                            <div className="buttons">
                                 <Link to={"/viewBigList"}>
-                                    <button className="btn btn-outline-primary mt-3 button" onClick={() => {
-                                        actions.addFavorite(randomSerie, "serie");
-                                        navigate("/viewBigList");
-                                    }}>
-                                        Reserved for popcorn
+                                    <button className="btn btn-outline-primary mt-3 button">
+                                        Learn more!
                                     </button>
                                 </Link>
-                            )}
+
+                                {store.currentUser && (
+                                    <Link to={"/viewBigList"}>
+                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            actions.addFavorite(randomSerie, "serie");
+                                            navigate("/viewBigList");
+                                        }}>
+                                            Reserved for popcorn
+                                        </button>
+                                    </Link>
+                                )}
+                            </div>
                         </div>
                     </div>
+
                 </div>
             ) : null}
 
@@ -103,25 +108,25 @@ const Series = () => {
 
             <div>
 
-                <div className="row d-flex flex-wrap justify-content-center">
+                <div className=" d-flex flex-wrap justify-content-center">
                     {store.series.map((item) => (
-                        <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
+                        <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
                             <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{item.original_name}</h5>
-                                <p className="card-text"> Release Date: {item.first_air_date}</p>
-                                <p className="card-text"> vote: {item.vote_average}</p>
+                                <p className="card-text"> First Air Date: {item.first_air_date}</p>
+                                <p className="card-text"> Popularity: {item.popularity}</p>
+                                <p className="card-text"> Vote Average: {item.vote_average}</p>
 
                                 <div className="buttons">
 
                                     <Link to={"/viewBigList"}>
 
                                         <button className="btn btn-outline-primary mt-3 button">
-                                            More!
+                                            Learn more!
                                         </button>
 
                                     </Link>
-
 
                                     {store.currentUser && (
                                         <Link to={"/viewBigList"}>
@@ -145,7 +150,7 @@ const Series = () => {
                 </div>
             </div>
 
-            <Link to={"/home"}>
+            <Link to={"/"}>
                 <button type="button" className="btn btn-primary">Back</button>
             </Link>
         </>

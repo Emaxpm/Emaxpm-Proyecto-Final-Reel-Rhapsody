@@ -95,7 +95,7 @@ def get_all_favorites():
     if len(favorites) < 1:
         return jsonify({"msg": "not found"}), 404
     serialized_favorites = list(map(lambda x: x.serialize(), favorites))
-    return serialized_favorites, 200
+    return jsonify(serialized_favorites), 200
 
 @api.route('/user/favorites', methods=['POST'])
 @jwt_required()

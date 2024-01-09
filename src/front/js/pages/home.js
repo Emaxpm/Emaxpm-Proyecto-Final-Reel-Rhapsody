@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext.js";
-import SecondNavbar from "../component/Navbar.jsx";
-import Footer from "../component/Footer.js";
+
 
 export const Home = () => {
 
@@ -25,16 +24,17 @@ export const Home = () => {
 
 					<div className="cards mx-5" key={item.id} >
 
-						<div className="card mb-5" style={{ width: "25rem" }}>
+						<div className="card mb-5" style={{ minWidth: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_title}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
-								<p className="card-text"> Overview: {item.overview}</p>
+								<p className="card-text"> Vote Average: {item.vote_average}</p>
+								{/* <p className="card-text"> Overview: {item.overview}</p> */}
 							</div>
 
-							<div className="buttons ">
+							<div className="buttons p-4 ">
 								<Link to={"/movie/" + item.id}>
 									<button className="button p-2 mb-auto">
 
@@ -77,16 +77,17 @@ export const Home = () => {
 
 					<div className="cards mx-5" key={item.id}>
 
-						<div className="card mb-5" style={{ width: "25rem" }}>
+						<div className="card mb-5" style={{ minWidth: "25rem", }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.original_name}</h4>
-								<p className="card-text"> Release Date: {item.release_date}</p>
+								<p className="card-text"> First Air Date: {item.first_air_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
-								<p className="card-text"> Overview: {item.overview}</p>
+								<p className="card-text"> Vote_average: {item.vote_average}</p>
+								{/* <p className="card-text"> Overview: {item.overview}</p> */}
 							</div>
 
-							<div className="buttons ">
+							<div className="buttons p-4 ">
 								<Link to={"/serie/" + item.id}>
 									<button className="button p-2 mb-auto">
 
