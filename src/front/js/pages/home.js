@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
+
 
 export const Home = () => {
 
@@ -34,7 +35,7 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/movie/" + item.id}>
+								<Link to={`/single/${item.id}`}>
 									<button className="button p-2 mb-auto">
 
 										Learn more!
@@ -87,7 +88,7 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/serie/" + item.id}>
+								<Link to={`/single/${item.id}`}>
 									<button className="button p-2 mb-auto">
 
 										Learn more!
@@ -117,11 +118,72 @@ export const Home = () => {
 				))}
 			</div>
 
-			<div>
+			<footer className="footer">
+					<div className= "footer-section">
+						<article className="footer-section">
 
-				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+							<div className="Containers_views_numbers">
+								<div className="number-container hide">
+									<div className="actualnumbers">
+										<span className="number"><span>6535</span></span>
+									</div>
+									<span className="label">Watchers</span>
+									</div>
 
-			</div>
+								<div className="number-container hide">
+									<div className="actualnumbers">
+										<span className="number"><span>1800</span></span>
+										<span className="number">k+</span>
+									</div>
+									<span className="label">Shows watched</span>
+									</div>
+
+								<div className="number-container">
+									<div className="actualnumbers">
+										<span className="number"><span>97</span></span>
+									</div>
+									<span className="label">Countries</span>
+								</div>
+
+								<div className="number-container">
+									<div className="actualnumbers">
+										<span className="number"><span>1.2</span></span>
+										<span className="number">M+</span>
+									</div>
+									<span className="label">Page Views</span>
+								</div>
+							</div>	
+
+							<div className="line"></div>
+							
+							<div className="lowerfooter">
+								<div className="Informationaboutus">
+									<div>
+										<h2>Reel Rhapsody</h2>
+									</div>
+									<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
+								</div>
+
+								<div className="Linksfooter">
+										<button target="_blank" href="">BLOG</button>
+										<button target="_blank" href="">COMMUNITY</button>
+									<Link to="/payment">
+										<button target="_blank" href="/payment">DONATIONS</button>
+									</Link>
+		
+									<button target="_blank" href="">HELP CENTER</button>
+
+										<button target="_blank" href="">ABOUT</button>
+								</div>
+										
+									<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+							</div>
+						</article>
+					</div>
+			
+			</footer>
+
+			
 
 		</>
 	);

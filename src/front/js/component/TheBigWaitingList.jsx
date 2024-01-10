@@ -1,12 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import SecondNavbar from "./Navbar.jsx";
 import "../../styles/TheBigWaitingList.css"
 
 const TheBigWaitingList = () => {
 
+
     const { store, actions } = useContext(Context);
+
+    useEffect(() => {
+        actions.getFavorite()
+    }, [])
+
 
     const removeFromFavorites = (itemToRemove) => {
         if (itemToRemove && itemToRemove.id !== undefined && itemToRemove.id !== null) {
@@ -44,7 +49,7 @@ const TheBigWaitingList = () => {
                                                 <p className="card-text">Vote Average: {item.movie_id ? store.films[idx]?.vote_average : store.series[idx]?.vote_average}</p>
                                                 <div className="Favorites-butons">
                                                     <button className="btn btn-primary fav-button">
-                                                    Learn more!
+                                                        Learn more!
                                                     </button>
                                                     <button className="btn btn-primary fav-button" onClick={() => removeFromFavorites(item)}>Watched</button>
                                                 </div>

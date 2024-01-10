@@ -5,8 +5,9 @@
 }
 
 body {
-    background-image: url(https://images.unsplash.com/photo-1512149154706-f9b30ded17ad?q=80&w=2588&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    /* background-size: cover; */
+    background-image: url(https://img.freepik.com/foto-gratis/luces-neon-degradadas-abstractas_23-2149279137.jpg?w=740&t=st=1704852771~exp=1704853371~hmac=349cb64ecdb9783391d2ddfafca3e340149df82cfbaba32b3c147a3c88660b3a);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .container-form {

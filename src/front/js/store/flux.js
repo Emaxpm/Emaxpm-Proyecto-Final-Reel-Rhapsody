@@ -136,6 +136,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
+			
+			loadOneSerie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ serie: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
 
 			isAuth: async () => {
 				try {
