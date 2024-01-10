@@ -120,6 +120,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			loadReviews: async (type, id) => {
+				console.log(id)
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${id}`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						return res
+					}
+					return false						
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
 			isAuth: async () => {
 				try {
 					const options = {

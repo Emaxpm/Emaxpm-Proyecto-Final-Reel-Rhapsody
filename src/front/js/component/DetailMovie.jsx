@@ -1,16 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
 const DetailMovie = () => {
-
+    const [reviews, setReviews] = useState()
     const { store, actions } = useContext(Context)
     const params = useParams()
     useEffect(() => {
         actions.loadOneMovie(params.id)
     }, [])
     console.log(store.film)
-
+    
+    useEffect(() => {
+        const getData = async () => {
+            setReviews(await actions.loadReviews("movie", params.id))
+        }
+        getData()
+    }, [])
+    console.log(reviews)
     return (
         <div className="primero">
             <div className="text-white">
@@ -39,6 +46,13 @@ const DetailMovie = () => {
                         <div className="text-center">
                             <p className="display-4">Birthday: {store.film.birthday} </p>
                             <p className="display-4">Place of birth: {store.film.place_of_birth} </p>
+                        </div>
+                        <div className="movie-reviews">
+                            {reviews && reviews.length > 0 && reviews.map((item)=>{
+                                return(
+                                    <p>Comentario: {item.comment} - Usuario: {item.user} - Puntaje: {item.rate}</p>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

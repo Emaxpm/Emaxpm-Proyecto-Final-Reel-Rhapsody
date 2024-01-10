@@ -54,7 +54,7 @@ class Review(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user_id": self.user_id, 
+            "user": User.query.get(self.user_id).serialize()["full_name"],
             "rate": self.rate,
             "comment" : self.comment,
             "movie_id": self.movie_id,
