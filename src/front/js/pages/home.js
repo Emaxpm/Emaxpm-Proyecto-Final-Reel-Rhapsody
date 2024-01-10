@@ -35,7 +35,7 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/movie/" + item.id}>
+								<Link to={`/single/${item.id}`}>
 									<button className="button p-2 mb-auto">
 
 										Learn more!
@@ -88,7 +88,7 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/serie/" + item.id}>
+								<Link to={`/single/${item.id}`}>
 									<button className="button p-2 mb-auto">
 
 										Learn more!

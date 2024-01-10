@@ -68,7 +68,7 @@ const Series = () => {
                             <p className="card-text"> Popularity: {randomSerie.popularity}</p>
                             <p className="card-text"> Vote Average: {randomSerie.vote_average}</p>
                             <div className="buttons">
-                                <Link to={"/viewBigList"}>
+                                <Link to={`/viewSerie/${randomSerie.id}`}>
                                     <button className="btn btn-outline-primary mt-3 button">
                                         Learn more!
                                     </button>
@@ -120,7 +120,7 @@ const Series = () => {
 
                                 <div className="buttons">
 
-                                    <Link to={"/viewBigList"}>
+                                    <Link to={`/viewSerie/${item.id}`}>
 
                                         <button className="btn btn-outline-primary mt-3 button">
                                             Learn more!
