@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import "../../styles/details.css"
 
 const DetailMovie = () => {
 
@@ -12,33 +13,34 @@ const DetailMovie = () => {
     console.log(store.film)
 
     return (
-        <div className="primero">
-            <div className="text-white">
-                <div className="top d-flex align-items-center my-4">
-                    <div className="left">
-                        <img src={'https://image.tmdb.org/t/p/w500' + store.film.backdrop_path} className="pic" alt="..." style={{ width: "300px", height: "300px" }}></img>
-                    </div>
-                    <div className="right">
-                        <h2 className="display-4">{store.film.original_title}</h2>
-                        <div className="accordion" id="accordionExample">
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="headingOne">
-                                    <button className="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Overview:
-                                    </button>
-                                </h2>
 
-                                <div id="collapseOne" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body ">
-                                        <p className="text-dark">{store.film.overview}</p>
-                                    </div>
-                                </div>
+        <div className="">
+            <div className="">
+                <div className="">
+                    <div className="contain-detail">
+                        <div className="div-img">
+                            <img src={'https://image.tmdb.org/t/p/w500' + store.film.backdrop_path} className="div-pic" alt="..."></img>
+                        </div>
+                        <div className="div-cont">
+                            <h2 className="">{store.film.original_title}</h2>
+                            <div className="">
+                                <p className="">Release Date: {store.film.release_date} </p>
+                                <p className="">Popularity: {store.film.popularity} </p>
+                                <p className="">Vote Average: {store.film.vote_average} </p>
+                                <p className="">Original Language: {store.film.original_language} </p>
                             </div>
                         </div>
-                        <hr className="my-4" />
-                        <div className="text-center">
-                            <p className="display-4">Birthday: {store.film.birthday} </p>
-                            <p className="display-4">Place of birth: {store.film.place_of_birth} </p>
+                    </div>
+                    <div className="accordion-item over">
+                        <h2 className="accordion-header" id="panelsStayOpen-headingThree">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                Overview :
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div className="accordion-body">
+                                <p className="text-dark">{store.film.overview}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

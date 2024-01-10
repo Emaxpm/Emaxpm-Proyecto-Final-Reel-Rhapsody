@@ -6,6 +6,7 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single.js";
+import  ViewSerie  from "./pages/viewSerie.js";
 import { VActor } from "./pages/VActor.js";
 import { CustUser } from "./pages/CustUser.js";
 import Payment from "./pages/payment.js";
@@ -43,6 +44,7 @@ const Layout = () => {
                         <Route element={<CustUser />} path="/CustUser" />
                         <Route element={<ViewBigList />} path="/viewBigList" />
                         <Route element={<Single />} path="/single/:id" />
+                        <Route element={<ViewSerie />} path="/viewSerie/:id" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

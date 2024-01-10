@@ -43,6 +43,18 @@
      color: rgb(119, 33, 141);
  } */
 
- .actor-img {
+ /* .actor-img {
      height: 24rem;
+ } */
+
+ .div-pic-act {
+     width: 60%;
+ }
+
+ .div-cont-act {
+     color: #fff;
+     width: 30%;
+     padding: 10px;
+     text-align: center;
+     font-size: large
  }
