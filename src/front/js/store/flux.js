@@ -120,6 +120,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			loadReviews: async (type, id) => {
+				console.log(id)
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${id}`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
+			addReview: async (type, reviewData) => {
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${reviewData.id}`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(reviewData),
+					});
+					
+					const res = await response.json();
+			
+					if (!response.ok) {
+						throw new Error(res.msg || 'Failed to add review');
+					}
+					return true;
+				} catch (error) {
+					console.error('Error adding review', error);
+					return false;
+				}
+			},
+
 			loadOneSerie: async (id,) => {
 				console.log(id)
 				try {

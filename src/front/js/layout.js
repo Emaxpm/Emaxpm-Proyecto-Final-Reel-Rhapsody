@@ -18,6 +18,7 @@ import injectContext from "./store/appContext";
 import Navbar from "./component/Navbar.jsx";
 import Card from "./component/Card.jsx";
 import Series from "./component/Series.jsx";
+import DetailMovie from "./component/DetailMovie.jsx";
 
 //create your first component
 const Layout = () => {
@@ -44,6 +45,7 @@ const Layout = () => {
                         <Route element={<CustUser />} path="/CustUser" />
                         <Route element={<ViewBigList />} path="/viewBigList" />
                         <Route element={<Single />} path="/single/:id" />
+                        <Route element={<DetailMovie />} path="/movie/:id" />
                         <Route element={<ViewSerie />} path="/viewSerie/:id" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

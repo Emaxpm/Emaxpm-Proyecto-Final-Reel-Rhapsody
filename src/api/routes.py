@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User, Favorites
+from api.models import db, User, Favorites, Review 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -78,6 +78,15 @@ def login():
 
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
 
+@api.route('/users', methods=['GET'])
+def users():
+    users = User.query.all()
+    if users:
+        serialized_users = [user.serialize() for user in users]
+        return jsonify(serialized_users), 200
+    else:
+        return jsonify({"msg": "No users found"}), 404
+
 @api.route('/isAuth', methods=['GET'])
 @jwt_required()
 def is_auth():
@@ -151,6 +160,36 @@ def add_():
                 setattr(user, col, body[key])
     db.session.commit()
     return jsonify({"msg": "Modificado exitosamente"})
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['GET'])
+def get_all_reviews(type, media_id):
+    if type == "movie":
+        reviews = Review.query.filter_by(movie_id = media_id).all()
+    elif type == "serie":
+        reviews = Review.query.filter_by(serie_id = media_id).all()
+    if len(reviews) < 1:
+        return jsonify({"msg": "not found"}), 404
+    serialized_reviews = list(map(lambda x: x.serialize(), reviews))
+    return serialized_reviews, 200
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['POST'])
+@jwt_required()
+def add_review(type, media_id):
+    
+    data = request.json
+    comment = data.get('comment')
+    rate = data.get('rate')
+    user_id = get_jwt_identity()
+
+    if type == "movie":
+        new_review = Review(movie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+    elif type == "serie":
+        new_review = Review(serie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+
+    db.session.add(new_review)
+    db.session.commit()
+
+    return jsonify({"msg": "review added successfully"}), 201
 
 #debajo de estas líneas no puede haber nada
 if __name__ == '__main__':
