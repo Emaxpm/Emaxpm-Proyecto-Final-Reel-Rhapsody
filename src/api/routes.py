@@ -173,12 +173,13 @@ def get_all_reviews(type, media_id):
     return serialized_reviews, 200
 
 @api.route('/reviews/<string:type>/<int:media_id>', methods=['POST'])
+@jwt_required()
 def add_review(type, media_id):
     
     data = request.json
     comment = data.get('comment')
     rate = data.get('rate')
-    user_id = data.get('user_id')
+    user_id = get_jwt_identity()
 
     if type == "movie":
         new_review = Review(movie_id=media_id, comment=comment, rate=rate, user_id=user_id)
