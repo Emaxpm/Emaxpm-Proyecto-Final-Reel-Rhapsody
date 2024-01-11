@@ -1,35 +1,144 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
-import Card from "../component/Card.jsx";
-import Series from "../component/Series.jsx";
-import SecondNavbar from "../component/SecondNavbar.jsx";
-import imageCinema from "../../img/Vista home.png";
-
+import { Context } from "../store/appContext.js";
+import Preguntas from "./preguntas.js";
 export const Home = () => {
-	return (
-
-		<>
-
-			<div>
-				<SecondNavbar />
-				<div>
-					<img className="presentation" src={imageCinema} />
-				</div>
-				<div className="container-title">
-					<h2 className="title">MOVIES</h2>
-					<div><Card /></div>
-				</div>
-				<div className="container-title">
-					<h2 className=" title">SERIES</h2>
-					<div><Series /></div>
-				</div>
-			</div>
-
-			<div className="">
-				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
-			</div>
-
-		</>
-	);
+    const { store, actions } = useContext(Context)
+    const navigate = useNavigate()
+    return (
+        <>
+            <Link to={"/movies"}>
+                <h2 className="title-p mx-5 my-5">Movies</h2>
+            </Link>
+            <div className=" d-flex flex-row overflow-auto my-3 mx-5">
+                {store.films.map((item) => (
+                    <div className="cards mx-5" key={item.id} >
+                        <div className="card mb-5" style={{ minWidth: "25rem" }}>
+                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+                            <div className="card-body">
+                                <h4 className="card-title">{item.original_title}</h4>
+                                <p className="card-text"> Release Date: {item.release_date}</p>
+                                <p className="card-text"> Popularity: {item.popularity}</p>
+                                <p className="card-text"> Vote Average: {item.vote_average}</p>
+                                {/* <p className="card-text"> Overview: {item.overview}</p> */}
+                            </div>
+                            <div className="buttons p-4 ">
+                                <Link to={`/single/${item.id}`}>
+                                    <button className="button p-2 mb-auto">
+                                        Learn more!
+                                    </button>
+                                </Link>
+                                {store.currentUser &&
+                                    <Link to={"/viewBigList"}>
+                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            actions.addFavorite(item, "movie")
+                                            navigate("/viewBigList")
+                                        }}>
+                                            Reserved for popcorn
+                                        </button>
+                                    </Link>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <Link to={"/series"}>
+                <h2 className="title-p mx-5 my-5">Series</h2>
+            </Link>
+            <div className=" d-flex flex-row overflow-auto my-3 mx-5">
+                {store.series.map((item) => (
+                    <div className="cards mx-5" key={item.id}>
+                        <div className="card mb-5" style={{ minWidth: "25rem", }}>
+                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+                            <div className="card-body">
+                                <h4 className="card-title">{item.original_name}</h4>
+                                <p className="card-text"> First Air Date: {item.first_air_date}</p>
+                                <p className="card-text"> Popularity: {item.popularity}</p>
+                                <p className="card-text"> Vote_average: {item.vote_average}</p>
+                                {/* <p className="card-text"> Overview: {item.overview}</p> */}
+                            </div>
+                            <div className="buttons p-4 ">
+                                <Link to={`/viewSerie/${item.id}`}>
+                                    <button className="btn btn-outline-primary mt-3 button">
+                                        Learn more!
+                                    </button>
+                                </Link>
+                                {store.currentUser &&
+                                    <Link to={"/viewBigList"}>
+                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            actions.addFavorite(item, "serie")
+                                            navigate("/viewBigList")
+                                        }}>
+                                            Reserved for popcorn
+                                        </button>
+                                    </Link>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <footer className="footer">
+                <div className="footer-section">
+                    <article className="footer-section">
+                        <div className="Containers_views_numbers">
+                            <div className="number-container hide">
+                                <div className="actualnumbers">
+                                    <span className="number"><span>6535</span></span>
+                                </div>
+                                <span className="label">Watchers</span>
+                            </div>
+                        </div>
+                        <div className="number-container hide">
+                            <div className="actualnumbers">
+                                <span className="number"><span>1800</span></span>
+                                <span className="number">k+</span>
+                            </div>
+                            <span className="label">Shows watched</span>
+                        </div>
+                        <div className="number-container">
+                            <div className="actualnumbers">
+                                <span className="number"><span>97</span></span>
+                            </div>
+                            <span className="label">Countries</span>
+                        </div>
+                        <div className="number-container">
+                            <div className="actualnumbers">
+                                <span className="number"><span>1.2</span></span>
+                                <span className="number">M+</span>
+                            </div>
+                            <span className="label">Page Views</span>
+                        </div>
+                        <div className="line"></div>
+                        <div className="lowerfooter">
+                            <div className="Informationaboutus">
+                                <div>
+                                    <h2>Reel Rhapsody</h2>
+                                </div>
+                                <span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
+                            </div>
+                            <div className="Linksfooter">
+                                <button target="_blank" href="">BLOG</button>
+                                <button target="_blank" href="">COMMUNITY</button>
+                                <Link to="/payment">
+                                    <button target="_blank" href="/payment">DONATIONS</button>
+                                </Link>
+                                <Link to="/technicalsupport">
+                                <button target="_blank" href="">Technical Support</button>
+                                </Link>
+                                <Link to="/aboutus">
+                                <button target="_blank" href="">About Us</button>
+                                </Link>
+                                <Link to="/preguntas">
+                                <button target="_blank" href="">Frequent Questions</button>
+                                </Link>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </footer >
+        </>
+    );
 };
