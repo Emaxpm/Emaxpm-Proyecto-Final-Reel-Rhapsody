@@ -9,11 +9,11 @@ const Logout = () => {
 
     const handleLogout = async () => {
         try {
-            
+
             const success = await actions.logout();
 
             if (success) {
-                navigate("/");
+                navigate("/login");
             } else {
                 console.error('Error during logout');
             }

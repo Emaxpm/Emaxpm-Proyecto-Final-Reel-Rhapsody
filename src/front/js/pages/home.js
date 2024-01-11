@@ -122,69 +122,31 @@ export const Home = () => {
 			<footer className="footer">
 				<div className="footer-section">
 					<article className="footer-section">
+					
 
-						<div className="Containers_views_numbers">
-							<div className="number-container hide">
-								<div className="actualnumbers">
-									<span className="number"><span>6535</span></span>
-								</div>
-								<span className="label">Watchers</span>
-							</div>
-
-						</div>
-
-						<div className="number-container hide">
-							<div className="actualnumbers">
-								<span className="number"><span>1800</span></span>
-								<span className="number">k+</span>
-							</div>
-							<span className="label">Shows watched</span>
-						</div>
-
-						<div className="number-container">
-							<div className="actualnumbers">
-								<span className="number"><span>97</span></span>
-							</div>
-							<span className="label">Countries</span>
-						</div>
-
-						<div className="number-container">
-							<div className="actualnumbers">
-								<span className="number"><span>1.2</span></span>
-								<span className="number">M+</span>
-							</div>
-							<span className="label">Page Views</span>
-						</div>
-
-						<div className="line"></div>
-
-						<div className="lowerfooter">
-							<div className="Informationaboutus">
+						<div className="row lowerfooter">
+							<div className="Informationaboutus col">
 								<div>
 									<h2>Reel Rhapsody</h2>
 								</div>
 								<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
 							</div>
 
-							<div className="Linksfooter">
-								<button target="_blank" href="">BLOG</button>
-								<button target="_blank" href="">COMMUNITY</button>
+							<div className="Linksfooter col d-flex justify-content-end align-items-center me-2">
 
-								<Link to="/payment">
-									<button target="_blank" href="/payment">DONATIONS</button>
-								</Link>
+								
+									<span className="mx-1" role="button" onClick={()=> navigate("/payment")}>DONATIONS</span>
+								
 
-                                <Link to="/technicalsupport">
-								<button target="_blank" href="">Technical Support</button>
-                                </Link>
+                                
+								<span className="mx-1" role="button" onClick={()=> navigate("/technicalsupport")}>Technical Support</span>
+                               
 
-                                <Link to="/aboutus">
-								<button target="_blank" href="">About Us</button>	
-								</Link> 
+								<span className="mx-1" role="button"  onClick={()=> navigate("/aboutus")}>About Us</span>	
 
-                                <Link to="/preguntas">
-								<button target="_blank" href="">Frequent Questions</button>	
-								</Link> 
+                              
+								<span className="mx-1" role="button"  onClick={()=> navigate("/preguntas")}>Frequent Questions</span>	
+								
 
 							</div>
 						</div>

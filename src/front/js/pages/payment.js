@@ -26,7 +26,7 @@ export default function Payment() {
     }
     return (
         <div className="Payment">
-            <h1>The price is {price}</h1>
+            <h1 className="money">The price is {price}</h1>
             <input type="text" onChange={handleChange} value={price}></input>
             <PayPalButton
                 createOrder={(data, actions) => createOrder(data, actions)}

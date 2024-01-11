@@ -17,35 +17,20 @@
 }
 
 .money {
-    text-align: center;
     color: white;
     margin-bottom: 0px;
     font-size: 60px;
     text-shadow: 0 0 5px rgb(255, 225, 0), 0 0 10px rgb(255, 225, 0), 0 0 20px rgba(255, 225, 0, 0.902);
 }
 
-.buttonPayment {
+.Payment {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /*este css funciono*/
-    width: 80%;
-    /* Ajusta el ancho según tus necesidades */
-    font-size: 14px;
-    /* Opcional: ajusta el tamaño de la fuente si también deseas aumentar el texto */
-    display: inline-block;
-    font-size: 20px;
-    padding-left: 32%;
-}
-
-
-input {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 25%;
-    margin-bottom: 30px;
-    margin-top: 10%;
+    /*este css funciono*/
+    width: 100%;
+    /* Ajusta el ancho según tus necesidades */
 }
 
 .suporte {

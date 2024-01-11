@@ -3,27 +3,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+			currentUser: null,
 			films: [],
+			film: [],
+			serie: [],
 			series: [],
 			actor: [],
-			OneActor:[],
-			favorites: []
+			OneActor: [],
+			favorites: [],
+			custom: [],
+			currentEdit: {
+			},
+			pagesMovies: 1,
+			totalPagesMovies: 1,
+			pagesSeries: 1,
+			totalPagesSeries: 1,
+			pagesActors: 1,
+			totalPagesActors: 1,
+			loggedUserId: null,
 		},
 		actions: {
-			// Use getActions to call a function within a function
-			loadSomeFilm: async () => {
+			loadSomeFilm: async (numberOfPage = 1) => {
+
+				try {
+					const store = getStore();
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+							// agregar bearear en variable de entorno 
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${numberOfPage}`, options)
+						.then(response => response.json())
+						.then(response => setStore({ films: response.results, pagesMovies: response.page, totalPagesMovies: response["total_pages"] }))
+						.catch(err => console.error(err));
+
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+			loadSomeSerie: async (numberOfPage = 1) => {
 				try {
 					const options = {
 						method: 'GET',
@@ -32,16 +53,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
 						}
 					};
-					fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
+
+					fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${numberOfPage}`, options)
 						.then(response => response.json())
-						.then(response => setStore({ films: response.results }))
+						.then(response => setStore({ series: response.results, pagesSeries: response.page, totalPagesSeries: response["total_pages"] }))
 						.catch(err => console.error(err));
 
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 				}
 			},
-			loadSomeSerie: async () => {
+			loadSomeActors: async (numberOfPage = 1) => {
 				try {
 					const options = {
 						method: 'GET',
@@ -51,28 +73,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					};
 
-					fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
+					fetch(`https://api.themoviedb.org/3/person/popular?language=en-US&page=${numberOfPage}`, options)
 						.then(response => response.json())
-						.then(response => setStore({ series: response.results }))
-						.catch(err => console.error(err));
-
-				} catch (error) {
-					console.log("Error loading message from backend", error);
-				}
-			},
-			loadSomeActors: async () => {
-				try {
-					const options = {
-						method: 'GET',
-						headers: {
-						  accept: 'application/json',
-						  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
-						}
-					  };
-					  
-					  fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options)
-						.then(response => response.json())
-						.then(response => setStore({ actor: response.results }))
+						.then(response => setStore({ actor: response.results, pagesActors: response.page, totalPagesActors: response["total_pages"] }))
 						.catch(err => console.error(err));
 
 				} catch (error) {
@@ -85,18 +88,145 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const options = {
 						method: 'GET',
 						headers: {
-						  accept: 'application/json',
-						  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
 						}
-					  };					  
-					  fetch(`https://api.themoviedb.org/3/person/${id}?language=en-US`, options)
-					  .then(response => response.json())
-					  .then(response => setStore({ OneActor: response }))
-					  .catch(err => console.error(err));
+					};
+					fetch(`https://api.themoviedb.org/3/person/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ OneActor: response }))
+						.catch(err => console.error(err));
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 				}
-			},	
+			},
+
+			loadOneMovie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ film: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
+			loadReviews: async (type, id) => {
+				console.log(id)
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${id}`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
+			addReview: async (type, reviewData) => {
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${reviewData.id}`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(reviewData),
+					});
+					
+					const res = await response.json();
+			
+					if (!response.ok) {
+						throw new Error(res.msg || 'Failed to add review');
+					}
+					return true;
+				} catch (error) {
+					console.error('Error adding review', error);
+					return false;
+				}
+			},
+
+			loadOneSerie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ serie: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
+			isAuth: async () => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							Authorization: 'Bearer ' + localStorage.getItem("token")
+						}
+					};
+					const response = await fetch(`${apiUrl}/isAuth`, options)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						setStore({ currentUser: res })
+						return null
+					}
+					setStore({ currentUser: false })
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					setStore({ currentUser: false })
+				}
+			},
+
+			editUser: async (formData) => {
+				try {
+					const actions = getActions()
+					const response = await fetch(apiUrl + "/user", {
+						method: 'PUT',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(formData)
+					});
+					console.log(formData)
+					if (response.ok) {
+						const res = await response.json();
+						actions.isAuth()
+						console.log(res)
+						return res
+					} else {
+
+						console.error('Error editing user:', response.statusText);
+					}
+				} catch (error) {
+					console.error('Error editing user:', error);
+				}
+			},
 
 			sign_up: async (newUser) => {
 				try {
@@ -119,7 +249,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logIn: async (newLogIn) => {
 
 				try {
-
 					let result = await fetch(`${apiUrl}/login`, {
 						method: "POST",
 						body: JSON.stringify(newLogIn),
@@ -131,15 +260,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await result.json();
 					console.log("respuesta al intentar iniciar sesión:", data);
 					localStorage.setItem("token", data.token);
+					setStore({ loggedUserId: data.id });
 					return data;
 
 				} catch (e) {
 					console.error(e);
 				}
 			},
+
 			logout: async () => {
 				try {
+					const actions = getActions()
 					localStorage.removeItem('token');
+					setStore({ loggedUserId: null, favorites: [] });
+					actions.isAuth()
 					return true;
 				} catch (error) {
 					console.error('Error during logout:', error);
@@ -147,38 +281,87 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addFavorite: (item) => {
 
-				const store = getStore();
+			addFavorite: async (item, type) => {
+				try {
+					const store = getStore();
+					const actions = getActions();
+					const token = localStorage.getItem("token");
 
-				if (item && item.id !== undefined && item.id !== null) {
-					const isAlreadyAdded = store.favorites.some(favorite => favorite.id === item.id);
+					const response = await fetch(apiUrl + '/user/favorites', {
+						body: JSON.stringify({
+							movie_id: type === "movie" ? item.id : null,
+							serie_id: type === "serie" ? item.id : null
+						}),
+						method: "POST",
+						headers: {
+							'Content-type': 'application/json; charset=UTF-8',
+							"Authorization": `Bearer ${token}`,
+						}
+					});
 
-					if (!isAlreadyAdded) {
-						setStore({ ...store, favorites: [...store.favorites, item] });
+					if (response.ok) {
+						const res = await response.json();
+						console.log(res);
+						actions.getFavorite();
+					} else {
+						console.error("Failed to add favorite");
 					}
-				} else {
-					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+
+				} catch (e) {
+					console.error(e);
 				}
 			},
 
-			updateFavorites: (itemToRemove) => {
-				console.log("Item received to remove:", itemToRemove);
-				const store = getStore();
+			getFavorite: async () => {
+				try {
+					const token = localStorage.getItem("token");
+					const response = await fetch(apiUrl + '/user/favorites', {
+						headers: {
+							'Content-type': 'application/json; charset=UTF-8',
+							"Authorization": `Bearer ${token}`,
+						}
+					});
 
-				if (
-					itemToRemove &&
-					Object.prototype.hasOwnProperty.call(itemToRemove, 'id') &&
-					itemToRemove.id !== undefined &&
-					itemToRemove.id !== null
-				) {
-					const updatedFavorites = store.favorites.filter(
-						favorite => favorite.id !== itemToRemove.id
-					);
 
-					setStore({ ...store, favorites: updatedFavorites });
-				} else {
-					console.error("El objeto 'item' no tiene una propiedad 'id' válida.");
+					// if (!response.ok) {
+					// 	console.error(response.statusText)
+					// 	return
+					// }
+					const res = await response.json();
+					// sacarle a res los ids y pedirle a la api externa las peliculas y series correspondientes a los mismos
+					// guardar este array peliculas / series en una propiedad store 
+					// mapear desde componentes favorito la propieadd store que fue creada  
+					const store = getStore()
+					setStore({ ...store, favorites: res })
+				} catch (e) {
+					console.error(e);
+				}
+			},
+
+			updateFavorites: async (itemToRemove) => {
+				try {
+					const token = localStorage.getItem("token");
+					console.log("Item received to remove:", itemToRemove);
+
+					const response = await fetch(apiUrl + "/user/favorite", {
+						method: "DELETE",
+						body: JSON.stringify(itemToRemove),
+						headers: {
+							'Content-type': 'application/json; charset=UTF-8',
+							"Authorization": `Bearer ${token}`,
+						}
+					});
+
+					if (!response.ok) {
+						throw new Error("Unable to delete");
+					}
+
+					const store = getStore();
+					const updatedFavorites = store.favorites.filter(favorite => favorite.id !== itemToRemove.id);
+					setStore({ favorites: updatedFavorites });
+				} catch (error) {
+					console.error(error);
 				}
 			},
 

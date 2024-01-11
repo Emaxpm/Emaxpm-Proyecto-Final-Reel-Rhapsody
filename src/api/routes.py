@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User, Favorites 
+from api.models import db, User, Favorites, Review 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -14,7 +14,7 @@ from flask import current_app
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt()
 jwt = JWTManager()
-# Allow CORS requests to this API
+
 CORS(api)
 
 @api.route('/sign_up', methods=['POST'])
@@ -28,7 +28,6 @@ def create_one_user():
             if field not in body or not body[field]:
                 return jsonify({"error": f"El campo '{field}' es requerido y no puede estar vacío"}), 400
 
-
         raw_password = body.get('password')
         password_hash = bcrypt.generate_password_hash(raw_password).decode('utf-8')
 
@@ -41,50 +40,12 @@ def create_one_user():
         db.session.add(new_user)
         db.session.commit()
 
-
         return jsonify ({"msg": "Usuario creado exitosamente"}), 200
 
     except Exception as e:
-        # Registrar detalles del error en los registros del servidor
         current_app.logger.error(f"Error al crear usuario: {str(e)}")
 
-        # Devolver un mensaje genérico al cliente
         return jsonify({"error": "Ocurrió un error al procesar la solicitud"}), 500
-    
-# @api.route("/login", methods=['POST'])
-# def login():
-#     try:
-#         data = request.get_json()
-
-#         if not data or 'email' not in data or 'password' not in data:
-#             return jsonify({"error": "Se requieren tanto el correo electrónico como la contraseña."}), 400
-        
-#         email = data['email']
-#         password = data['password']
-
-#         if not email or not password:
-#             return jsonify({"error": "Faltó algún dato en el cuerpo de la solicitud."}), 400
-
-#         user = User.query.filter_by(email=email).first()
-
-#         if not user:
-#             return jsonify({"error": "Usuario no encontrado."}), 404
-
-#         password_db = user.password
-
-#         if password_db != password:
-#             return jsonify({"error": "Contraseña incorrecta."}), 401
-
-#         access_token = create_access_token(identity=user.id)
-
-#         return jsonify({"access_token": access_token, "fullname": user.full_name, "id": user.id}), 200
-
-#     except Exception as e:
-#         # Imprimir detalles específicos del error en los registros del servidor
-#         print(f"Error en la ruta /login: {str(e)}")
-
-#         # Devolver un mensaje detallado al cliente
-#         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
     
 @api.route("/login", methods=['POST'])
 def login():
@@ -105,55 +66,132 @@ def login():
         if not user:
             return jsonify({"error": "Usuario no encontrado."}), 404
 
-        # Comparar la contraseña proporcionada con el hash almacenado en la base de datos
         if not bcrypt.check_password_hash(user.password, password):
             return jsonify({"error": "Contraseña incorrecta."}), 401
 
         access_token = create_access_token(identity=user.id)
 
-        return jsonify({"access_token": access_token, "fullName": user.full_name, "id": user.id}), 200
+        return jsonify({"access_token": access_token, "user": user.serialize()}), 200
 
     except Exception as e:
-        # Registrar detalles específicos del error en los registros del servidor
         print(f"Error en la ruta /login: {str(e)}")
 
-        # Devolver un mensaje detallado al cliente
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
 
+@api.route('/users', methods=['GET'])
+def users():
+    users = User.query.all()
+    if users:
+        serialized_users = [user.serialize() for user in users]
+        return jsonify(serialized_users), 200
+    else:
+        return jsonify({"msg": "No users found"}), 404
 
-@api.route('/user/<int:user_id>/favorites', methods=['GET'])
-def get_all_favorites(user_id):
+@api.route('/isAuth', methods=['GET'])
+@jwt_required()
+def is_auth():
+    user_id=get_jwt_identity()
+    user = User.query.get(user_id)
+    if user is None:
+        return False, 404
+    return jsonify(user.serialize()), 200
+
+@api.route('/user/favorites', methods=['GET'])
+@jwt_required()
+def get_all_favorites():
+    user_id = get_jwt_identity()
     favorites = Favorites.query.filter_by(user_id = user_id).all()
     if len(favorites) < 1:
         return jsonify({"msg": "not found"}), 404
     serialized_favorites = list(map(lambda x: x.serialize(), favorites))
-    return serialized_favorites, 200
+    return jsonify(serialized_favorites), 200
 
-@api.route('/favorites', methods=['POST'])
+@api.route('/user/favorites', methods=['POST'])
+@jwt_required()
 def add_favorites():
+    user_id = get_jwt_identity()
     body = request.json 
+
+    if not body.get("movie_id") and not body.get("serie_id"):
+        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos"}), 400
+    
     new_favorite = Favorites(
-        user_id = body["user_id"],
-        movies_id = body["movies_id"],
-        series_id = body["series_id"],
-        actors_id = body["actors_id"] 
+        user_id = user_id,
+        movie_id = body.get("movie_id"),
+        serie_id = body.get("serie_id"),
     )
-    if new_favorite.movies_id is None and new_favorite.series_id is None and new_favorite.actors_id is None:
-      return jsonify({"msg": "eres boludo"}), 400
     db.session.add(new_favorite)
     db.session.commit()
-    return jsonify({"msg": "sos un capo", "added_favorite": new_favorite})
+    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
 
-@api.route('/favorite/<int:favorite_id>', methods=['DELETE'])
-def delete_one_favorite(favorite_id):
-    favorite = Favorites.query.get(favorite_id)
+@api.route('/user/favorite', methods=['DELETE'])
+@jwt_required()
+def delete_favorite():
+    user_id = get_jwt_identity()
+    body = request.json
+
+    # Verificar si el body tiene la clave 'movie_id' o 'serie_id'
+    if "movie_id" in body:
+        if body["movie_id"] is not None:
+            favorite = Favorites.query.filter_by(movie_id=body["movie_id"], user_id=user_id).first()
+
+    if "serie_id" in body:
+        if body["serie_id"] is not None:
+            favorite = Favorites.query.filter_by(serie_id=body["serie_id"], user_id=user_id).first()
+
     if favorite is None:
-        return jsonify({"msg": f"favorite with id {favorite_id} not found"}), 404
+        return jsonify({"msg": "Favorite not found"}), 404
+
     db.session.delete(favorite)
     db.session.commit()
-    return jsonify({"msg": "favorite deleted"}), 200
+    return jsonify({"msg": "Favorite deleted"}), 200
 
-# this only runs if `$ python src/app.py` is executed
+@api.route('/user', methods=['PUT'])
+@jwt_required()
+def add_():
+    user_id = get_jwt_identity()
+    body = request.json 
+    user = User.query.get(user_id)
+    if not user:
+            return jsonify({"error": "Usuario no encontrado."}), 404
+    for key in body:
+        for col in user.serialize():
+            if key == col and body[key] != "" and body[key] is not None and key != "id":
+                setattr(user, col, body[key])
+    db.session.commit()
+    return jsonify({"msg": "Modificado exitosamente"})
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['GET'])
+def get_all_reviews(type, media_id):
+    if type == "movie":
+        reviews = Review.query.filter_by(movie_id = media_id).all()
+    elif type == "serie":
+        reviews = Review.query.filter_by(serie_id = media_id).all()
+    if len(reviews) < 1:
+        return jsonify({"msg": "not found"}), 404
+    serialized_reviews = list(map(lambda x: x.serialize(), reviews))
+    return serialized_reviews, 200
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['POST'])
+@jwt_required()
+def add_review(type, media_id):
+    
+    data = request.json
+    comment = data.get('comment')
+    rate = data.get('rate')
+    user_id = get_jwt_identity()
+
+    if type == "movie":
+        new_review = Review(movie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+    elif type == "serie":
+        new_review = Review(serie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+
+    db.session.add(new_review)
+    db.session.commit()
+
+    return jsonify({"msg": "review added successfully"}), 201
+
+#debajo de estas líneas no puede haber nada
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     api.run(host='0.0.0.0', port=PORT, debug=False)

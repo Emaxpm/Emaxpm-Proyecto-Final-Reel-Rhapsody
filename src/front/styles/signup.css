@@ -1,16 +1,16 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
-    background-image: url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    background-repeat: none;
-    background-size: auto;
+body {
+    background-image: url(https://img.freepik.com/foto-gratis/luces-neon-degradadas-abstractas_23-2149279137.jpg?w=740&t=st=1704852771~exp=1704853371~hmac=349cb64ecdb9783391d2ddfafca3e340149df82cfbaba32b3c147a3c88660b3a);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.container-form{
+.container-form {
     display: flex;
     margin: auto;
     margin-top: 10%;
@@ -20,7 +20,7 @@ body{
     box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
 }
 
-.information{
+.information {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,18 +32,18 @@ body{
     border-bottom-left-radius: 20px;
 }
 
-.info-childs{
+.info-childs {
     width: 100%;
     text-align: center;
     font-size: 20px;
 }
 
-.info-childs h2{
+.info-childs h2 {
     font-size: 2.5rem;
     color: #333;
 }
 
-.info-childs p{
+.info-childs p {
     width: 80%;
     margin: auto;
     margin-top: 15px;
@@ -51,7 +51,7 @@ body{
     color: #555;
 }
 
-.button-login{
+.button-login {
     background-color: transparent;
     outline: none;
     border: solid 2px #9191bd;
@@ -62,7 +62,7 @@ body{
     transition: background-color .3s ease;
 }
 
-.button-login:hover{
+.button-login:hover {
     background-color: #9191bd;
     border: none;
     color: #fff;
@@ -70,7 +70,7 @@ body{
 
 }
 
-.form-information{
+.form-information {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -83,25 +83,25 @@ body{
     border-bottom-right-radius: 20px;
 }
 
-.forminformation-childs{
+.forminformation-childs {
     width: 65%;
 }
 
-.forminformation-childs h2{
+.forminformation-childs h2 {
     font-size: 2.5rem;
     color: #333;
 }
 
-.icons{
+.icons {
     margin: 15px 0;
 }
 
-.forminformation-childs p{
+.forminformation-childs p {
     margin: 15px 0;
     color: #555;
 }
 
-.icons i{
+.icons i {
     border-radius: 50%;
     padding: 15px;
     cursor: pointer;
@@ -112,16 +112,16 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
 }
 
-.icons i:hover{
+.icons i:hover {
     background-color: #c7c7f3;
     color: #fff;
 }
 
-.form{
+.form {
     margin: 30px 0 0 0;
 }
 
-.form label{
+.form label {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -131,7 +131,7 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
 }
 
-.form label input{
+.form label input {
     width: 100%;
     padding: 10px;
     background-color: #fff;
@@ -141,12 +141,12 @@ body{
     color: #333;
 }
 
-.form label i{
+.form label i {
     color: #a7a7a7;
 }
 
-.input-submit{
-    background-color: #9191bd;
+.input-submit {
+    background-color: rgb(119, 33, 141);
     color: #fff;
     border-radius: 20px;
     border: none;
@@ -156,29 +156,30 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
 }
 
-.input-submit:hover{
-    background-color: #7a7a9a;
+.input-submit:hover {
+    background-color: #fff;
+    color: rgb(119, 33, 141);
 }
 
 /* RESPONSIve FORM */
 
 @media screen and (max-width:750px) {
-    html{
+    html {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width:580px) {
-    html{
+@media screen and (max-width:700px) {
+    html {
         font-size: 10px;
     }
 
-    .container-form{
+    .container-form {
         height: auto;
         flex-direction: column;
     }
 
-    .information{
+    .information {
         width: 100%;
         padding: 20px;
         border-top-left-radius: 20px;
@@ -187,7 +188,7 @@ body{
         border-bottom-right-radius: 0px;
     }
 
-    .form-information{
+    .form-information {
         width: 100%;
         padding: 20px;
         border-bottom-left-radius: 20px;
@@ -195,5 +196,3 @@ body{
 
     }
 }
-
-  

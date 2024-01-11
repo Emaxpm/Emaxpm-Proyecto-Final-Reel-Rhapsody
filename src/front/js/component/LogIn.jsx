@@ -10,6 +10,7 @@ const LogIn = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const [error, setError] = useState(null);
 
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,17 +24,20 @@ const LogIn = () => {
     const handlerlogInNewUser = async () => {
 
         try {
-            
+
             if (email == "" || password == "") {
-                return "All spaces must be filled"
+                setError("All spaces must be filled");
+                return
             }
 
             if (!validateEmail(email)) {
-                return "Please enter a valid email address";
+                setError("Please enter a valid email address");
+                return
             }
 
             if (!validatePassword(password)) {
-                return "Password must be at least 8 characters long";
+                setError("Password must be at least 8 characters long");
+                return
             }
 
             let newLogIn = {
@@ -43,30 +47,28 @@ const LogIn = () => {
 
             const result = await actions.logIn(newLogIn);
 
-            if(result.access_token) {
-                // Si se recibe un token en la respuesta
+            if (result.access_token) {
+
                 localStorage.setItem("token", result.access_token);
-    
-                // También puedes hacer algo con la información del usuario
+
                 console.log("Usuario logueado:", result.fullName);
-    
-                // Redirigir al usuario a la página de inicio o a donde sea necesario
-                navigate("/home");
+                actions.isAuth()
+
+                navigate("/");
             } else {
-                // Manejar posibles casos de error o mensajes adicionales desde el servidor
+
                 console.log("Hubo un problema al iniciar sesión");
-            }   
+            }
 
         } catch (e) {
             console.error(e);
+            setError("An error occurred while logging in");
         }
     }
 
     return (
 
         <>
-
-        <Navbar/>
 
             <div className='container-form'>
 
@@ -82,10 +84,9 @@ const LogIn = () => {
 
                         <Link to={"/signup"}>
 
-                            <button className="button-login">Sign In</button>
+                            <button className="button-login input-submit">Sign Up</button>
 
                         </Link>
-
 
                     </div>
 
@@ -119,7 +120,8 @@ const LogIn = () => {
 
                             <p className="text-primary mt-4">Forgot your password?</p>
 
-                            {/* <button className='input-submit' onClick={logInNewUser} type='button'>Log In</button> */}
+                            {error && <p className="error-message">{error}</p>}
+
                             <button className='input-submit' onClick={handlerlogInNewUser} type='button'>Log In</button>
 
                         </form>
@@ -129,9 +131,7 @@ const LogIn = () => {
                 </div>
 
             </div>
-
         </>
-
     );
 };
 

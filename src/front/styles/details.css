@@ -1,0 +1,28 @@
+.contain-detail {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.div-pic {
+    width: 100%;
+}
+
+.div-cont {
+    color: #fff;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    font-size: x-large
+}
+
+.over {
+    width: 78%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.b-over {
+    text-align: center;
+}
