@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/details.css"
 
-const DetailMovie = () => {
+const DetailSerie = () => {
     const [reviews, setReviews] = useState();
     const [comment, setComment] = useState('');
     const [rate, setRate] = useState('');
@@ -11,14 +11,14 @@ const DetailMovie = () => {
 
     const { store, actions } = useContext(Context)
     const params = useParams()
-    
+
     const handleSubmit= async()=>{
         const data = {
             id: params.id,
             comment: comment,
             rate: rate
         }
-        const res = await actions.addReview("movie", data)
+        const res = await actions.addReview("serie", data)
         if (res == true){ 
             setLoadReviews(!loadReviews)
             alert("Review added successfully")
@@ -28,13 +28,13 @@ const DetailMovie = () => {
     }
 
     useEffect(() => {
-        actions.loadOneMovie(params.id)
+        actions.loadOneSerie(params.id)
     }, [])
-    console.log(store.film)
+    console.log(store.serie)
 
     useEffect(() => {
         const getData = async () => {
-            setReviews(await actions.loadReviews("movie", params.id))
+            setReviews(await actions.loadReviews("serie", params.id))
         }
         getData()
     }, [loadReviews])
@@ -46,15 +46,15 @@ const DetailMovie = () => {
                 <div className="">
                     <div className="contain-detail">
                         <div className="div-img">
-                            <img src={'https://image.tmdb.org/t/p/w500' + store.film.backdrop_path} className="div-pic" alt="..."></img>
+                            <img src={'https://image.tmdb.org/t/p/w500' + store.serie.backdrop_path} className="div-pic" alt="..."></img>
                         </div>
                         <div className="div-cont">
-                            <h2 className="">{store.film.original_title}</h2>
+                            <h2 className="">{store.serie.name}</h2>
                             <div className="">
-                                <p className="">Release Date: {store.film.release_date} </p>
-                                <p className="">Popularity: {store.film.popularity} </p>
-                                <p className="">Vote Average: {store.film.vote_average} </p>
-                                <p className="">Original Language: {store.film.original_language} </p>
+                                <p className="display-4">First Air Date: {store.serie.first_air_date} </p>
+                                <p className="display-4">Number Of Episodes: {store.serie.number_of_episodes} </p>
+                                <p className="display-4">Number Of Seasons: {store.serie.number_of_seasons} </p>
+                                <p className="display-4">Popularity: {store.serie.popularity} </p>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ const DetailMovie = () => {
                         </h2>
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                             <div className="accordion-body">
-                                <p className="text-dark">{store.film.overview}</p>
+                                <p className="text-dark">{store.serie.overview}</p>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ const DetailMovie = () => {
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-                            <div className="movie-reviews">
+                            <div className="serie-reviews">
                                 {reviews && reviews.length > 0 && reviews.map((item) => {
                                     return (
                                         <p>Comentario: {item.comment} - Usuario: {item.user} - Puntaje: {item.rate}</p>
@@ -110,10 +110,13 @@ const DetailMovie = () => {
                     </div>
                 </div>
                 <br />
-                <div><p></p></div>
+                <div><p></p>
+                </div>
             </div>
-        </div >
+        </div>
+
+
     )
 }
 
-export default DetailMovie
+export default DetailSerie

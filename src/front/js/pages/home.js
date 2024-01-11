@@ -35,7 +35,7 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/movie/" + item.id}>
+								<Link to={`/single/${item.id}`}>
 									<button className="button p-2 mb-auto">
 
 										Learn more!
@@ -88,12 +88,12 @@ export const Home = () => {
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/serie/" + item.id}>
-									<button className="button p-2 mb-auto">
+								<Link to={`/viewSerie/${item.id}`}>
 
+									<button className="btn btn-outline-primary mt-3 button">
 										Learn more!
-
 									</button>
+
 								</Link>
 
 								{store.currentUser &&
@@ -118,7 +118,7 @@ export const Home = () => {
 				))}
 			</div>
 
-			<footer className="footer">
+			{/* <footer className="footer">
 					<div className= "footer-section">
 						<article className="footer-section">
 
@@ -181,9 +181,9 @@ export const Home = () => {
 						</article>
 					</div>
 			
-			</footer>
+			</footer> */}
 
-			
+			<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 
 		</>
 	);

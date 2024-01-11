@@ -120,6 +120,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			loadReviews: async (type, id) => {
+				console.log(id)
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${id}`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
+			addReview: async (type, reviewData) => {
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${reviewData.id}`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(reviewData),
+					});
+					
+					const res = await response.json();
+			
+					if (!response.ok) {
+						throw new Error(res.msg || 'Failed to add review');
+					}
+					return true;
+				} catch (error) {
+					console.error('Error adding review', error);
+					return false;
+				}
+			},
+
+			loadOneSerie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ serie: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
 			isAuth: async () => {
 				try {
 					const options = {

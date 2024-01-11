@@ -101,7 +101,7 @@ const Signup = () => {
                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
               </label>
 
-              <button className='input-submit' onClick={handlerCreateUser} type='button'>Sign In</button>
+              <button className='input-submit' onClick={handlerCreateUser} type='button'>Sign Up</button>
 
             </form>
 
