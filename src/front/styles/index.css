@@ -29,9 +29,10 @@
     flex-direction: column;
     align-items: center;
     /*este css funciono*/
-    width: 100%;
     /* Ajusta el ancho según tus necesidades */
+
 }
+
 
 .suporte {
     margin-top: 10px;

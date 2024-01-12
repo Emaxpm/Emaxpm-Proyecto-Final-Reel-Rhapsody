@@ -122,7 +122,7 @@ export const Home = () => {
 			<footer className="footer">
 				<div className="footer-section">
 					<article className="footer-section">
-					
+
 
 						<div className="row lowerfooter">
 							<div className="Informationaboutus col">
@@ -134,19 +134,19 @@ export const Home = () => {
 
 							<div className="Linksfooter col d-flex justify-content-end align-items-center me-2">
 
-								
-									<span className="mx-1" role="button" onClick={()=> navigate("/payment")}>DONATIONS</span>
-								
 
-                                
-								<span className="mx-1" role="button" onClick={()=> navigate("/technicalsupport")}>Technical Support</span>
-                               
+								<span className="mx-1" role="button" onClick={() => navigate("/payment")}>DONATIONS</span>
 
-								<span className="mx-1" role="button"  onClick={()=> navigate("/aboutus")}>About Us</span>	
 
-                              
-								<span className="mx-1" role="button"  onClick={()=> navigate("/preguntas")}>Frequent Questions</span>	
-								
+
+								<span className="mx-1" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</span>
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/aboutus")}>About Us</span>
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</span>
+
 
 							</div>
 						</div>
