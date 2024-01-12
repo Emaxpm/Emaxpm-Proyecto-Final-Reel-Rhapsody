@@ -8,6 +8,7 @@ const DetailMovie = () => {
     const [comment, setComment] = useState('');
     const [rate, setRate] = useState('');
     const [loadReviews, setLoadReviews] = useState(true);
+    const [commentToDelete, setCommentToDelete] = useState(null);
 
     const { store, actions } = useContext(Context)
     const params = useParams()
@@ -25,7 +26,18 @@ const DetailMovie = () => {
         }else{
             alert("Error")
         }
-    }
+    };
+
+    const handleDelete = async (reviewId) => {
+        const res = await actions.deleteReview("movie", params.id, reviewId);
+        if (res === true) {
+          setLoadReviews(!loadReviews);
+          alert("Review deleted successfully");
+        } else {
+          alert("Error");
+        }
+        setCommentToDelete(null); 
+      };
 
     useEffect(() => {
         actions.loadOneMovie(params.id)
@@ -39,6 +51,7 @@ const DetailMovie = () => {
         getData()
     }, [loadReviews])
     console.log(reviews)
+    
     return (
 
         <div className="">
@@ -86,6 +99,7 @@ const DetailMovie = () => {
                             </div>
                         </div>
                     </div>
+                    {store.currentUser &&
                     <div className="container">
                         <form className="row g-3">
                             <div className="mb-3">
@@ -104,10 +118,14 @@ const DetailMovie = () => {
                                 </select>
                             </div>
                             <div className="col-12">
-                                <button className="btn btn-primary" type="button" onClick={()=>handleSubmit()}>Submit form</button>
+                                <button className="btn btn-primary" type="button" onClick={()=>handleSubmit()}>Save</button>
                             </div>
+                            <div className="col-12">
+                                <button className="btn btn-primary" type="button" onClick={() => setCommentToDelete(reviews[0]?.id)}>Delete my comment</button>
+                            </div>                         
                         </form>
                     </div>
+                    }
                 </div>
                 <br />
                 <div><p></p></div>
