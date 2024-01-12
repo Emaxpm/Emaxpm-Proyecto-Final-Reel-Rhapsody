@@ -86,6 +86,7 @@ const DetailSerie = () => {
                             </div>
                         </div>
                     </div>
+                    {store.currentUser &&
                     <div className="container">
                         <form className="row g-3">
                             <div className="mb-3">
@@ -108,6 +109,7 @@ const DetailSerie = () => {
                             </div>
                         </form>
                     </div>
+                    }
                 </div>
                 <br />
                 <div><p></p>

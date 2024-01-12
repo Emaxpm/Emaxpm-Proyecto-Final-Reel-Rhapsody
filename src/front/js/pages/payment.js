@@ -21,17 +21,19 @@ export default function Payment() {
         return actions.order.capture();
     };
 
-    function handleChange(e){
+    function handleChange(e) {
         setPrice(e.target.value);
     }
     return (
-        <div className="Payment">
-            <h1>The price is {price}</h1>
-            <input type="text" onChange={handleChange} value={price}></input>
-            <PayPalButton
-                createOrder={(data, actions) => createOrder(data, actions)}
-                onApprove={(data, actions) => onApprove(data, actions)}
-            />
+        <div className="container">
+            <div className="Payment">
+                <h1>The price is {price}</h1>
+                <input type="text" onChange={handleChange} value={price}></input>
+                <PayPalButton
+                    createOrder={(data, actions) => createOrder(data, actions)}
+                    onApprove={(data, actions) => onApprove(data, actions)}
+                />
+            </div>
         </div>
     );
 };

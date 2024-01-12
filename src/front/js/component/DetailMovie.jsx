@@ -11,21 +11,33 @@ const DetailMovie = () => {
 
     const { store, actions } = useContext(Context)
     const params = useParams()
-    
-    const handleSubmit= async()=>{
+
+    const handleSubmit = async () => {
         const data = {
             id: params.id,
             comment: comment,
             rate: rate
         }
         const res = await actions.addReview("movie", data)
-        if (res == true){ 
+        if (res == true) {
+            setComment("")
+            setRate("")
             setLoadReviews(!loadReviews)
             alert("Review added successfully")
-        }else{
+        } else {
             alert("Error")
         }
-    }
+    };
+
+    const handleDelete = async (reviewId) => {
+        const res = await actions.deleteReview(reviewId);
+        if (res === true) {
+            setLoadReviews(!loadReviews);
+            alert("Review deleted successfully");
+        } else {
+            alert("Error actual");
+        }
+    };
 
     useEffect(() => {
         actions.loadOneMovie(params.id)
@@ -33,12 +45,14 @@ const DetailMovie = () => {
     console.log(store.film)
 
     useEffect(() => {
+        
         const getData = async () => {
             setReviews(await actions.loadReviews("movie", params.id))
         }
         getData()
     }, [loadReviews])
     console.log(reviews)
+    
     return (
 
         <div className="">
@@ -80,34 +94,44 @@ const DetailMovie = () => {
                             <div className="movie-reviews">
                                 {reviews && reviews.length > 0 && reviews.map((item) => {
                                     return (
-                                        <p>Comentario: {item.comment} - Usuario: {item.user} - Puntaje: {item.rate}</p>
-                                    )
+                                        <div className="d-flex align-items-start" key={item.id}>
+                                            <p>Comentario: {item.comment} - Usuario: {item.user} - Puntaje: {item.rate}</p>
+                                            {store.currentUser && item.user === store.currentUser.full_name &&
+                                                <button className="btn btn-primary ms-auto" type="button" onClick={() => handleDelete(item.id)}><i className="fa-solid fa-trash"></i></button>
+                                            }
+                                        </div>
+                                    );
                                 })}
                             </div>
                         </div>
                     </div>
-                    <div className="container">
-                        <form className="row g-3">
-                            <div className="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Comment</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e)=> setComment(e.target.value)}></textarea>
-                            </div>
-                            <div className="col-md-3">
-                                <label htmlFor="validationDefault04" className="form-label">Rate</label>
-                                <select className="form-select" id="validationDefault04" required onChange={(e)=> setRate(e.target.value)}>
-                                    <option selected disabled value="">Choose...</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <div className="col-12">
-                                <button className="btn btn-primary" type="button" onClick={()=>handleSubmit()}>Submit form</button>
-                            </div>
-                        </form>
-                    </div>
+                    {store.currentUser &&
+                        <div className="container">
+                            <form className="row g-3">
+                                <div className="mb-3">
+                                    <label htmlFor="exampleFormControlTextarea1" className="form-label">Comment</label>
+                                    <textarea className="form-control" value={comment} id="exampleFormControlTextarea1" rows="3" onChange={(e) => setComment(e.target.value)}></textarea>
+                                </div>
+                                <div className="col-md-3">
+                                    <label htmlFor="validationDefault04" className="form-label">Rate</label>
+                                    <select className="form-select" id="validationDefault04" value={rate} required onChange={(e) => setRate(e.target.value)}>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div className="col-12">
+                                    <button className="btn btn-primary" type="button" onClick={() => handleSubmit()}>Save</button>
+                                </div>
+                                {/* <div className="col-12">
+                                    <button className="btn btn-primary" type="button" onClick={() => handleDelete(reviews.id)}>Delete my comment</button>
+                                </div> */}
+                            </form>
+                        </div>
+                    }
                 </div>
                 <br />
                 <div><p></p></div>
