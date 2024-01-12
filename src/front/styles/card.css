@@ -3,12 +3,12 @@
 }
 
 .card {
-    background-color: #c7eef3;
-    color: rgb(73, 32, 83) !important;
-    border: solid 2px rgb(168, 95, 187);
+    background-color: #000;
+    color: #37FF8B;
+    border: solid 2px #37FF8B;
     display: inline-block;
     border-radius: 7px;
-    font-family: 'Courier New', Courier, monospace ;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
 }
 
@@ -52,7 +52,7 @@
 }
 
 h4 {
-    color: rgb(73, 32, 83)
+    color: #37FF8B;
 }
 
 .random-card {

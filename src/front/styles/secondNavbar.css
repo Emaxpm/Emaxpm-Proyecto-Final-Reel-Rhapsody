@@ -138,14 +138,14 @@
   align-items: baseline;
 }
 
-.button {
+/* .button {
   margin: 0;
   height: auto;
   background: transparent;
   padding: 0;
   border: none;
   cursor: pointer;
-}
+} */
 
 /* button styling */
 .button-l {
