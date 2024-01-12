@@ -9,9 +9,18 @@ const Series = () => {
     const navigate = useNavigate()
     const [randomSerie, setRandomSerie] = useState(null);
     const selectRandomSerie = () => {
-        const randomIndex = Math.floor(Math.random() * store.series.length);
-        setRandomSerie(store.series[randomIndex]);
+        const randomIndex = Math.floor(Math.random() * store.idsSeries.length);
+        const randomSerieId = store.idsSeries[randomIndex];
+
+        actions.fetchSerieById(randomSerieId).then((randomSerie) => {
+            setRandomSerie(randomSerie);
+        });
     };
+
+    const imagenError = (e) => {
+        e.target.src = "https://picsum.photos/id/237/200/100"
+    }
+
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(5);
 
@@ -61,7 +70,7 @@ const Series = () => {
                 <div className="random-card">
 
                     <div className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
-                        <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" alt="..." />
+                        <img src={'https://image.tmdb.org/t/p/w500' + randomSerie.backdrop_path} className="card-img-top" onError={imagenError} alt="..." />
                         <div className="card-body">
                             <h4 className="card-title">{randomSerie.original_name}</h4>
                             <p className="card-text"> Release Date: {randomSerie.first_air_date}</p>
@@ -69,7 +78,7 @@ const Series = () => {
                             <p className="card-text"> Vote Average: {randomSerie.vote_average}</p>
                             <div className="buttons">
                                 <Link to={`/viewSerie/${randomSerie.id}`}>
-                                    <button className="btn btn-outline-primary mt-3 button">
+                                    <button className="button p-2 mb-auto">
                                         Learn more!
                                     </button>
                                 </Link>
@@ -97,7 +106,6 @@ const Series = () => {
                         <a className="page-link" href="#" onClick={handlePreviousClick} tabIndex="-1" aria-disabled={min <= 1}>Previous</a>
                     </li>
 
-                    {/* Aquí se generan los elementos de lista para los números de página */}
                     {generateNumber()}
 
                     <li className={`page-item ${max >= (totalPagesSeries || totalPagesSeries) ? 'disabled' : ''}`}>
@@ -111,7 +119,7 @@ const Series = () => {
                 <div className=" d-flex flex-wrap justify-content-center">
                     {store.series.map((item) => (
                         <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
-                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
+                            <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" onError={imagenError} alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{item.original_name}</h5>
                                 <p className="card-text"> First Air Date: {item.first_air_date}</p>
@@ -122,7 +130,7 @@ const Series = () => {
 
                                     <Link to={`/viewSerie/${item.id}`}>
 
-                                        <button className="btn btn-outline-primary mt-3 button">
+                                        <button className="button p-2 mb-auto">
                                             Learn more!
                                         </button>
 
@@ -131,7 +139,7 @@ const Series = () => {
                                     {store.currentUser && (
                                         <Link to={"/viewBigList"}>
 
-                                            <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                            <button className="button p-2 mb-auto mt-3" onClick={() => {
                                                 actions.addFavorite(item, "serie")
                                                 navigate("/viewBigList")
 

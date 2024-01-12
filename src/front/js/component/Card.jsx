@@ -10,8 +10,12 @@ const Card = () => {
     const navigate = useNavigate()
     const [randomFilm, setRandomFilm] = useState(null);
     const selectRandomFilm = () => {
-        const randomIndex = Math.floor(Math.random() * store.films.length);
-        setRandomFilm(store.films[randomIndex]);
+        const randomIndex = Math.floor(Math.random() * store.idsMovies.length);
+        const randomMovieId = store.idsMovies[randomIndex];
+
+        actions.fetchMovieById(randomMovieId).then((randomMovie) => {
+            setRandomFilm(randomMovie);
+        });
     };
     const imagenError = (e) => {
         e.target.src = "https://picsum.photos/id/237/200/100"
@@ -66,7 +70,7 @@ const Card = () => {
 
                 <div className="random-card">
                     <div className="card  my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
-                        <img src={'https://image.tmdb.org/t/p/w500' + randomFilm.backdrop_path} className="card-img-top" alt="..." />
+                        <img src={'https://image.tmdb.org/t/p/w500' + randomFilm.backdrop_path} className="card-img-top" onError={imagenError} alt="..." />
                         <div className="card-body">
                             <h5 className="card-title">{randomFilm.original_title}</h5>
                             <p className="card-text"> Release Date: {randomFilm.release_date}</p>
@@ -74,14 +78,14 @@ const Card = () => {
                             <p className="card-text"> Vote Average: {randomFilm.vote_average}</p>
                             <div className="buttons">
                                 <Link to={`/single/${randomFilm.id}`}>
-                                    <button className="btn btn-outline-primary mt-3 button">
+                                    <button className="button p-2 mb-auto">
                                         Learn more!
                                     </button>
                                 </Link>
 
                                 {store.currentUser && (
                                     <Link to={"/viewBigList"}>
-                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                        <button className="button p-2 mb-auto mt-3" onClick={() => {
                                             actions.addFavorite(randomFilm, "movie");
                                             navigate("/viewBigList");
                                         }}>
@@ -123,14 +127,14 @@ const Card = () => {
                             <p className="card-text"> Vote Average: {item.vote_average}</p>
                             <div className="buttons">
                                 <Link to={`/single/${item.id}`}>
-                                    <button className="btn btn-outline-primary mt-3 button">
+                                    <button className="button p-2 mb-auto">
                                         Learn more!
                                     </button>
                                 </Link>
 
                                 {store.currentUser && (
                                     <Link to={"/viewBigList"}>
-                                        <button className="btn btn-outline-primary mt-3 button" onClick={() => {
+                                        <button className="button p-2 mb-auto mt-3" onClick={() => {
                                             actions.addFavorite(item, "movie");
                                             navigate("/viewBigList");
                                         }}>

@@ -5,9 +5,8 @@
 }
 
 body {
-    background-image: url(https://img.freepik.com/foto-gratis/luces-neon-degradadas-abstractas_23-2149279137.jpg?w=740&t=st=1704852771~exp=1704853371~hmac=349cb64ecdb9783391d2ddfafca3e340149df82cfbaba32b3c147a3c88660b3a);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url(https://img.freepik.com/foto-gratis/telon-fondo-textura-muro-hormigon-solido_53876-129493.jpg?w=1800&t=st=1704858949~exp=1704859549~hmac=0e6e310e49b6e4872dd3b4cf96711708857e3c171455b638ce0d8a57e7b03c17);
+    /* background-size: cover; */
 }
 
 .container-form {
