@@ -160,22 +160,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteReview: async (type, mediaId, reviewId) => {
+			deleteReview: async (reviewId) => {
+				
 				try {
 				  const token = localStorage.getItem("token");
-				  const response = await fetch(`${apiUrl}/reviews/${type}/${mediaId}`, {
+				  const response = await fetch(`${apiUrl}/reviews/${reviewId}`, {
 					method: "DELETE",
-					body: JSON.stringify({ reviewId: reviewId }),
 					headers: {
-					  "Content-type": "application/json; charset=UTF-8",
 					  Authorization: `Bearer ${token}`,
 					},
 				  });
 			  
 				  if (!response.ok) {
 					throw new Error("Unable to delete review");
-				  }
-			  
+				  }			  
 				  return true;
 				} catch (error) {
 				  console.error(error);

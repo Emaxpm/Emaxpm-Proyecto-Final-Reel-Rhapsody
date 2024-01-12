@@ -191,19 +191,14 @@ def add_review(type, media_id):
 
     return jsonify({"msg": "review added successfully"}), 201
 
-@api.route('/reviews/<string:type>/<int:media_id>/<int:review_id>', methods=['DELETE'])
+@api.route('/reviews/<int:review_id>', methods=['DELETE'])
 @jwt_required()
-def delete_review(type, media_id, review_id):
+def delete_review(review_id):
     try:
         user_id = get_jwt_identity()
 
-        if type == "movie":
-            review = Review.query.filter_by(id=review_id, movie_id=media_id, user_id=user_id).first()
-        elif type == "serie":
-            review = Review.query.filter_by(id=review_id, serie_id=media_id, user_id=user_id).first()
-        else:
-            return jsonify({"error": "Invalid media type"}), 400
-
+        review = Review.query.filter_by(id=review_id, user_id=user_id).first()
+        
         if review is None:
             return jsonify({"msg": "Review not found"}), 404
 
