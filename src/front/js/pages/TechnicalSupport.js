@@ -8,6 +8,9 @@ const TechnicalSupport = () => {
   // Devuelve el JSX que representa el componente
   return (
     <>
+
+<morehelps/>
+
       <div className="row col">
         <div>
           <h2 className="Thema">How can we help?</h2>
@@ -312,11 +315,16 @@ const TechnicalSupport = () => {
 
           <div>
             <div>
+
+
               <div className="whitebutton">
                 <button type="button" className="btn btn-light">Contact Us</button>
               </div>
 
               <h2 className="white">Need more help</h2>
+
+
+              
             </div>
           </div>
 

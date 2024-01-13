@@ -9,8 +9,13 @@ const TheBigWaitingList = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        actions.getFavorite()
-    }, [])
+        const fetchData = async () => {
+            await actions.getFavorite();
+        };
+    
+        fetchData();
+    }, []);
+    
 
 
     const removeFromFavorites = (itemToRemove) => {
@@ -39,6 +44,10 @@ const TheBigWaitingList = () => {
                                     } else {
                                         idx = store.series.findIndex((elm) => elm.id === item.serie_id)
                                     }
+                                    let url = item.movie_id != null ? `/single/${item.movie_id}` : `/viewSerie/${item.serie_id}`
+                                    // para movie /single/:id
+                                    // para serie /viewSerie/:id
+
                                     return (
                                         <div key={index} className="card card-fav my-4 mx-4 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
                                             <img src={'https://image.tmdb.org/t/p/w500' + (item.movie_id ? store.films[idx]?.backdrop_path : store.series[idx]?.backdrop_path)} className="w-100" alt="..." />
@@ -48,9 +57,11 @@ const TheBigWaitingList = () => {
                                                 <p className="card-text">Popularity: {item.movie_id ? store.films[idx]?.popularity : store.series[idx]?.popularity}</p>
                                                 <p className="card-text">Vote Average: {item.movie_id ? store.films[idx]?.vote_average : store.series[idx]?.vote_average}</p>
                                                 <div className="Favorites-butons">
-                                                    <button className="btn btn-primary fav-button">
-                                                        Learn more!
-                                                    </button>
+                                                    <Link to={url}>
+                                                        <button className="btn btn-primary fav-button">
+                                                            Learn more!
+                                                        </button>
+                                                    </Link>
                                                     <button className="btn btn-primary fav-button" onClick={() => removeFromFavorites(item)}>Watched</button>
                                                 </div>
                                             </div>

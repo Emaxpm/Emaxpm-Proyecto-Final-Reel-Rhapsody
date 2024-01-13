@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext.js";
 import Preguntas from "./preguntas.js";
+
+
 
 
 export const Home = () => {
@@ -91,7 +93,7 @@ export const Home = () => {
 							<div className="buttons p-4 ">
 								<Link to={`/viewSerie/${item.id}`}>
 
-									<button className="btn btn-outline-primary mt-3 button">
+									<button className="button p-2 mb-auto">
 										Learn more!
 									</button>
 
