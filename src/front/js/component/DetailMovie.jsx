@@ -125,10 +125,7 @@ const DetailMovie = () => {
                                 </div>
                                 <div className="col-12">
                                     <button className="btn btn-primary" type="button" onClick={() => handleSubmit()}>Save</button>
-                                </div>
-                                {/* <div className="col-12">
-                                    <button className="btn btn-primary" type="button" onClick={() => handleDelete(reviews.id)}>Delete my comment</button>
-                                </div> */}
+                                </div>                                
                             </form>
                         </div>
                     }
