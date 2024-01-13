@@ -8,9 +8,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
     avatar = db.Column(db.String(500), unique=False, nullable=True)
+    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     favorites = db.relationship("Favorites", backref = "user")
     review = db.relationship("Review", backref = "user")
-    
+        
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -21,6 +22,7 @@ class User(db.Model):
             "full_name": self.full_name,
             "email": self.email,
             "avatar": self.avatar,
+            # "is_active": self.is_active,
         }
     
 class Favorites(db.Model):
@@ -59,6 +61,7 @@ class Review(db.Model):
     comment = db.Column(db.String(300), nullable=False)
     movie_id = db.Column(db.Integer, nullable=True)
     serie_id = db.Column(db.Integer, nullable=True)
+
     
     def __repr__(self):
         return '<Review %r>' % self.id

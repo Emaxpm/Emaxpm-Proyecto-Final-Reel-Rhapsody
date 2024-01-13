@@ -14,6 +14,27 @@
     margin-top: 40px;
 }
 
+.Button {
+    padding: 10px 15px;
+    display: inline-block;
+ 
+}
+
+.Button1 {
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+.btn-purple{
+     background-color: purple;
+      color: white;
+      opacity: 100%;
+}
+
+.btn-purple:hover {
+    background-color: rgb(198, 55, 214); /* Puedes ajustar el color iluminado según tus preferencias */
+    color: white;
+  }
 .Parrafo-home {
     color: #ddd;
     font-size: 2rem;
@@ -51,4 +72,8 @@
 
 .movie-container {
     background-color: #4C0260;
+}
+
+.footer{
+    background-color: #c7eef3;
 }

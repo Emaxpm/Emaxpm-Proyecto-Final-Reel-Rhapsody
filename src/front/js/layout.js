@@ -8,11 +8,15 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single.js";
 import  ViewSerie  from "./pages/viewSerie.js";
 import { VActor } from "./pages/VActor.js";
+import Preguntas  from "./pages/preguntas.js";
+import Aboutus  from "./pages/aboutus.js";
 import { CustUser } from "./pages/CustUser.js";
 import Payment from "./pages/payment.js";
+import Morehelps from "./pages/morehelps.js";
 import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
 import ViewBigList from "./pages/viewBigList.js";
+import TechnicalSupport from "./pages/TechnicalSupport.js"
 
 import injectContext from "./store/appContext";
 import Navbar from "./component/Navbar.jsx";
@@ -39,6 +43,10 @@ const Layout = () => {
                         <Route element={<Card />} path="/movies" />
                         <Route element={<Series />} path="/series" />
                         <Route element={<Payment />} path="/payment" />
+                        <Route element={<Preguntas />} path="/preguntas" />
+                        <Route element={<Aboutus />} path="/aboutus" />
+                        <Route element={<TechnicalSupport />} path="/TechnicalSupport" />
+                        <Route element={<Morehelps />} path="/Morehelps" />
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />

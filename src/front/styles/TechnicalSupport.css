@@ -1,0 +1,17 @@
+
+.white{
+    display:flex;
+    color: white;
+    justify-content: center;
+}
+
+.whitebutton{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+}
+
+.mylist {
+    padding-left: 7px;
+}
