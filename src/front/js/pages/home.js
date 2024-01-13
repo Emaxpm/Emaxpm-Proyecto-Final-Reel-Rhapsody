@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext.js";
+import Preguntas from "./preguntas.js";
 
 
 
@@ -120,72 +121,43 @@ export const Home = () => {
 				))}
 			</div>
 
-			{/* <footer className="footer">
-					<div className= "footer-section">
-						<article className="footer-section">
+			<footer className="footer">
+				<div className="footer-section">
+					<article className="footer-section">
 
-							<div className="Containers_views_numbers">
-								<div className="number-container hide">
-									<div className="actualnumbers">
-										<span className="number"><span>6535</span></span>
-									</div>
-									<span className="label">Watchers</span>
-									</div>
 
-								<div className="number-container hide">
-									<div className="actualnumbers">
-										<span className="number"><span>1800</span></span>
-										<span className="number">k+</span>
-									</div>
-									<span className="label">Shows watched</span>
-									</div>
-
-								<div className="number-container">
-									<div className="actualnumbers">
-										<span className="number"><span>97</span></span>
-									</div>
-									<span className="label">Countries</span>
+						<div className="row lowerfooter">
+							<div className="Informationaboutus col">
+								<div>
+									<h2>Reel Rhapsody</h2>
 								</div>
-
-								<div className="number-container">
-									<div className="actualnumbers">
-										<span className="number"><span>1.2</span></span>
-										<span className="number">M+</span>
-									</div>
-									<span className="label">Page Views</span>
-								</div>
-							</div>	
-
-							<div className="line"></div>
-							
-							<div className="lowerfooter">
-								<div className="Informationaboutus">
-									<div>
-										<h2>Reel Rhapsody</h2>
-									</div>
-									<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
-								</div>
-
-								<div className="Linksfooter">
-										<button target="_blank" href="">BLOG</button>
-										<button target="_blank" href="">COMMUNITY</button>
-									<Link to="/payment">
-										<button target="_blank" href="/payment">DONATIONS</button>
-									</Link>
-		
-									<button target="_blank" href="">HELP CENTER</button>
-
-										<button target="_blank" href="">ABOUT</button>
-								</div>
-										
-									<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+								<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
 							</div>
-						</article>
-					</div>
-			
-			</footer> */}
 
-			<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
+							<div className="Linksfooter col d-flex justify-content-end align-items-center me-2">
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/payment")}>DONATIONS</span>
+
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</span>
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/aboutus")}>About Us</span>
+
+
+								<span className="mx-1" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</span>
+
+
+							</div>
+						</div>
+					</article>
+				</div>
+
+			</footer >
+
+
 
 		</>
 	);
