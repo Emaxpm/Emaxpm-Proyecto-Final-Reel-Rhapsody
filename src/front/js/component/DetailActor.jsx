@@ -11,6 +11,10 @@ const DetailActor = () => {
     }, [])
     console.log(store.OneActor)
 
+    const imagenError = (e) => {
+        e.target.src = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D"
+    }
+
     return (
 
 
@@ -19,7 +23,7 @@ const DetailActor = () => {
                 <div className="">
                     <div className="contain-detail">
                         <div className="div-img">
-                            <img src={'https://image.tmdb.org/t/p/w500' + store.OneActor.profile_path} className="div-pic-act" alt="..."></img>
+                            <img src={'https://image.tmdb.org/t/p/w500' + store.OneActor.profile_path} className="div-pic-act" onError={imagenError} alt="..."></img>
                         </div>
                         <div className="div-cont-act">
                             <h2 className="">{store.OneActor.name}</h2>

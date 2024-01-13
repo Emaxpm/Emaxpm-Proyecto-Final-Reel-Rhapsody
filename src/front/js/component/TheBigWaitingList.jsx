@@ -1,21 +1,38 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../../styles/TheBigWaitingList.css"
 
 const TheBigWaitingList = () => {
 
 
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
             await actions.getFavorite();
+            //asociar el useEfecct a un actions nuevo que pida los items favoritos  completos  correspondiestes al usuario que este conectado 
         };
-    
+
         fetchData();
     }, []);
-    
+
+    const goToDetails = async (item) => {
+        try {
+            if (item.movie_id) {
+                await actions.saveItemMovie(item);
+                navigate(`/single/${item.movie_id}`);
+            } else if (item.serie_id) {
+                await actions.saveItemSerie(item);
+                navigate(`/viewSerie/${item.serie_id}`);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
 
 
     const removeFromFavorites = (itemToRemove) => {
@@ -44,7 +61,7 @@ const TheBigWaitingList = () => {
                                     } else {
                                         idx = store.series.findIndex((elm) => elm.id === item.serie_id)
                                     }
-                                    let url = item.movie_id != null ? `/single/${item.movie_id}` : `/viewSerie/${item.serie_id}`
+                                    // let url = item.movie_id != null ? `/single/${item.movie_id}` : `/viewSerie/${item.serie_id}`
                                     // para movie /single/:id
                                     // para serie /viewSerie/:id
 
@@ -57,11 +74,14 @@ const TheBigWaitingList = () => {
                                                 <p className="card-text">Popularity: {item.movie_id ? store.films[idx]?.popularity : store.series[idx]?.popularity}</p>
                                                 <p className="card-text">Vote Average: {item.movie_id ? store.films[idx]?.vote_average : store.series[idx]?.vote_average}</p>
                                                 <div className="Favorites-butons">
-                                                    <Link to={url}>
+                                                    {/* <Link to={url}>
                                                         <button className="btn btn-primary fav-button">
                                                             Learn more!
                                                         </button>
-                                                    </Link>
+                                                    </Link> */}
+                                                    <button onClick={() => goToDetails(item)}>
+                                                        Learn More!
+                                                    </button>
                                                     <button className="btn btn-primary fav-button" onClick={() => removeFromFavorites(item)}>Watched</button>
                                                 </div>
                                             </div>

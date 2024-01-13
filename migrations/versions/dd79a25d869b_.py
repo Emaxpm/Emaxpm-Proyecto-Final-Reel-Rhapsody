@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 14d82fdc3f8b
+Revision ID: dd79a25d869b
 Revises: 
-Create Date: 2024-01-11 01:31:25.677683
+Create Date: 2024-01-12 23:53:37.519133
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '14d82fdc3f8b'
+revision = 'dd79a25d869b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,8 +33,18 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('movie_id', sa.Integer(), nullable=True),
     sa.Column('serie_id', sa.Integer(), nullable=True),
+    sa.Column('url_img', sa.String(length=500), nullable=True),
+    sa.Column('title', sa.String(length=120), nullable=True),
+    sa.Column('relese_data', sa.String(length=120), nullable=True),
+    sa.Column('popularity', sa.String(length=120), nullable=True),
+    sa.Column('vote_average', sa.String(length=120), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('popularity'),
+    sa.UniqueConstraint('relese_data'),
+    sa.UniqueConstraint('title'),
+    sa.UniqueConstraint('url_img'),
+    sa.UniqueConstraint('vote_average')
     )
     op.create_table('review',
     sa.Column('id', sa.Integer(), nullable=False),

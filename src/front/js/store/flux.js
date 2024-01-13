@@ -295,7 +295,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(apiUrl + '/user/favorites', {
 						body: JSON.stringify({
 							movie_id: type === "movie" ? item.id : null,
-							serie_id: type === "serie" ? item.id : null
+							serie_id: type === "serie" ? item.id : null,
+							url_img: item["backdrop_path"],
+							title: type === "movie" ? item["original_title"] : item["original_name"],
+							relese_data: type === "movie" ? item["relese_data"] : item["first_air_date"],
+							popularity: item.popularity,
+							vote_average: item["vote_average"]
 						}),
 						method: "POST",
 						headers: {
@@ -306,6 +311,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if (response.ok) {
 						const res = await response.json();
+
+						// La respuesta tiene que ser el id y el type de la pelicula o la serie 
+						// lo va a guardar en el store  favoritos 
+						// y luego en la vista voy a llamar array favoritos usando useEffect y hago un fecth a cada 1 de los elementos que tiene ese array 
 						console.log(res);
 						actions.getFavorite();
 					} else {
@@ -414,7 +423,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw error;
 				}
 			},
+
+			saveItemMovie: async (item) => {
+				const store = getStore();
+				setStore({ ...store, film: item })
+			},
+
+			saveItemSerie: async (item) => {
+				const store = getStore();
+				setStore({ ...store, serie: item })
+			},
 		}
+
 	};
 };
 
