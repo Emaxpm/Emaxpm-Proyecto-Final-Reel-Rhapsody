@@ -164,6 +164,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			deleteReview: async (reviewId) => {
+
+				try {
+					const token = localStorage.getItem("token");
+					const response = await fetch(`${apiUrl}/reviews/${reviewId}`, {
+						method: "DELETE",
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+
+					if (!response.ok) {
+						throw new Error("Unable to delete review");
+					}
+					return true;
+				} catch (error) {
+					console.error(error);
+					return false;
+				}
+			},
+
 			loadOneSerie: async (id,) => {
 				console.log(id)
 				try {

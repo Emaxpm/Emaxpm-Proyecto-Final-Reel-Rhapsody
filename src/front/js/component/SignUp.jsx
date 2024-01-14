@@ -62,7 +62,7 @@ const Signup = () => {
 
             <Link to={"/login"}>
 
-              <button className="button-login input-submit">Log In</button>
+              <button className="info-buton">Log In</button>
 
             </Link>
 
@@ -101,7 +101,7 @@ const Signup = () => {
                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
               </label>
 
-              <button className='input-submit' onClick={handlerCreateUser} type='button'>Sign Up</button>
+              <button className=' info-buton' onClick={handlerCreateUser} type='button'>Sign Up</button>
 
             </form>
 

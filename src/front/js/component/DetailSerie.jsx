@@ -66,7 +66,7 @@ const DetailSerie = () => {
                             <h2 className="">{store.serie.name}</h2>
                             <div className="">
                                 <p className="display-4">First Air Date: {store.serie.first_air_date} </p>
-                                <p className="display-4">Number Of Episodes: {store.serie.number_of_episodes} </p>
+                                <p className="display-4">Number Of Chapters: {store.serie.number_of_episodes} </p>
                                 <p className="display-4">Number Of Seasons: {store.serie.number_of_seasons} </p>
                                 <p className="display-4">Popularity: {store.serie.popularity} </p>
                             </div>

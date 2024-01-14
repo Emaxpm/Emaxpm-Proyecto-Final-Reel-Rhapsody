@@ -84,7 +84,7 @@ const LogIn = () => {
 
                         <Link to={"/signup"}>
 
-                            <button className="button-login input-submit">Sign Up</button>
+                            <button className="info-buton">Sign Up</button>
 
                         </Link>
 
@@ -122,7 +122,7 @@ const LogIn = () => {
 
                             {error && <p className="error-message">{error}</p>}
 
-                            <button className='input-submit' onClick={handlerlogInNewUser} type='button'>Log In</button>
+                            <button className='info-buton' onClick={handlerlogInNewUser} type='button'>Log In</button>
 
                         </form>
 
