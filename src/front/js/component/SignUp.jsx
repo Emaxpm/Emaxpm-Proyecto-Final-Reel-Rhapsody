@@ -36,7 +36,7 @@ const Signup = () => {
       const result = await actions.sign_up(newUser)
       if (result.msg) {
         alert("usuario registrado")
-        navigate("/")
+        navigate("/login")
       }
 
     } catch (e) {

@@ -45,14 +45,14 @@ const DetailMovie = () => {
     console.log(store.film)
 
     useEffect(() => {
-        
+
         const getData = async () => {
             setReviews(await actions.loadReviews("movie", params.id))
         }
         getData()
     }, [loadReviews])
     console.log(reviews)
-    
+
     return (
 
         <div className="">
@@ -69,6 +69,14 @@ const DetailMovie = () => {
                                 <p className="">Popularity: {store.film.popularity} </p>
                                 <p className="">Vote Average: {store.film.vote_average} </p>
                                 <p className="">Original Language: {store.film.original_language} </p>
+                                <h2>Genres:</h2>
+                                <p>
+                                    {store.film.genres && store.film.genres.map((genre, index) => (
+                                        // Utilizamos index para agregar una coma entre los géneros, excepto para el último
+                                        `${genre.name}${index < store.film.genres.length - 1 ? ', ' : ''}`
+                                    ))}
+                                </p>
+
                             </div>
                         </div>
                     </div>
@@ -125,7 +133,7 @@ const DetailMovie = () => {
                                 </div>
                                 <div className="col-12">
                                     <button className="btn btn-primary" type="button" onClick={() => handleSubmit()}>Save</button>
-                                </div>                                
+                                </div>
                             </form>
                         </div>
                     }

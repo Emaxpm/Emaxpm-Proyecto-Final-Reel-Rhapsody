@@ -26,14 +26,17 @@ const Navbar = () => {
     return (
         <>
             <nav className="main-nav">
-                <div className="nav-container">
+
+                <div className="d-flex justify-content-center align-items-center">
                     <Link to={"/"}>
                         <img src={Logo} className="logo" />
                     </Link>
-                    <button className="btn button-l" data-text="Awesome">
-                        {/* <span className="actual-text">&nbsp;Reel Rhapsody&nbsp;</span> */}
-                        <span aria-hidden="true" className="hover-text">&nbsp;Reel Rhapsody&nbsp;</span>
-                    </button>
+
+                    <h2 className="nav-title">Reel Rhapsody</h2>
+                    {/* <button className="btn button-l" data-text="Awesome"> */}
+                    {/* <span className="actual-text">&nbsp;Reel Rhapsody&nbsp;</span> */}
+                    {/* <span aria-hidden="true" className="hover-text">&nbsp;Reel Rhapsody&nbsp;</span>
+                    </button> */}
                 </div>
                 {store.currentUser ?
                     <div className='logouser-drop'>

@@ -11,6 +11,10 @@ const DetailActor = () => {
     }, [])
     console.log(store.OneActor)
 
+    const imagenError = (e) => {
+        e.target.src = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D"
+    }
+
     return (
 
 
@@ -19,14 +23,15 @@ const DetailActor = () => {
                 <div className="">
                     <div className="contain-detail">
                         <div className="div-img">
-                            <img src={'https://image.tmdb.org/t/p/w500' + store.OneActor.profile_path} className="div-pic-act" alt="..."></img>
+                            <img src={'https://image.tmdb.org/t/p/w500' + store.OneActor.profile_path} className="div-pic-act" onError={imagenError} alt="..."></img>
                         </div>
                         <div className="div-cont-act">
                             <h2 className="">{store.OneActor.name}</h2>
                             <div className="">
                                 <p className="display-4">Birthday: {store.OneActor.birthday} </p>
                                 <p className="display-4">Place of birth: {store.OneActor.place_of_birth} </p>
-                                {/* <p className="display-4">Number Of Seasons: {store.serie.number_of_seasons} </p> */}
+                                <p className="display-4">Known for: {store.OneActor.known_for_department} </p>
+
                                 {/* <p className="display-4">Popularity: {store.serie.popularity} </p> */}
                             </div>
                         </div>

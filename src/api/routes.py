@@ -113,16 +113,22 @@ def add_favorites():
     body = request.json 
 
     if not body.get("movie_id") and not body.get("serie_id"):
-        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos"}), 400
+        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos", "ok": False}), 400
     
     new_favorite = Favorites(
         user_id = user_id,
         movie_id = body.get("movie_id"),
         serie_id = body.get("serie_id"),
+        url_img = body.get("url_img"),
+        title = body.get("title"),
+        relese_data = body.get("relese_data"),
+        popularity = body.get("popularity"),
+        vote_average = body.get("vote_average"),
+
     )
     db.session.add(new_favorite)
     db.session.commit()
-    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
+    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize(), "ok": True}), 200
 
 @api.route('/user/favorite', methods=['DELETE'])
 @jwt_required()

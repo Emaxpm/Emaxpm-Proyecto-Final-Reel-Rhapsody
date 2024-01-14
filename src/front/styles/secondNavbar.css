@@ -2,13 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
-  color: #333;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+}
+
+.main-nav:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
 }
 
 .button {
-  background-color: rgb(168, 95, 187);
-  color: #c7eef3;
+  background-color: rgb(2, 29, 78);
+  color: rgba(31, 215, 232, 0.873);
   border: none;
   cursor: pointer;
   margin-right: 40px;
@@ -18,7 +24,7 @@
 }
 
 .button:hover {
-  background-color: rgb(98, 57, 109);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
 }
 
 .second-button {
@@ -31,8 +37,8 @@
 }
 
 .dropdown-btn {
-  background-color: rgb(168, 95, 187);
-  color: #c7eef3;
+  background-color: rgb(2, 29, 78);
+  color: rgba(31, 215, 232, 0.873);
   padding: 8px 12px;
   border: 2px solid #c7eef3;
   border-radius: 4px;
@@ -45,7 +51,7 @@
 
 .dropdown-menu {
   position: absolute;
-  background-color: rgb(168, 95, 187) !important;
+  background-color: rgb(2, 29, 78);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /* padding: 8px 0; */
   border-radius: 4px;
@@ -62,13 +68,13 @@
 }
 
 .dropdown-menu li a {
-  color: #c7eef3;
+  color: rgba(31, 215, 232, 0.873);
   text-decoration: none;
   display: block;
 }
 
 .dropdown-menu li a:hover {
-  background-color: rgb(98, 57, 109);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
 }
 
 .user-btn {
@@ -110,8 +116,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #111;
-  color: #333;
+  /* background-color: #111;
+  color: #333; */
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+}
+
+.nav-container:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
 }
 
 .btn-nav {
@@ -125,9 +139,9 @@
   color: rgb(168, 95, 187);
 }
 
-.nav-title {
+/* .nav-title {
   color: rgb(168, 95, 187);
-}
+} */
 
 .button-right {
   margin: 10px;
@@ -148,7 +162,7 @@
 } */
 
 /* button styling */
-.button-l {
+/* .button-l {
   --border-right: 6px;
   --text-stroke-color: rgba(255, 255, 255, 0.6);
   --animation-color: #37FF8B;
@@ -161,12 +175,12 @@
   text-transform: uppercase;
   color: transparent;
   -webkit-text-stroke: 1px var(--text-stroke-color);
-}
+} */
 
 /* this is the text, when you hover on button */
-.hover-text {
-  color: #37FF8B;
-  /* position: absolute;
+/* .hover-text { */
+/* color: #37FF8B; */
+/* position: absolute;
   box-sizing: border-box;
   content: attr(data-text);
   color: var(--animation-color);
@@ -176,10 +190,14 @@
   overflow: hidden;
   transition: 0.5s;
   -webkit-text-stroke: 1px var(--animation-color); */
-}
+/* } */
 
 /* hover */
-.button-l:hover .hover-text {
+/* .button-l:hover .hover-text {
   width: 100%;
   filter: drop-shadow(0 0 23px var(--animation-color))
+} */
+
+.nav-title {
+  text-align: start;
 }

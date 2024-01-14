@@ -61,31 +61,31 @@ const Card = () => {
             {store.currentUser && (
                 <div className="row d-flex flex-wrap justify-content-center mt-5">
                     <div className="container-title">
-                        <button className="RandomButton" onClick={selectRandomFilm}>Random</button>
+                        <button className=" button-r" onClick={selectRandomFilm}>Random</button>
                     </div>
                 </div>
             )}
 
             {randomFilm ? (
 
-                <div className="random-card">
+                <div className="random-card mt-4">
                     <div className="card  my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
                         <img src={'https://image.tmdb.org/t/p/w500' + randomFilm.backdrop_path} className="card-img-top" onError={imagenError} alt="..." />
                         <div className="card-body">
-                            <h5 className="card-title">{randomFilm.original_title}</h5>
+                            <h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{randomFilm.original_title}</h4>
                             <p className="card-text"> Release Date: {randomFilm.release_date}</p>
                             <p className="card-text"> Popularity: {randomFilm.popularity}</p>
                             <p className="card-text"> Vote Average: {randomFilm.vote_average}</p>
                             <div className="buttons">
                                 <Link to={`/single/${randomFilm.id}`}>
-                                    <button className="button p-2 mb-auto">
+                                    <button className="info-buton p-2 mb-auto">
                                         Learn more!
                                     </button>
                                 </Link>
 
                                 {store.currentUser && (
                                     <Link to={"/viewBigList"}>
-                                        <button className="button p-2 mb-auto mt-3" onClick={() => {
+                                        <button className=" btn btn-outline-primary mt-3 info-buton" onClick={() => {
                                             actions.addFavorite(randomFilm, "movie");
                                             navigate("/viewBigList");
                                         }}>
@@ -116,31 +116,32 @@ const Card = () => {
                 </ul>
             </nav>
 
-            <div className=" d-flex flex-wrap justify-content-center">
+            <div className=" d-flex flex-wrap justify-content-center random-card">
                 {store.films.map((item) => (
                     <div key={item.id} className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
                         <img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} onError={imagenError} className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <h4 className="card-title">{item.original_title}</h4>
+                            <h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.original_title}</h4>
                             <p className="card-text"> Release Date: {item.release_date}</p>
                             <p className="card-text"> Popularity: {item.popularity}</p>
                             <p className="card-text"> Vote Average: {item.vote_average}</p>
                             <div className="buttons">
                                 <Link to={`/single/${item.id}`}>
-                                    <button className="button p-2 mb-auto">
+                                    <button className="info-buton p-2 mb-auto">
                                         Learn more!
                                     </button>
                                 </Link>
 
                                 {store.currentUser && (
                                     <Link to={"/viewBigList"}>
-                                        <button className="button p-2 mb-auto mt-3" onClick={() => {
-                                            actions.addFavorite(item, "movie");
+                                        <button className="btn btn-outline-primary mt-3 info-buton" onClick={async () => {
+                                            await actions.addFavorite(item, "movie");
                                             navigate("/viewBigList");
                                         }}>
                                             Reserved for popcorn
                                         </button>
                                     </Link>
+
                                 )}
                             </div>
                         </div>

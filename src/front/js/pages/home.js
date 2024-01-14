@@ -15,13 +15,13 @@ export const Home = () => {
 	return (
 
 		<>
-			<Link to={"/movies"}>
+			<Link to={"/movies"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Movies</h2>
 
 			</Link>
 
-			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5 random-card">
 
 				{store.films.map((item) => (
 
@@ -30,7 +30,7 @@ export const Home = () => {
 						<div className="card mb-5" style={{ minWidth: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h4 className="card-title">{item.original_title}</h4>
+								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.original_title}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote Average: {item.vote_average}</p>
@@ -39,7 +39,7 @@ export const Home = () => {
 
 							<div className="buttons p-4 ">
 								<Link to={`/single/${item.id}`}>
-									<button className="button p-2 mb-auto">
+									<button className=" p-2 mb-auto info-buton">
 
 										Learn more!
 
@@ -50,7 +50,7 @@ export const Home = () => {
 
 									<Link to={"/viewBigList"}>
 
-										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+										<button className="btn btn-outline-primary mt-3  info-buton" onClick={() => {
 											actions.addFavorite(item, "movie")
 											navigate("/viewBigList")
 
@@ -64,17 +64,18 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-
 				))}
 			</div>
 
-			<Link to={"/series"}>
+
+
+			<Link to={"/series"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Series</h2>
 
 			</Link>
 
-			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5 random-card">
 
 				{store.series.map((item) => (
 
@@ -83,7 +84,7 @@ export const Home = () => {
 						<div className="card mb-5" style={{ minWidth: "25rem", }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h4 className="card-title">{item.original_name}</h4>
+								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.original_name}</h4>
 								<p className="card-text"> First Air Date: {item.first_air_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote_average: {item.vote_average}</p>
@@ -93,7 +94,7 @@ export const Home = () => {
 							<div className="buttons p-4 ">
 								<Link to={`/viewSerie/${item.id}`}>
 
-									<button className="button p-2 mb-auto">
+									<button className="info-buton p-2 mb-auto">
 										Learn more!
 									</button>
 
@@ -103,7 +104,7 @@ export const Home = () => {
 
 									<Link to={"/viewBigList"}>
 
-										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+										<button className="btn btn-outline-primary mt-3 info-buton" onClick={() => {
 											actions.addFavorite(item, "serie")
 											navigate("/viewBigList")
 
@@ -118,7 +119,9 @@ export const Home = () => {
 						</div>
 					</div>
 
+
 				))}
+
 			</div>
 
 			<footer className="footer">

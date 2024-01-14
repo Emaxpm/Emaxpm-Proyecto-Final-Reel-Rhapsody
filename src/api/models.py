@@ -30,6 +30,14 @@ class Favorites(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     movie_id = db.Column(db.Integer, nullable=True)
     serie_id = db.Column(db.Integer, nullable=True)
+    url_img = db.Column(db.String(500), unique=True, nullable=True)
+    title = db.Column(db.String(120), unique=True, nullable=True)
+    relese_data = db.Column(db.String(120), unique=True, nullable=True)
+    popularity = db.Column(db.String(120), unique=True, nullable=True)
+    vote_average = db.Column(db.String(120), unique=True, nullable=True)
+
+
+
     
     def __repr__(self):
         return '<Favorites %r>' % self.id
@@ -39,7 +47,11 @@ class Favorites(db.Model):
             "id": self.id,
             "user_id": self.user_id, 
             "movie_id": self.movie_id,
-            "serie_id" : self.serie_id   
+            "serie_id" : self.serie_id,
+            "url_img" : self.url_img,
+            "title" : self.title,
+            "relese_data" : self.relese_data,
+            "vote_average" : self.vote_average         
         }
 
 class Review(db.Model):
