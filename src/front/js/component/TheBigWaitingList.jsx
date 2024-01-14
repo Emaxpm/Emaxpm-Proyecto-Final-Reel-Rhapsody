@@ -60,10 +60,10 @@ const TheBigWaitingList = () => {
                                 return (
                                 
 
-                                    <div key={index} className="card card-fav my-4 mx-4 col" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
+                                    <div key={index} className="card card-fav my-4 mx-4 col random-card" style={{ minWidth: "30rem", maxWidth: "30rem" }}>
                                         <img src={'https://image.tmdb.org/t/p/w500' + item.url_img} className="w-100" alt="..." />
                                         <div className="card-body">
-                                            <h4 className="card-title">{item.title}</h4>
+                                            <h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.title}</h4>
                                             {/* <p className="card-text">Release Date: {item.relese_data}</p>
                                             <p className="card-text">Popularity: {item.popularity}</p>
                                             <p className="card-text">Vote Average: {item.vote_average}</p> */}
@@ -73,10 +73,10 @@ const TheBigWaitingList = () => {
                                                     Learn more!
                                                 </button>
                                             </Link> */}
-                                                <button onClick={() => goToDetails(item)}>
+                                                <button className="btn btn-outline-primary mt-3 info-buton" onClick={() => goToDetails(item)}>
                                                     Learn More!
                                                 </button>
-                                                <button className="btn btn-primary fav-button" onClick={() => removeFromFavorites(item)}>Watched</button>
+                                                <button className="btn btn-outline-primary mt-3 info-buton" onClick={() => removeFromFavorites(item)}>Watched</button>
                                             </div>
                                         </div>
                                     </div>
