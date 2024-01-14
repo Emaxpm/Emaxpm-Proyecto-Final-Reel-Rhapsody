@@ -133,14 +133,14 @@ const Card = () => {
                                 </Link>
 
                                 {store.currentUser && (
-                                    <Link to={"/viewBigList"}>
-                                        <button className="button p-2 mb-auto mt-3" onClick={() => {
-                                            actions.addFavorite(item, "movie");
+                                    
+                                        <button className="button p-2 mb-auto mt-3" onClick={ async() => {
+                                           await actions.addFavorite(item, "movie");
                                             navigate("/viewBigList");
                                         }}>
                                             Reserved for popcorn
                                         </button>
-                                    </Link>
+                                   
                                 )}
                             </div>
                         </div>

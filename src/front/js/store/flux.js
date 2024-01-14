@@ -164,27 +164,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteReview: async (reviewId) => {
-				
-				try {
-				  const token = localStorage.getItem("token");
-				  const response = await fetch(`${apiUrl}/reviews/${reviewId}`, {
-					method: "DELETE",
-					headers: {
-					  Authorization: `Bearer ${token}`,
-					},
-				  });
-			  
-				  if (!response.ok) {
-					throw new Error("Unable to delete review");
-				  }			  
-				  return true;
-				} catch (error) {
-				  console.error(error);
-				  return false;
-				}
-			  },
-
 			loadOneSerie: async (id,) => {
 				console.log(id)
 				try {
@@ -309,7 +288,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addFavorite: async (item, type) => {
 				try {
-					const store = getStore();
+
 					const actions = getActions();
 					const token = localStorage.getItem("token");
 
@@ -331,13 +310,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					if (response.ok) {
-						const res = await response.json();
+						const data = await response.json();
 
 						// La respuesta tiene que ser el id y el type de la pelicula o la serie 
 						// lo va a guardar en el store  favoritos 
 						// y luego en la vista voy a llamar array favoritos usando useEffect y hago un fecth a cada 1 de los elementos que tiene ese array 
-						console.log(res);
+						console.log(data);
 						actions.getFavorite();
+						const store = getStore();
+						setStore({ ...store, favorites: [...store.favorites, item] })
+
 					} else {
 						console.error("Failed to add favorite");
 					}
@@ -368,6 +350,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
+
+			// getFavoritesList: () => {
+			// 	try {
+
+			// 		const token = localStorage.getItem('token')
+			// 		const response 
+			//   const store = getStore();
+			//   const listOfFavorites = store.favorites.map((favorite) => ({
+			// 	id: favorite.id,
+			// 	title: favorite.title,
+			// 	// Puedes agregar más propiedades según las necesidades
+			//   }));
+
+			//   setStore({ listOfFavorites });
+
+
+			// 	} catch (error) {
+			// 	  console.error('Error getting favorites list:', error);
+			// 	}
+			//   },
 
 			updateFavorites: async (itemToRemove) => {
 				try {
@@ -454,6 +456,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ ...store, serie: item })
 			},
+
+
 		}
 
 	};

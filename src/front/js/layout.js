@@ -46,7 +46,7 @@ const Layout = () => {
                         <Route element={<Preguntas />} path="/preguntas" />
                         <Route element={<Aboutus />} path="/aboutus" />
                         <Route element={<TechnicalSupport />} path="/TechnicalSupport" />
-                        <Route element={<Morehelps />} path="/Morehelps" />
+                        {/* <Route element={<Morehelps />} path="/Morehelps" /> */}
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />
