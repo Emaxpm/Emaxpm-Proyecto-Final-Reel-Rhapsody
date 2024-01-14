@@ -53,7 +53,6 @@
   position: absolute;
   background-color: rgb(2, 29, 78);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* padding: 8px 0; */
   border-radius: 4px;
   list-style-type: none;
   margin-top: 5px;
@@ -116,8 +115,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: #111;
-  color: #333; */
   background-color: rgb(14, 14, 26);
   color: rgb(234, 234, 234);
 }
@@ -128,21 +125,6 @@
   color: rgb(4, 4, 38);
 }
 
-.btn-nav {
-  background-color: rgb(168, 95, 187);
-  padding: 10px;
-  color: #fff;
-}
-
-.btn-nav:hover {
-  background-color: #fff;
-  color: rgb(168, 95, 187);
-}
-
-/* .nav-title {
-  color: rgb(168, 95, 187);
-} */
-
 .button-right {
   margin: 10px;
 }
@@ -151,52 +133,6 @@
   display: flex;
   align-items: baseline;
 }
-
-/* .button {
-  margin: 0;
-  height: auto;
-  background: transparent;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-} */
-
-/* button styling */
-/* .button-l {
-  --border-right: 6px;
-  --text-stroke-color: rgba(255, 255, 255, 0.6);
-  --animation-color: #37FF8B;
-  --fs-size: 2em;
-  letter-spacing: 3px;
-  text-decoration: none;
-  font-size: var(--fs-size);
-  font-family: "Arial";
-  position: relative;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--text-stroke-color);
-} */
-
-/* this is the text, when you hover on button */
-/* .hover-text { */
-/* color: #37FF8B; */
-/* position: absolute;
-  box-sizing: border-box;
-  content: attr(data-text);
-  color: var(--animation-color);
-  width: 0%;
-  inset: 0;
-  border-right: var(--border-right) solid var(--animation-color);
-  overflow: hidden;
-  transition: 0.5s;
-  -webkit-text-stroke: 1px var(--animation-color); */
-/* } */
-
-/* hover */
-/* .button-l:hover .hover-text {
-  width: 100%;
-  filter: drop-shadow(0 0 23px var(--animation-color))
-} */
 
 .nav-title {
   text-align: start;
