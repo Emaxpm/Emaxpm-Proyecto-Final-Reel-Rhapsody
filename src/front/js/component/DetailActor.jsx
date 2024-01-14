@@ -30,7 +30,8 @@ const DetailActor = () => {
                             <div className="">
                                 <p className="display-4">Birthday: {store.OneActor.birthday} </p>
                                 <p className="display-4">Place of birth: {store.OneActor.place_of_birth} </p>
-                                {/* <p className="display-4">Number Of Seasons: {store.serie.number_of_seasons} </p> */}
+                                <p className="display-4">Known for: {store.OneActor.known_for_department} </p>
+
                                 {/* <p className="display-4">Popularity: {store.serie.popularity} </p> */}
                             </div>
                         </div>

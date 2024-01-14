@@ -4,7 +4,7 @@
 }
 
 .title {
-    color: rgb(119, 33, 141) !important;
+    color: rgba(31, 215, 232, 0.873) !important;
     font-size: 40px;
     font-family: 'Courier New', Courier, monospace !important;
     font-weight: bold;
@@ -65,7 +65,8 @@
 }
 
 .title-p {
-    color: rgb(168, 95, 187);
+    color: rgba(31, 215, 232, 0.873);
+    text-decoration: none;
 }
 
 .card p {

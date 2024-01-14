@@ -4,8 +4,8 @@
 
 .card {
     background-color: #000;
-    color: #37FF8B;
-    border: solid 2px #37FF8B;
+    color: rgba(31, 215, 232, 0.873);
+    border: solid 4px rgba(31, 215, 232, 0.873);
     display: inline-block;
     border-radius: 7px;
     font-family: 'Courier New', Courier, monospace;
@@ -52,7 +52,7 @@
 }
 
 h4 {
-    color: #37FF8B;
+    color: rgba(31, 215, 232, 0.873);
 }
 
 .random-card {

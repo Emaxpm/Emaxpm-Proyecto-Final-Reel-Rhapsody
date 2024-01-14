@@ -15,7 +15,7 @@ export const Home = () => {
 	return (
 
 		<>
-			<Link to={"/movies"}>
+			<Link to={"/movies"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Movies</h2>
 
@@ -69,7 +69,7 @@ export const Home = () => {
 
 
 
-			<Link to={"/series"}>
+			<Link to={"/series"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Series</h2>
 

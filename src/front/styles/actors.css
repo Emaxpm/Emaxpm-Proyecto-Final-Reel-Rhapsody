@@ -1,11 +1,15 @@
 .div-pic-act {
-     width: 60%;
- }
+    width: 60%;
+}
 
- .div-cont-act {
-     color: #fff;
-     width: 30%;
-     padding: 10px;
-     text-align: center;
-     font-size: large
- }
+.div-cont-act {
+    color: #fff;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    font-size: large
+}
+
+.actor-img {
+    height: 440px;
+}
