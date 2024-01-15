@@ -52,7 +52,9 @@ const Navbar = () => {
                                 <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
                                     <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
                                     <li><Link to="/demo">Actors</Link></li>
-                                    <li></li>
+                                    {store.currentUser.admin && (
+                                    <li><Link to="/listUsers">All Users</Link></li>
+                                    )}
                                     <hr />
                                     <li>
                                         <Logout />

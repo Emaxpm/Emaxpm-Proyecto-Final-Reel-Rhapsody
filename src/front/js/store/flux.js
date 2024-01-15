@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			OneActor: [],
 			favorites: [],
 			custom: [],
+			users:[],
 			currentEdit: {
 			},
 			pagesMovies: 1,
@@ -303,6 +304,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error('Error during logout:', error);
 					return false;
+				}
+			},
+
+			loadAllUsers: async () => {
+				try {
+					const response = await fetch(`${apiUrl}/users`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						setStore({ users: res })
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
 				}
 			},
 

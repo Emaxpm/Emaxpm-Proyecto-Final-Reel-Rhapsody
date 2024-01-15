@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
     avatar = db.Column(db.String(500), unique=False, nullable=True)
-    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    admin = db.Column(db.Boolean(), unique=False, nullable=False, default=False)
     favorites = db.relationship("Favorites", backref = "user")
     review = db.relationship("Review", backref = "user")
         
@@ -22,7 +22,7 @@ class User(db.Model):
             "full_name": self.full_name,
             "email": self.email,
             "avatar": self.avatar,
-            # "is_active": self.is_active,
+            "admin": self.admin,
         }
     
 class Favorites(db.Model):
