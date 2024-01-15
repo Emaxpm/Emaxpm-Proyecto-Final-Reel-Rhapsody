@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import DetailActor from "../component/DetailActor.jsx";
+import "../../styles/details.css"
 
 export const VActor = () => {
 	return (
@@ -8,7 +9,7 @@ export const VActor = () => {
 			<h2 className="title">Actor</h2>
 			<DetailActor />
 			<Link to="/demo">
-				<button className="btn btn-primary">Back Actors</button>
+				<button className="btn back-home info-buton">Back Actors</button>
 			</Link>
 		</>	
 	);

@@ -18,6 +18,7 @@ import Signup from "./component/SignUp.jsx";
 import LogIn from "./component/LogIn.jsx";
 import ViewBigList from "./pages/viewBigList.js";
 import TechnicalSupport from "./pages/TechnicalSupport.js"
+import ListUsers from "./component/ListUsers.jsx";
 
 import injectContext from "./store/appContext";
 import Navbar from "./component/Navbar.jsx";
@@ -51,6 +52,7 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />
                         <Route element={<CustUser />} path="/CustUser" />
+                        <Route element={<ListUsers />} path="ListUsers"/>
                         <Route element={<ViewBigList />} path="/viewBigList" />
                         <Route element={<Single />} path="/single/:id" />
                         <Route element={<DetailMovie />} path="/movie/:id" />

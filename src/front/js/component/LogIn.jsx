@@ -53,7 +53,12 @@ const LogIn = () => {
                 console.log("Usuario logueado:", result.fullName);
                 actions.isAuth()
 
-                navigate("/");
+                if (result.user && result.user.admin){
+                    navigate("/ListUsers")
+                }
+                else{
+                    navigate("/")
+                }
             } else {
 
                 console.log("Hubo un problema al iniciar sesión");

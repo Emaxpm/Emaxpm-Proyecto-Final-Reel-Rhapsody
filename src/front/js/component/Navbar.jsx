@@ -35,7 +35,11 @@ const Navbar = () => {
                     <h2 className="nav-title">Reel Rhapsody</h2>
                 </div>
                 {store.currentUser ?
+                
                     <div className='logouser-drop'>
+                        <div className='me-4'>
+                        <h5>Welcome {store.currentUser.full_name}</h5>
+                        </div>
                         <div className='cont-btns'>
                             <div className="dropdown">
                                 <button
@@ -48,7 +52,9 @@ const Navbar = () => {
                                 <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} onBlur={closeDropdown}>
                                     <li><Link to={"/viewBigList"}>Pending Popcorn</Link></li>
                                     <li><Link to="/demo">Actors</Link></li>
-                                    <li></li>
+                                    {store.currentUser.admin && (
+                                    <li><Link to="/listUsers">All Users</Link></li>
+                                    )}
                                     <hr />
                                     <li>
                                         <Logout />
@@ -63,7 +69,7 @@ const Navbar = () => {
                                 <img className="w-100 h-100 rounded-circle" src={store.currentUser?.avatar ? store.currentUser.avatar : defaultAvatar} alt="" />
                             </button>
                         </div>
-
+                        
                     </div>
 
                     :
