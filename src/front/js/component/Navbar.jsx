@@ -35,7 +35,11 @@ const Navbar = () => {
                     <h2 className="nav-title">Reel Rhapsody</h2>
                 </div>
                 {store.currentUser ?
+                
                     <div className='logouser-drop'>
+                        <div className='me-4'>
+                        <h5>Welcome {store.currentUser.full_name}</h5>
+                        </div>
                         <div className='cont-btns'>
                             <div className="dropdown">
                                 <button
@@ -63,7 +67,7 @@ const Navbar = () => {
                                 <img className="w-100 h-100 rounded-circle" src={store.currentUser?.avatar ? store.currentUser.avatar : defaultAvatar} alt="" />
                             </button>
                         </div>
-
+                        
                     </div>
 
                     :
