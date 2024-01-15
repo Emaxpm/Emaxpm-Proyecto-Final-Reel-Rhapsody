@@ -80,7 +80,7 @@ const DetailMovie = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="accordion-item over">
+                    <div className="accordion-item over mb-3">
                         <h2 className="accordion-header" id="panelsStayOpen-headingThree">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                 Overview :
@@ -92,7 +92,7 @@ const DetailMovie = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="accordion-item over">
+                    <div className="accordion-item over mb-3">
                         <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                                 Comments and rate:
@@ -102,11 +102,21 @@ const DetailMovie = () => {
                             <div className="movie-reviews">
                                 {reviews && reviews.length > 0 && reviews.map((item) => {
                                     return (
-                                        <div className="d-flex align-items-start" key={item.id}>
-                                            <p>Comentario: {item.comment} - Usuario: {item.user} - Puntaje: {item.rate}</p>
-                                            {store.currentUser && item.user === store.currentUser.full_name &&
-                                                <button className="btn btn-primary ms-auto" type="button" onClick={() => handleDelete(item.id)}><i className="fa-solid fa-trash"></i></button>
-                                            }
+                                        <div className="d-flex align-items-center row" key={item.id}>
+                                            <div className="col-7">
+                                                <p><strong>Comentario:</strong> {item.comment}</p>
+                                            </div>
+                                            <div className="col-2">
+                                                <p><strong>Puntaje:</strong> {item.rate}</p>
+                                            </div>
+                                            <div className="col-2">
+                                                <p><strong>Usuario:</strong> {item.user}</p>
+                                            </div>
+                                            <div className="col-1">
+                                                {store.currentUser && item.user === store.currentUser.full_name &&
+                                                    <button className="btn info-buton" type="button" onClick={() => handleDelete(item.id)}><i className="fa-solid fa-trash"></i></button>
+                                                }
+                                            </div>
                                         </div>
                                     );
                                 })}
@@ -117,13 +127,13 @@ const DetailMovie = () => {
                         <div className="container">
                             <form className="row g-3">
                                 <div className="mb-3">
-                                    <label htmlFor="exampleFormControlTextarea1" className="form-label">Comment</label>
+                                    <label htmlFor="exampleFormControlTextarea1" className="form-label Fo-rev">Comment</label>
                                     <textarea className="form-control" value={comment} id="exampleFormControlTextarea1" rows="3" onChange={(e) => setComment(e.target.value)}></textarea>
                                 </div>
                                 <div className="col-md-3">
-                                    <label htmlFor="validationDefault04" className="form-label">Rate</label>
+                                    <label htmlFor="validationDefault04" className="form-label Fo-rev">Rate</label>
                                     <select className="form-select" id="validationDefault04" value={rate} required onChange={(e) => setRate(e.target.value)}>
-                                        <option selected disabled value="">Choose...</option>
+                                        <option selected disabled value="">Choose</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -132,7 +142,7 @@ const DetailMovie = () => {
                                     </select>
                                 </div>
                                 <div className="col-12">
-                                    <button className="btn btn-primary" type="button" onClick={() => handleSubmit()}>Save</button>
+                                    <button className="btn info-buton" type="button" onClick={() => handleSubmit()}>Save</button>
                                 </div>
                             </form>
                         </div>
