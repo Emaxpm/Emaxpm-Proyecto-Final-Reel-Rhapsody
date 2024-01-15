@@ -2,34 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom"
 import { Link } from "react-router-dom";
 import "../../styles/TechnicalSupport.css"
-// Crea una función de flecha (componente funcional)
+
 const TechnicalSupport = () => {
-  // Lógica del componente, si es necesario
-  // Devuelve el JSX que representa el componente
+
   return (
     <>
 
-<morehelps/>
+      <morehelps />
 
-      <div className="row col">
-        <div>
-          <h2 className="Thema">How can we help?</h2>
-          <p className="subthema">Popular topics:<Link to="/home">Technical Support</Link>,<Link to="/payment">Donations</Link>,<Link to="/demo">Actor</Link></p>
-          <p className="subthema1"><Link to="/preguntas">Frequent Questions</Link></p>
-        </div>
-        <div className="arrow">
-          <a id="explore-topics-link" className="explore-topics" href="#topics-section">
-            <span>Explore Topics</span>
-            <svg viewBox="0 0 24 24" width="24" height="24">
-              <path fill-rule="evenodd" d="M13 17.64l5.35-4.58 1.3 1.52L12 21.13l-7.65-6.55 1.3-1.52L11 17.64V3h2v14.64z" fill="#000000"></path>
-            </svg>
-          </a>
-        </div>
+      <div className=" ">
 
+        <h2 className="Thema title">How can we help?</h2>
+      
+        <div className="padre ">
 
-        <div className="padre">
-
-          <div className="list">
+          <div className="list ">
 
             <div className="accordion accordion-flush" id="accordionFlushExample">
               <div className="accordion-item">
@@ -274,7 +261,7 @@ const TechnicalSupport = () => {
           <div className="list4 col">
 
 
-            <div className="accordion accordion-flush" id="accordionFlushExample">
+            <div className="accordion accordion-flush " id="accordionFlushExample">
               <div className="accordion-item">
                 <h2 className="accordion-header">
 
@@ -316,20 +303,18 @@ const TechnicalSupport = () => {
           <div>
             <div>
 
-
-              <div className="whitebutton">
-                <button type="button" className="btn btn-light">Contact Us</button>
-              </div>
-
-              <h2 className="white">Need more help</h2>
-
-
-              
             </div>
           </div>
 
         </div>
       </div>
+
+      <Link to="/" className="back-home">
+
+        <button type="button" class="info-buton">Back Home</button>
+
+
+      </Link>
 
     </>
   );

@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import DetailSerie from "../component/DetailSerie.jsx";
 
 const ViewSerie = () => {
-    const params = useParams(); // Obtener los parámetros de la URL
+    const params = useParams(); 
 
     return (
         <>
             <h2 className="title">Serie</h2>
-            <DetailSerie params={params} /> {/* Pasar los parámetros como prop */}
+            <DetailSerie params={params} /> 
         </>
     );
 };

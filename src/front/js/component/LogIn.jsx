@@ -2,7 +2,6 @@ import React, { useContext, useState, } from "react";
 import { Context, } from "../store/appContext.js";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/signup.css"
-import Navbar from "./Navbar.jsx";
 
 const LogIn = () => {
 
@@ -72,7 +71,7 @@ const LogIn = () => {
 
             <div className='container-form'>
 
-                <div className='information'>
+                <div className='information sig-cont'>
 
                     <div className='info-childs'>
 
@@ -84,7 +83,7 @@ const LogIn = () => {
 
                         <Link to={"/signup"}>
 
-                            <button className="info-buton">Sign Up</button>
+                            <button className="info-buton sig-but">Sign Up</button>
 
                         </Link>
 
@@ -92,19 +91,11 @@ const LogIn = () => {
 
                 </div>
 
-                <div className='form-information'>
+                <div className='form-information log-cont'>
 
-                    <div className='forminformation-childs'>
+                    <div className='forminformation-childs '>
 
                         <h2>Log In</h2>
-
-                        <div className='icons'>
-                            <i className="fa-brands fa-google"></i>
-                            <i className="fa-brands fa-facebook"></i>
-                            <i className="fa-brands fa-instagram"></i>
-                        </div>
-
-                        <p>Use your email to register</p>
 
                         <form className='form'>
 
@@ -117,12 +108,10 @@ const LogIn = () => {
                                 <i className="fa-solid fa-lock"></i>
                                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </label>
-
-                            <p className="text-primary mt-4">Forgot your password?</p>
-
+                            
                             {error && <p className="error-message">{error}</p>}
 
-                            <button className='info-buton' onClick={handlerlogInNewUser} type='button'>Log In</button>
+                            <button className='info-buton log-but' onClick={handlerlogInNewUser} type='button'>Log In</button>
 
                         </form>
 

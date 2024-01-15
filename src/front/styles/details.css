@@ -97,3 +97,9 @@
 .Fo-rev{
     color: white !important;
 }
+
+.but-coment {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

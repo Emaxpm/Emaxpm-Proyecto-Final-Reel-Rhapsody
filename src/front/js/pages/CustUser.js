@@ -12,10 +12,7 @@ export const CustUser = () => {
 				<h2 className="col-12 title">Customize</h2>
 				<div><CustomizeUser /></div>
 			</div>
-			<br />
-			<Link to="/">
-				<button className="botcust">Back Home</button>
-			</Link>
+			
 		</div>
 	);
 };

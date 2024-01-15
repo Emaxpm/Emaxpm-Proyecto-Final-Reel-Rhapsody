@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../styles/details.css"
 
 const DetailMovie = () => {
@@ -72,10 +72,12 @@ const DetailMovie = () => {
                                 <h2>Genres:</h2>
                                 <p>
                                     {store.film.genres && store.film.genres.map((genre, index) => (
-                                        // Utilizamos index para agregar una coma entre los géneros, excepto para el último
                                         `${genre.name}${index < store.film.genres.length - 1 ? ', ' : ''}`
                                     ))}
                                 </p>
+                                <h2>You can see this movie at :</h2>
+
+                                <p>Netflix, Disney+, HBO Max and Amazon Prime</p>
 
                             </div>
                         </div>
@@ -141,15 +143,17 @@ const DetailMovie = () => {
                                         <option value="5">5</option>
                                     </select>
                                 </div>
-                                <div className="col-12">
-                                    <button className="btn info-buton" type="button" onClick={() => handleSubmit()}>Save</button>
+                                <div className="but-coment">
+                                    <button className="info-buton" type="button" onClick={() => handleSubmit()}>Save</button>
+                                    <Link to="/" className="back-home">
+                                        <button className="info-buton">Back home</button>
+                                    </Link>
                                 </div>
                             </form>
                         </div>
                     }
                 </div>
                 <br />
-                <div><p></p></div>
             </div>
         </div >
     )

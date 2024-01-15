@@ -8,7 +8,6 @@
     font-size: 40px;
     font-family: 'Courier New', Courier, monospace !important;
     font-weight: bold;
-    /* background-color: rgb(175, 210, 226) !important; */
     align-items: center;
     text-align: center;
     margin-top: 40px;
@@ -100,7 +99,7 @@
 }
 
 .info-buton:hover {
-    background: rgb(61, 106, 255);
+    background: rgba(31, 215, 232, 0.873);
     box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
@@ -156,4 +155,8 @@
 
 .p-h {
     color: #fff;
+}
+
+.back-home {
+    padding: 20px;
 }

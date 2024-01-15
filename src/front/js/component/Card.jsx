@@ -149,8 +149,8 @@ const Card = () => {
                 ))}
             </div>
 
-            <Link to={"/"}>
-                <button type="button" className="btn btn-primary">Back</button>
+            <Link to={"/"} className="back-home">
+                <button type="button" className="btn btn-primary info-buton">Back Home</button>
             </Link>
         </>
     );

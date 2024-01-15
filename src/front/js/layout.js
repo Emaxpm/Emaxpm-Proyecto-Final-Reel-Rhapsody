@@ -6,10 +6,11 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single.js";
-import  ViewSerie  from "./pages/viewSerie.js";
+import Footer from "./component/Footer.js";
+import ViewSerie from "./pages/viewSerie.js";
 import { VActor } from "./pages/VActor.js";
-import Preguntas  from "./pages/preguntas.js";
-import Aboutus  from "./pages/aboutus.js";
+import Preguntas from "./pages/preguntas.js";
+import Aboutus from "./pages/aboutus.js";
 import { CustUser } from "./pages/CustUser.js";
 import Payment from "./pages/payment.js";
 import Morehelps from "./pages/morehelps.js";
@@ -46,7 +47,6 @@ const Layout = () => {
                         <Route element={<Preguntas />} path="/preguntas" />
                         <Route element={<Aboutus />} path="/aboutus" />
                         <Route element={<TechnicalSupport />} path="/TechnicalSupport" />
-                        {/* <Route element={<Morehelps />} path="/Morehelps" /> */}
                         <Route element={<Signup />} path="signup" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<VActor />} path="/VActor/:id" />
