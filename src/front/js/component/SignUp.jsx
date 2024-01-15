@@ -2,7 +2,6 @@ import React, { useContext, useState, } from "react";
 import { Context } from "../store/appContext.js";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/signup.css"
-import Navbar from "./Navbar.jsx";
 
 const Signup = () => {
 
@@ -62,7 +61,7 @@ const Signup = () => {
 
             <Link to={"/login"}>
 
-              <button className="info-buton">Log In</button>
+              <button className="info-buton log-but">Log In</button>
 
             </Link>
 
@@ -75,15 +74,6 @@ const Signup = () => {
           <div className='forminformation-childs'>
 
             <h2>Create an Account</h2>
-
-            <div className='icons'>
-              <i className="fa-brands fa-google"></i>
-              <i className="fa-brands fa-facebook"></i>
-              <i className="fa-brands fa-instagram"></i>
-            </div>
-
-            <p>Use your email to register</p>
-
             <form className='form'>
 
               <label htmlFor='fullname'>
@@ -101,7 +91,7 @@ const Signup = () => {
                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
               </label>
 
-              <button className=' info-buton' onClick={handlerCreateUser} type='button'>Sign Up</button>
+              <button className=' info-buton sig-but' onClick={handlerCreateUser} type='button'>Sign Up</button>
 
             </form>
 
@@ -110,9 +100,7 @@ const Signup = () => {
         </div>
 
       </div>
-
     </>
-
   );
 };
 

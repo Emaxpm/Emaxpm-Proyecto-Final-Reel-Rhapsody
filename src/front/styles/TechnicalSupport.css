@@ -1,17 +1,21 @@
-
-.white{
-    display:flex;
+.white {
+    display: flex;
     color: white;
     justify-content: center;
 }
 
-.whitebutton{
+.whitebutton {
     display: flex;
     justify-content: center;
-    position: relative;
-    top: 100px;
+    /* position: relative;
+    top: 100px; */
 }
 
-.mylist {
+/* .mylist {
     padding-left: 7px;
+} */
+
+.tec-buton {
+    margin: auto;
+    width: 40%;
 }

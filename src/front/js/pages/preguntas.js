@@ -10,7 +10,7 @@ const Preguntas = () => {
 
       <div className="lista col-10">
         <div>
-          <h2 className="Thema">Frequent Questions</h2>
+          <h2 className="Thema title">Frequent Questions</h2>
         </div>
 
         <div className="accordion accordion-flush myAccordion" data-bs-theme="dark" id="accordionFlushExample">
@@ -83,22 +83,9 @@ const Preguntas = () => {
         </div>
 
         <div className="suporte d-grid gap-2 col-6 mx-auto">
-          <Link to="/TechnicalSupport" className="btn btn-purple" type="button">Technical Support</Link>
-          <Link to="/" className="btn btn-purple" type="button">Get Started</Link>
+          <Link to="/TechnicalSupport" className="btn btn-purple info-buton tec-buton" type="button">Technical Support</Link>
+          <Link to="/" className="btn btn-purple info-buton tec-buton" type="button">Get Started</Link>
         </div>
-
-<div className="number">
-
-  <ul className="pagination">
-    <li className="page-item"><a className="page-link" href="https://special-system-97979ppj4qvj2p9vg-3000.app.github.dev/preguntas">Previous</a></li>
-    <li className="page-item"><a className="page-link" href="https://special-system-97979ppj4qvj2p9vg-3000.app.github.dev/preguntas">1</a></li>
-    <li className="page-item"><a className="page-link" href="https://special-system-97979ppj4qvj2p9vg-3000.app.github.dev/aboutus">2</a></li>
-    <li className="page-item"><a className="page-link" href="https://special-system-97979ppj4qvj2p9vg-3000.app.github.dev/aboutus">Next</a></li>
-  </ul>
-
-</div>
-        <nav aria-label="Page navigation example">
-</nav>
 
       </div>
     </>

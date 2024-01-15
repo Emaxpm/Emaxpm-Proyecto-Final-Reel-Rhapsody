@@ -1,24 +1,30 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/footer.css";
 
 const Footer = () => {
+
+    const navigate = useNavigate()
+
     return (
-        <footer class="">
-            {/* document.addEventListener("DOMContentLoaded", function() {
-                    // Obtenemos el elemento donde mostraremos el contador
-                    const contadorElement = document.getElementById("contador");
 
-                    // Obtenemos el contador actual almacenado en localStorage o establecemos el valor inicial
-                    let contador = localStorage.getItem("Watchers") || 2050;
+        <div>
 
-                    // Mostramos el contador actual
-                    contadorElement.textContent = "Watchers #" + contador;
+            <div className="foot">
 
-                    // Incrementamos el contador y lo guardamos en localStorage cada vez que se recarga la página
-                    contador++;
-                    localStorage.setItem("Watchers", contador.toString());
-            }); */}
-        </footer>
+                <div className="foot-info">
+
+                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/payment")}>Donatios</p>
+
+                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</p>
+
+                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</p>
+
+                </div>
+
+            </div>
+        </div>
+
     )
 }
 

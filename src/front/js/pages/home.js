@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../component/Footer.js";
 import "../../styles/home.css";
 import { Context } from "../store/appContext.js";
-import Preguntas from "./preguntas.js";
-
-
 
 
 export const Home = () => {
@@ -34,7 +32,7 @@ export const Home = () => {
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote Average: {item.vote_average}</p>
-								{/* <p className="card-text"> Overview: {item.overview}</p> */}
+							
 							</div>
 
 							<div className="buttons p-4 ">
@@ -88,7 +86,6 @@ export const Home = () => {
 								<p className="card-text"> First Air Date: {item.first_air_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote_average: {item.vote_average}</p>
-								{/* <p className="card-text"> Overview: {item.overview}</p> */}
 							</div>
 
 							<div className="buttons p-4 ">
@@ -124,43 +121,7 @@ export const Home = () => {
 
 			</div>
 
-			<footer className="footer">
-				<div className="footer-section">
-					<article className="footer-section">
-
-
-						<div className="row lowerfooter">
-							<div className="Informationaboutus col">
-								<div>
-									<h2>Reel Rhapsody</h2>
-								</div>
-								<span className="brooklyn sm">Made with <i className="nes-icon is-small heart"></i> by RR's team.</span>
-							</div>
-
-							<div className="Linksfooter col d-flex justify-content-end align-items-center me-2">
-
-
-								<span className="mx-1" role="button" onClick={() => navigate("/payment")}>DONATIONS</span>
-
-
-
-								<span className="mx-1" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</span>
-
-
-								<span className="mx-1" role="button" onClick={() => navigate("/aboutus")}>About Us</span>
-
-
-								<span className="mx-1" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</span>
-
-
-							</div>
-						</div>
-					</article>
-				</div>
-
-			</footer >
-
-
+			<Footer />
 
 		</>
 	);

@@ -136,7 +136,6 @@ def delete_favorite():
     user_id = get_jwt_identity()
     body = request.json
 
-    # Verificar si el body tiene la clave 'movie_id' o 'serie_id'
     if "movie_id" in body:
         if body["movie_id"] is not None:
             favorite = Favorites.query.filter_by(movie_id=body["movie_id"], user_id=user_id).first()
@@ -218,7 +217,6 @@ def delete_review(review_id):
         return jsonify({"error": "An error occurred while processing the request"}), 500
 
 
-#debajo de estas líneas no puede haber nada
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     api.run(host='0.0.0.0', port=PORT, debug=False)

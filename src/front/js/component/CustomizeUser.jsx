@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 import "../../styles/cust.css"
 import avatars from "../../img/json/avatars.json"
 
@@ -73,7 +74,12 @@ const CustomizeUser = () => {
                                 <div className="mb-3">
                                     {renderAvatarOptions()}
                                 </div>
-                                <button className="botcust" type="submit">Save</button>
+                                <div className="but-coment">
+                                    <button className="info-buton" type="submit">Save</button>
+                                    <Link to={"/"} className="back-home">
+                                        <button type="button" className="btn btn-primary info-buton">Back Home</button>
+                                    </Link>
+                                </div>
                             </form>
                         </div>
 

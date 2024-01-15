@@ -158,8 +158,8 @@ const Series = () => {
                 </div>
             </div>
 
-            <Link to={"/"}>
-                <button type="button" className="btn btn-primary">Back</button>
+            <Link to={"/"} className="back-home">
+                <button type="button" className="info-buton">Back home</button>
             </Link>
         </>
     );

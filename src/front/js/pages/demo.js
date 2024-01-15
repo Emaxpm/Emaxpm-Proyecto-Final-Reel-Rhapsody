@@ -7,11 +7,9 @@ export const Demo = () => {
 	return (
 		<>
 			<div><Actors /></div>
-			<Link to="/home">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-
+			<Link to="/" className="back-home">
+				<button className="info-buton">Back home</button>
+		</Link>
 		</>
-
 	);
 };
