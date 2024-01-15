@@ -1,5 +1,6 @@
 // import "./styles.css";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ReactDOM from "react-dom"
 
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
@@ -39,7 +40,7 @@ export default function Payment() {
     };
 
     return (
-        <center>
+        <div>
             <div className="Payment">
                 <h1 className="money">The price is {price} $</h1>
 
@@ -62,7 +63,11 @@ export default function Payment() {
                 />
             </div>
 
-        </center>
+            <Link to="/" className="back-home">
+                <button className="info-buton">Back home</button>
+            </Link>
+
+        </div>
     );
 };
 

@@ -45,45 +45,6 @@ const Actors = () => {
         e.target.src = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHx8MA%3D%3D"
     }
 
-
-
-    // const actorCards = store.actor.map((item) => (
-
-    // <div key={item.id} className=" d-flex flex-wrap justify-content-center">
-
-    //     <div className="card my-5 mx-5 col" style={{ minWidth: "25rem", maxWidth: "25rem" }}>
-    //         <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} onError={imagenError} className="card-img-top" alt="..." />
-    //         <div className="card-body">
-    //             <h4 className="card-title">{item.name}</h4>
-    //             <p className="card-text"> Popularity: {item.popularity}</p>
-    //             <p className="card-text"> Vote Average: {item.vote_average}</p>
-    //             <div className="buttons">
-    //                 <Link to={`/VActor/${item.id}`}>
-    //                     <button className="btn btn-outline-primary mt-3 button">
-    //                         Learn more!
-    //                     </button>
-    //                 </Link>
-
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
-
-
-    // <div key={item.id} className="card mx-2 my-2">
-    //     <img src={'https://image.tmdb.org/t/p/w500' + item.profile_path} className="pic" alt="..." />
-    //     <div className="card-body">
-    //         <h5 className="card-title">{item.name}</h5>
-    //         <p className="card-text">vote: {item.popularity}</p>
-    //         <div className="buttons">
-    //             <Link to={`/VActor/${item.id}`} className="btn-details">
-    //                 More!
-    //             </Link>
-    //         </div>
-    //     </div>
-    // </div>
-    // ));
-
     return (
 
 

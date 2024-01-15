@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Context } from '../store/appContext'; // Asegúrate de tener la importación correcta del contexto
+import { Context } from '../store/appContext';
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/secondNavbar.css"
 

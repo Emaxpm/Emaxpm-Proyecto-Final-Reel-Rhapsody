@@ -1,6 +1,7 @@
-.footer {
+/* .footer {
     background-color: rgb(182, 117, 243);
 }
+
 .Containers_views_numbers {
     display: flex;
     text-align: start;
@@ -8,15 +9,18 @@
     justify-content: space-around;
     padding: calc(20px - 1rem) 0px 20px;
 }
-.actualnumbers{
+
+.actualnumbers {
     font-size: 32px;
     line-height: 50px;
 }
-.line{
+
+.line {
     border-top: 1px solid lightgray;
     width: 100%;
 }
-.lowerfooter{
+
+.lowerfooter {
     display: flex;
     text-align: start;
     flex-flow: wrap;
@@ -25,9 +29,31 @@
     -webkit-box-align: end;
     align-items: end;
 }
-.Linksfooter{
+
+.Linksfooter {
     display: flex;
 }
+
 .Linksfooter.button {
     padding: 0px 0rem;
+} */
+
+.foot {
+    background-color: rgb(14, 14, 26);
+}
+
+.foot-info {
+    color: rgb(234, 234, 234);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    font-size: larger;
+}
+
+.p-f {
+    padding: 10px;
+
 }

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/details.css"
 
 const DetailSerie = () => {
@@ -65,11 +66,15 @@ const DetailSerie = () => {
                         <div className="div-cont">
                             <h2 className="">{store.serie.name}</h2>
                             <div className="">
-                                <p className="display-4">First Air Date: {store.serie.first_air_date} </p>
-                                <p className="display-4">Number Of Chapters: {store.serie.number_of_episodes} </p>
-                                <p className="display-4">Number Of Seasons: {store.serie.number_of_seasons} </p>
-                                <p className="display-4">Popularity: {store.serie.popularity} </p>
+                                <p className="display-6">First Air Date: {store.serie.first_air_date} </p>
+                                <p className="display-6">Number Of Chapters: {store.serie.number_of_episodes} </p>
+                                <p className="display-6">Number Of Seasons: {store.serie.number_of_seasons} </p>
+                                <p className="display-6">Popularity: {store.serie.popularity} </p>
                             </div>
+
+                            <h2>You can see this serie at :</h2>
+                            <p>Netflix, Disney+, HBO Max and Amazon Prime</p>
+
                         </div>
                     </div>
                     <div className="accordion-item over">
@@ -123,8 +128,11 @@ const DetailSerie = () => {
                                         <option value="5">5</option>
                                     </select>
                                 </div>
-                                <div className="col-12">
-                                    <button className="btn btn-primary" type="button" onClick={() => handleSubmit()}>Save</button>
+                                <div className="but-coment">
+                                    <button className="info-buton" type="button" onClick={() => handleSubmit()}>Save</button>
+                                    <Link to="/" className="back-home">
+                                        <button className="info-buton">Back home</button>
+                                    </Link>
                                 </div>
                             </form>
                         </div>
