@@ -14,9 +14,9 @@ const Footer = () => {
 
                 <div className="foot-info">
 
-                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/payment")}>Donatios</p>
+                    <p className="mx-1 p-f button-r" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</p>
 
-                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</p>
+                    <p className="mx-1 p-f button-r" role="button" onClick={() => navigate("/payment")}>Donatios</p>
 
                     <p className="mx-1 p-f" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</p> 
 
