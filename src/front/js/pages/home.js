@@ -28,7 +28,7 @@ export const Home = () => {
 						<div className="card mb-5" style={{ minWidth: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.original_title}</h4>
+								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "320px" }}>{item.original_title}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote Average: {item.vote_average}</p>

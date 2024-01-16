@@ -23,12 +23,13 @@ const aboutus = () => {
           <img src="https://w0.peakpx.com/wallpaper/403/278/HD-wallpaper-vin-diesel-in-fast-and-furious-9-thumbnail.jpg" />
         </section>
       </div>
+      
 
       <div className="lista col-10">
         <div>
           <h3 className="Thema">Abouts US</h3>
         </div>
-
+        
         <div className="accordion accordion-flush myAccordion" data-bs-theme="dark" id="accordionFlushExample">
           <div className="accordion-item">
             <h2 className="accordion-header">
