@@ -7,6 +7,7 @@
 
 .div-pic {
     width: 100%;
+    height: 100%;
 }
 
 .div-cont {
@@ -107,4 +108,8 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.div-img {
+    width: 25%;
 }
