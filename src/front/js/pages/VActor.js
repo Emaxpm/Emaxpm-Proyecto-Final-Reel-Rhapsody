@@ -9,7 +9,7 @@ export const VActor = () => {
 			<h2 className="title">Actor</h2>
 			<DetailActor />
 			<Link to="/demo">
-				<button className="btn back-home info-buton">Back Actors</button>
+				<button className="btn back-home info-buton ms-5 mt-3 mb-3">Back Actors</button>
 			</Link>
 		</>	
 	);

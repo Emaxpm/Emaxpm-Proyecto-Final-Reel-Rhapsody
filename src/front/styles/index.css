@@ -11,7 +11,7 @@
 
 .Thema {
     text-align: center;
-    color: white;
+    color: rgba(31, 215, 232, 0.873);
     margin-bottom: 60px;
     font-size: 60px;
 }
@@ -183,4 +183,9 @@ section img:hover {
 
 .listado {
     padding-bottom: 50px;
+}
+
+.fondo{
+    color: white;
+    background-image: url(https://img.freepik.com/foto-gratis/fondo-textura-hormigon-negro-grunge_53876-124541.jpg?w=740&t=st=1705277266~exp=1705277866~hmac=9ec89ab7043cc6ada7cd4f9d075c8acc2bc84714dd646dc534df501a5add9c55)
 }

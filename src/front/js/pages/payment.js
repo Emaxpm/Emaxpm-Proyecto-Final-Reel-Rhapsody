@@ -42,7 +42,7 @@ export default function Payment() {
     return (
         <div>
             <div className="Payment">
-                <h1 className="money">The price is {price} $</h1>
+                <h1 className="money mb-5">The price is {price} $</h1>
 
                 <select value={opcion} onChange={handleCambio}>
                     <option value="5">Five Dollars</option>

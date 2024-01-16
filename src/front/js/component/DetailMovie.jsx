@@ -89,8 +89,8 @@ const DetailMovie = () => {
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                            <div className="accordion-body">
-                                <p className="text-dark">{store.film.overview}</p>
+                            <div className="accordion-body text1">
+                                <p className="">{store.film.overview}</p>
                             </div>
                         </div>
                     </div>

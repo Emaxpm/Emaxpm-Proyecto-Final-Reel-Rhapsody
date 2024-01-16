@@ -12,8 +12,8 @@ const TechnicalSupport = () => {
 
       <div className=" ">
 
-        <h2 className="Thema title">How can we help?</h2>
-      
+        <h3 className="Thema title">How can we help?</h3>
+
         <div className="padre ">
 
           <div className="list ">
@@ -35,29 +35,22 @@ const TechnicalSupport = () => {
                     <strong>Reel Rhapsody Donations</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseTwo1" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">
+                <div id="flush-collapseTwo1" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">
                     At Reel Rhapsody, we are dedicated to bringing you a seamless and enjoyable movie-watching experience. Your support can make a significant impact on the continued growth of our platform and help us maintain our commitment to providing free, high-quality content. If you appreciate what we do and would like to contribute, here's how you can make a difference:
-
                     1.<strong>Why Donate?</strong>
                     Reel Rhapsody operates on the generosity of our community. Your donations enable us to enhance our services, acquire new content, and ensure a premium experience for every user.
-
                     2.<strong>How to Donate:</strong>
                     Making a donation is quick and easy. Visit our dedicated "Donations" page, where you'll find secure options to contribute. Your support, no matter the amount, goes a long way in supporting the future of Reel Rhapsody.
-
                     3.<strong>What Your Donation Supports:</strong>
-
                     4.<strong>Content Acquisition:</strong> Your contributions help us acquire a diverse range of movies to cater to different tastes.
                     Technical Improvements: We invest in the latest technologies to enhance streaming quality and address technical challenges.
                     Community Engagement: Donations allow us to engage with our community, gather feedback, and continuously improve our platform.
                     Transparency:
                     We believe in transparency. Regular updates on how donations are utilized will be shared, ensuring you know exactly how your support is making a positive impact.
-
                     5.<strong>Thank You Gifts:</strong>
                     As a token of our appreciation, donors may receive exclusive perks, early access to new features, or special content. Check our donation page for details on available rewards.
-
                     Your contribution, no matter the size, helps us keep Reel Rhapsody vibrant and accessible to all movie enthusiasts. We are immensely grateful for your support, and together, we can continue to make Reel Rhapsody a cinematic haven for everyone.
-
                     Thank you for being a vital part of the Reel Rhapsody community!</div>
                 </div>
               </div>
@@ -67,8 +60,8 @@ const TechnicalSupport = () => {
                     <strong>Failed to login</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseThree2" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">If you have any errors when logging in, you can contact us through our support team <code>rhapsodyreel@gmail.com</code> We are here to help from Monday to Friday 24 hours a day.</div>
+                <div id="flush-collapseThree2" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">If you have any errors when logging in, you can contact us through our support team <code>rhapsodyreel@gmail.com</code> We are here to help from Monday to Friday 24 hours a day.</div>
                 </div>
               </div>
             </div>
@@ -86,7 +79,7 @@ const TechnicalSupport = () => {
                   </div>
 
                 </h2>
-                <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseOne" className="accordion-collapse collapse">
                   <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> className. This is the first item's accordion body.</div>
                 </div>
               </div>
@@ -96,8 +89,8 @@ const TechnicalSupport = () => {
                     <strong>Problems playing content</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">At Reel Rhapsody, we strive to provide you with a perfect viewing experience. However, we understand that sometimes technical issues may arise. Here are some common solutions to address issues when playing content:
+                <div id="flush-collapseTwo" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">At Reel Rhapsody, we strive to provide you with a perfect viewing experience. However, we understand that sometimes technical issues may arise. Here are some common solutions to address issues when playing content:
 
                     1.<strong>Check your Internet Connection:</strong>
                     Make sure you have a stable internet connection. Playback problems may be caused by a weak or intermittent connection.
@@ -127,8 +120,8 @@ const TechnicalSupport = () => {
                     <strong>Did you forget your password</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseThreea" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">If you forget your password you can receive help by writing to us at <code>rhapsodyreel@gmail.com</code> we will help you as soon as possible.</div>
+                <div id="flush-collapseThreea" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">If you forget your password you can receive help by writing to us at <code>rhapsodyreel@gmail.com</code> we will help you as soon as possible.</div>
                 </div>
               </div>
               <div className="accordion-item">
@@ -137,8 +130,8 @@ const TechnicalSupport = () => {
                     <strong>Problems playing content</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">At Reel Rhapsody, we understand how frustrating it can be when you encounter difficulties while trying to enjoy your favorite movies. If you're experiencing issues with playing content, here are some steps to troubleshoot and resolve common problems:
+                <div id="flush-collapseThree" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">At Reel Rhapsody, we understand how frustrating it can be when you encounter difficulties while trying to enjoy your favorite movies. If you're experiencing issues with playing content, here are some steps to troubleshoot and resolve common problems:
 
                     1.<strong>Check Your Internet Connection:</strong>
                     Ensure that you have a stable and reliable internet connection. Sometimes, playback issues can arise due to a weak or intermittent connection.
@@ -182,7 +175,7 @@ const TechnicalSupport = () => {
                 </h2>
 
 
-                <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseOne" className="accordion-collapse collapse">
                   <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> className. This is the first item's accordion body.</div>
                 </div>
               </div>
@@ -192,8 +185,8 @@ const TechnicalSupport = () => {
                     <strong>Problems with the pay</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseTwo3" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">We apologize for any inconvenience you may be experiencing with the payment process on Reel Rhapsody. We understand how crucial a smooth transaction is, and we're here to help you resolve any issues. If you're encountering problems with payment, please follow these steps:
+                <div id="flush-collapseTwo3" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">We apologize for any inconvenience you may be experiencing with the payment process on Reel Rhapsody. We understand how crucial a smooth transaction is, and we're here to help you resolve any issues. If you're encountering problems with payment, please follow these steps:
 
                     1.<strong>Double-check Payment Information:</strong>
                     Ensure that the payment details entered, including credit card information or any other payment method, are accurate. Even a small mistake can lead to transaction failures.
@@ -226,8 +219,8 @@ const TechnicalSupport = () => {
                     <strong>Where can I make a donation?</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseThree4" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">Thank you for considering a donation to support Reel Rhapsody! Your contribution helps us continue providing free, high-quality content and enhance your overall streaming experience. Making a donation is simple:
+                <div id="flush-collapseThree4" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">Thank you for considering a donation to support Reel Rhapsody! Your contribution helps us continue providing free, high-quality content and enhance your overall streaming experience. Making a donation is simple:
 
                     1.<strong>Visit Our Donation Page:</strong>
                     Navigate to our dedicated "Donations" page on the Reel Rhapsody website. You can usually find this in the website's main menu or footer.
@@ -272,7 +265,7 @@ const TechnicalSupport = () => {
                 </h2>
 
 
-                <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapseOne" className="accordion-collapse collapse">
                   <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> className. This is the first item's accordion body.</div>
                 </div>
               </div>
@@ -282,8 +275,8 @@ const TechnicalSupport = () => {
                     <strong>Create an Account</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseTwo5" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">Begin by creating your Reel Rhapsody account. This will allow you to personalize your movie preferences, save favorites, and enjoy a seamless streaming experience.</div>
+                <div id="flush-collapseTwo5" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">Begin by creating your Reel Rhapsody account. This will allow you to personalize your movie preferences, save favorites, and enjoy a seamless streaming experience.</div>
                 </div>
               </div>
               <div className="accordion-item">
@@ -292,8 +285,8 @@ const TechnicalSupport = () => {
                     <strong>Watch for Free</strong>
                   </button>
                 </h2>
-                <div id="flush-collapseThrees" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div className="accordion-body">Enjoy the magic of cinema without any subscription fees. Reel Rhapsody is committed to providing a free and accessible movie-watching experience for everyone.</div>
+                <div id="flush-collapseThrees" className="accordion-collapse collapse">
+                  <div className="accordion-body fondo">Enjoy the magic of cinema without any subscription fees. Reel Rhapsody is committed to providing a free and accessible movie-watching experience for everyone.</div>
                 </div>
               </div>
             </div>
@@ -311,7 +304,7 @@ const TechnicalSupport = () => {
 
       <Link to="/" className="back-home">
 
-        <button type="button" class="info-buton">Back Home</button>
+        <button type="button" class="info-buton mt-3 mb-3">Back Home</button>
 
 
       </Link>

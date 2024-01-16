@@ -84,8 +84,8 @@ const DetailSerie = () => {
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                            <div className="accordion-body">
-                                <p className="text-dark">{store.serie.overview}</p>
+                            <div className="accordion-body text1">
+                                <p className="">{store.serie.overview}</p>
                             </div>
                         </div>
                     </div>
