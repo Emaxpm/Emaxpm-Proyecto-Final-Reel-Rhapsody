@@ -18,7 +18,7 @@ const Card = () => {
         });
     };
     const imagenError = (e) => {
-        e.target.src = "https://picsum.photos/id/237/200/100"
+        e.target.src = "https://picsum.photos/id/237/175/100"
     }
 
     const [min, setMin] = useState(1);
@@ -141,7 +141,6 @@ const Card = () => {
                                             Reserved for popcorn
                                         </button>
                                     </Link>
-
                                 )}
                             </div>
                         </div>

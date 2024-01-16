@@ -18,7 +18,7 @@ const Footer = () => {
 
                     <p className="mx-1 p-f" role="button" onClick={() => navigate("/technicalsupport")}>Technical Support</p>
 
-                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</p>
+                    <p className="mx-1 p-f" role="button" onClick={() => navigate("/preguntas")}>Frequent Questions</p> 
 
                 </div>
 

@@ -1,14 +1,14 @@
-import React, { useContext, useState, } from "react";
-import { Context, } from "../store/appContext.js";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext.js";
 import { useNavigate, Link } from "react-router-dom";
-import "../../styles/signup.css"
+import Swal from "sweetalert2";
+import "../../styles/signup.css";
 
 const LogIn = () => {
-
     const { store, actions } = useContext(Context);
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const navigate = useNavigate()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
 
     const validateEmail = (email) => {
@@ -21,54 +21,63 @@ const LogIn = () => {
     };
 
     const handlerlogInNewUser = async () => {
-
         try {
-
-            if (email == "" || password == "") {
+            if (email === "" || password === "") {
                 setError("All spaces must be filled");
-                return
+                return;
             }
 
             if (!validateEmail(email)) {
                 setError("Please enter a valid email address");
-                return
+                return;
             }
 
             if (!validatePassword(password)) {
                 setError("Password must be at least 8 characters long");
-                return
+                return;
             }
 
             let newLogIn = {
                 email: email,
-                password: password
-            }
+                password: password,
+            };
 
             const result = await actions.logIn(newLogIn);
 
             if (result.access_token) {
-
                 localStorage.setItem("token", result.access_token);
-
                 console.log("Usuario logueado:", result.fullName);
-                actions.isAuth()
+                actions.isAuth();
 
-                if (result.user && result.user.admin){
-                    navigate("/ListUsers")
-                }
-                else{
-                    navigate("/")
+                if (result.user && result.user.admin) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successful!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    }).then(() => navigate("/ListUsers"));
+                } else {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successful!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    }).then(() => navigate("/"));
                 }
             } else {
-
-                console.log("Hubo un problema al iniciar sesión");
+                Swal.fire({
+                    icon: "error",
+                    title: "Login failed",
+                    text: "There was a problem logging in",
+                });
             }
-
         } catch (e) {
             console.error(e);
             setError("An error occurred while logging in");
         }
-    }
+    };
 
     return (
 
@@ -113,7 +122,7 @@ const LogIn = () => {
                                 <i className="fa-solid fa-lock"></i>
                                 <input type='password' id='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </label>
-                            
+
                             {error && <p className="error-message">{error}</p>}
 
                             <button className='info-buton log-but' onClick={handlerlogInNewUser} type='button'>Log In</button>

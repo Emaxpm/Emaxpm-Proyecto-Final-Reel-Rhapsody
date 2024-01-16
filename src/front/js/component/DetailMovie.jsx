@@ -63,6 +63,7 @@ const DetailMovie = () => {
                             <img src={'https://image.tmdb.org/t/p/w500' + store.film.backdrop_path} className="div-pic" alt="..."></img>
                         </div>
                         <div className="div-cont">
+
                             <h2 className="">{store.film.original_title}</h2>
                             <div className="">
                                 <p className="">Release Date: {store.film.release_date} </p>

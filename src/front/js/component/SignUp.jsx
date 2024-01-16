@@ -1,6 +1,7 @@
 import React, { useContext, useState, } from "react";
 import { Context } from "../store/appContext.js";
 import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../../styles/signup.css"
 
 const Signup = () => {
@@ -12,18 +13,38 @@ const Signup = () => {
   const navigate = useNavigate()
 
   const handlerCreateUser = async () => {
-    try {
+    // try {
 
+    //   if (!fullName || !email || !password) {
+    //     alert("Por favor completa todos los campos");
+    //     return;
+    //   }
+
+
+    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //   if (!emailRegex.test(email)) {
+    //     alert("Por favor ingresa un correo electrónico válido");
+    //     return;
+    //   }
+
+    try {
       if (!fullName || !email || !password) {
-        alert("Por favor completa todos los campos");
+        Swal.fire({
+          icon: "warning",
+          title: "Please complete all fields",
+        });
         return;
       }
 
-
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        alert("Por favor ingresa un correo electrónico válido");
+        Swal.fire({
+          icon: "warning",
+          title: "Please enter a valid email address",
+        });
+
         return;
+
       }
 
       let newUser = {
@@ -33,9 +54,22 @@ const Signup = () => {
       }
 
       const result = await actions.sign_up(newUser)
+      // if (result.msg) {
+      //   alert("usuario registrado")
+      //   navigate("/login")
+      // }
+
       if (result.msg) {
-        alert("usuario registrado")
-        navigate("/login")
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User registered",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate("/login");
+
       }
 
     } catch (e) {
