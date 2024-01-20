@@ -8,8 +8,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
     avatar = db.Column(db.String(500), unique=False, nullable=True)
+    admin = db.Column(db.Boolean(), unique=False, nullable=False, default=False)
     favorites = db.relationship("Favorites", backref = "user")
-    
+    review = db.relationship("Review", backref = "user")
+        
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -20,6 +22,7 @@ class User(db.Model):
             "full_name": self.full_name,
             "email": self.email,
             "avatar": self.avatar,
+            "admin": self.admin,
         }
     
 class Favorites(db.Model):
@@ -27,6 +30,14 @@ class Favorites(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     movie_id = db.Column(db.Integer, nullable=True)
     serie_id = db.Column(db.Integer, nullable=True)
+    url_img = db.Column(db.String(500), unique=True, nullable=True)
+    title = db.Column(db.String(120), unique=True, nullable=True)
+    relese_data = db.Column(db.String(120), unique=True, nullable=True)
+    popularity = db.Column(db.String(120), unique=True, nullable=True)
+    vote_average = db.Column(db.String(120), unique=True, nullable=True)
+
+
+
     
     def __repr__(self):
         return '<Favorites %r>' % self.id
@@ -35,6 +46,32 @@ class Favorites(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id, 
+            "movie_id": self.movie_id,
+            "serie_id" : self.serie_id,
+            "url_img" : self.url_img,
+            "title" : self.title,
+            "relese_data" : self.relese_data,
+            "vote_average" : self.vote_average         
+        }
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    rate = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.String(300), nullable=False)
+    movie_id = db.Column(db.Integer, nullable=True)
+    serie_id = db.Column(db.Integer, nullable=True)
+
+    
+    def __repr__(self):
+        return '<Review %r>' % self.id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": User.query.get(self.user_id).serialize()["full_name"],
+            "rate": self.rate,
+            "comment" : self.comment,
             "movie_id": self.movie_id,
             "serie_id" : self.serie_id   
         }

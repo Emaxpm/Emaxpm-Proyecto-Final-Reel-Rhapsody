@@ -1,0 +1,36 @@
+.white {
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+.whitebutton {
+    display: flex;
+    justify-content: center;
+    /* position: relative;
+    top: 100px; */
+}
+
+/* .mylist {
+    padding-left: 7px;
+} */
+
+.tec-buton {
+    margin: auto;
+    width: 40%;
+}
+
+.fondo{
+    color: white;
+    background-image: url(https://img.freepik.com/foto-gratis/fondo-textura-hormigon-negro-grunge_53876-124541.jpg?w=740&t=st=1705277266~exp=1705277866~hmac=9ec89ab7043cc6ada7cd4f9d075c8acc2bc84714dd646dc534df501a5add9c55)
+}
+
+.text{
+    color: rgba(31, 215, 232, 0.873);
+    background-color: rgb(14, 14, 26);
+    text-align: center;
+}
+
+.accordion-item{
+    border-color:rgb(14, 14, 26);
+}

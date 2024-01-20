@@ -2,13 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #c7eef3;
-  color: #333;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+}
+
+.main-nav:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
 }
 
 .button {
-  background-color: rgb(168, 95, 187);
-  color: #c7eef3;
+  background-color: rgb(2, 29, 78);
+  color: rgba(31, 215, 232, 0.873);
   border: none;
   cursor: pointer;
   margin-right: 40px;
@@ -18,7 +24,7 @@
 }
 
 .button:hover {
-  background-color: rgb(98, 57, 109);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
 }
 
 .second-button {
@@ -31,8 +37,8 @@
 }
 
 .dropdown-btn {
-  background-color: rgb(168, 95, 187);
-  color: #c7eef3;
+  background-color: rgb(2, 29, 78);
+  color: rgba(31, 215, 232, 0.873);
   padding: 8px 12px;
   border: 2px solid #c7eef3;
   border-radius: 4px;
@@ -45,9 +51,8 @@
 
 .dropdown-menu {
   position: absolute;
-  background-color: rgb(168, 95, 187) !important;
+  background-color: rgb(2, 29, 78);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* padding: 8px 0; */
   border-radius: 4px;
   list-style-type: none;
   margin-top: 5px;
@@ -62,13 +67,13 @@
 }
 
 .dropdown-menu li a {
-  color: #c7eef3;
+  color: rgba(31, 215, 232, 0.873);
   text-decoration: none;
   display: block;
 }
 
 .dropdown-menu li a:hover {
-  background-color: rgb(98, 57, 109);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
 }
 
 .user-btn {
@@ -110,23 +115,14 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #c7eef3;
-  color: #333;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
 }
 
-.btn-nav {
-  background-color: rgb(168, 95, 187);
-  padding: 10px;
-  color: #fff;
-}
-
-.btn-nav:hover {
-  background-color: #fff;
-  color: rgb(168, 95, 187);
-}
-
-.nav-title {
-  color: rgb(168, 95, 187);
+.nav-container:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
 }
 
 .button-right {
@@ -136,4 +132,8 @@
 .logouser-drop {
   display: flex;
   align-items: baseline;
+}
+
+.nav-title {
+  text-align: start;
 }

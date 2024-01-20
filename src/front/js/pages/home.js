@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../component/Footer.js";
 import "../../styles/home.css";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
+
 
 export const Home = () => {
 
@@ -11,13 +13,13 @@ export const Home = () => {
 	return (
 
 		<>
-			<Link to={"/movies"}>
+			<Link to={"/movies"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Movies</h2>
 
 			</Link>
 
-			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5 random-card">
 
 				{store.films.map((item) => (
 
@@ -26,16 +28,16 @@ export const Home = () => {
 						<div className="card mb-5" style={{ minWidth: "25rem" }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h4 className="card-title">{item.original_title}</h4>
+								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "320px" }}>{item.original_title}</h4>
 								<p className="card-text"> Release Date: {item.release_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote Average: {item.vote_average}</p>
-								{/* <p className="card-text"> Overview: {item.overview}</p> */}
+							
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/movie/" + item.id}>
-									<button className="button p-2 mb-auto">
+								<Link to={`/single/${item.id}`}>
+									<button className=" p-2 mb-auto info-buton">
 
 										Learn more!
 
@@ -46,7 +48,7 @@ export const Home = () => {
 
 									<Link to={"/viewBigList"}>
 
-										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+										<button className="btn btn-outline-primary mt-3  info-buton" onClick={() => {
 											actions.addFavorite(item, "movie")
 											navigate("/viewBigList")
 
@@ -60,17 +62,18 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
-
 				))}
 			</div>
 
-			<Link to={"/series"}>
+
+
+			<Link to={"/series"} style={{ textDecoration: 'none' }}>
 
 				<h2 className="title-p mx-5 my-5">Series</h2>
 
 			</Link>
 
-			<div className=" d-flex flex-row overflow-auto my-3 mx-5">
+			<div className=" d-flex flex-row overflow-auto my-3 mx-5 random-card">
 
 				{store.series.map((item) => (
 
@@ -79,27 +82,26 @@ export const Home = () => {
 						<div className="card mb-5" style={{ minWidth: "25rem", }}>
 							<img src={'https://image.tmdb.org/t/p/w500' + item.backdrop_path} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h4 className="card-title">{item.original_name}</h4>
+								<h4 className="card-title d-inline-block text-truncate" style={{ maxWidth: "370px" }}>{item.original_name}</h4>
 								<p className="card-text"> First Air Date: {item.first_air_date}</p>
 								<p className="card-text"> Popularity: {item.popularity}</p>
 								<p className="card-text"> Vote_average: {item.vote_average}</p>
-								{/* <p className="card-text"> Overview: {item.overview}</p> */}
 							</div>
 
 							<div className="buttons p-4 ">
-								<Link to={"/serie/" + item.id}>
-									<button className="button p-2 mb-auto">
+								<Link to={`/viewSerie/${item.id}`}>
 
+									<button className="info-buton p-2 mb-auto">
 										Learn more!
-
 									</button>
+
 								</Link>
 
 								{store.currentUser &&
 
 									<Link to={"/viewBigList"}>
 
-										<button className="btn btn-outline-primary mt-3 button" onClick={() => {
+										<button className="btn btn-outline-primary mt-3 info-buton" onClick={() => {
 											actions.addFavorite(item, "serie")
 											navigate("/viewBigList")
 
@@ -114,14 +116,12 @@ export const Home = () => {
 						</div>
 					</div>
 
+
 				))}
-			</div>
-
-			<div>
-
-				<Link to="/payment" className="btn btn-warning" type="button">Donations</Link>
 
 			</div>
+
+			<Footer />
 
 		</>
 	);

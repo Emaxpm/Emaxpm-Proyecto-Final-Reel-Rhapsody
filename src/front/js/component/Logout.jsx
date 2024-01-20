@@ -1,19 +1,25 @@
 import React, { useContext } from 'react';
-import { Context } from '../store/appContext'; // Asegúrate de tener la importación correcta del contexto
+import { Context } from '../store/appContext';
 import { useNavigate, Link } from "react-router-dom";
-import "../../styles/secondNavbar.css"
+import Swal from 'sweetalert2';
+import "../../styles/secondNavbar.css";
 
 const Logout = () => {
     const { actions } = useContext(Context);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
-
             const success = await actions.logout();
 
             if (success) {
-                navigate("/login");
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Logged out successfully!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(() => navigate("/login"));
             } else {
                 console.error('Error during logout');
             }

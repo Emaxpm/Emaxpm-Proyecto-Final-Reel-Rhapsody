@@ -1,3 +1,191 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+.myAccordion>div:hover {
+    opacity: 75%;
+}
+
+.lista {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.Thema {
+    text-align: center;
+    color: rgba(31, 215, 232, 0.873);
+    margin-bottom: 60px;
+    font-size: 60px;
+}
+
+.money {
+    color: white;
+    margin-bottom: 0px;
+    font-size: 60px;
+    text-shadow: 0 0 5px rgb(255, 225, 0), 0 0 10px rgb(255, 225, 0), 0 0 20px rgba(255, 225, 0, 0.902);
+}
+
+.Payment {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /*este css funciono*/
+    /* Ajusta el ancho según tus necesidades */
+
+}
+
+
+.suporte {
+    margin-top: 10px;
+}
+
+.subthema {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.subthema1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px
+}
+
+.arrow {
+    display: flex;
+    color: white;
+    justify-content: center;
+    margin-bottom: -2%;
+}
+
+svg {
+    vertical-align: middle;
+}
+
+.page-home-redesign,
+.explore-topics {
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: auto;
+    padding: 16px 0 0;
+    text-align: center;
+    color: #000;
+    font-weight: 700;
+}
+
+svg:not(.n-svg) {
+    fill: currentColor;
+}
+
+svg:not(.n-svg) path:not([fill=none]) {
+    fill: currentColor;
+}
+
+.page-home-redesign,
+.explore-topics {
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: auto;
+    padding: 16px 0 0;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+}
+
+.explore-topics {
+    text-decoration: none;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.page-home-redesign,
+.explore-topics {
+    margin-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
+.explore-topics:-webkit-any-link {
+    cursor: pointer;
+    color: white;
+    margin-bottom: 70px;
+}
+
+.page-home-redesign,
+.explore-topics>span {
+    display: block;
+    margin: 0 0 8px;
+}
+
+span {
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.list2,
+.list3,
+.list4,
+.list {
+    margin-top: 5%;
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+.number {
+    bottom: -5px;
+    /* Ajusta esta propiedad según tu preferencia */
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    width: 950px;
+    height: 630px;
+    /* position: fixed; */
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+section img {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 8;
+    transition: .5s ease;
+
+}
+
+section img:hover {
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+.carusel {
+    margin-bottom: 20px;
+    /* Ajusta el valor según sea necesario */
+    display: flex;
+    margin-left: 50%;
+}
+
+.listado {
+    padding-bottom: 50px;
+}
+
+.fondo{
+    color: white;
+    background-image: url(https://img.freepik.com/foto-gratis/fondo-textura-hormigon-negro-grunge_53876-124541.jpg?w=740&t=st=1705277266~exp=1705277866~hmac=9ec89ab7043cc6ada7cd4f9d075c8acc2bc84714dd646dc534df501a5add9c55)
+}

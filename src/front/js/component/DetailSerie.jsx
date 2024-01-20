@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/details.css"
 
-const DetailMovie = () => {
+const DetailSerie = () => {
     const [reviews, setReviews] = useState();
     const [comment, setComment] = useState('');
     const [rate, setRate] = useState('');
@@ -18,7 +19,7 @@ const DetailMovie = () => {
             comment: comment,
             rate: rate
         }
-        const res = await actions.addReview("movie", data)
+        const res = await actions.addReview("serie", data)
         if (res == true) {
             setComment("")
             setRate("")
@@ -40,14 +41,14 @@ const DetailMovie = () => {
     };
 
     useEffect(() => {
-        actions.loadOneMovie(params.id)
+        actions.loadOneSerie(params.id)
     }, [])
-    console.log(store.film)
+    console.log(store.serie)
 
     useEffect(() => {
 
         const getData = async () => {
-            setReviews(await actions.loadReviews("movie", params.id))
+            setReviews(await actions.loadReviews("serie", params.id))
         }
         getData()
     }, [loadReviews])
@@ -60,27 +61,20 @@ const DetailMovie = () => {
                 <div className="">
                     <div className="contain-detail">
                         <div className="div-img">
-                            <img src={'https://image.tmdb.org/t/p/w500' + store.film.backdrop_path} className="div-pic" alt="..."></img>
+                            <img src={'https://image.tmdb.org/t/p/w500' + store.serie.backdrop_path} className="div-pic" alt="..."></img>
                         </div>
                         <div className="div-cont">
-
-                            <h2 className="">{store.film.original_title}</h2>
+                            <h2 className="">{store.serie.name}</h2>
                             <div className="">
-                                <p className="">Release Date: {store.film.release_date} </p>
-                                <p className="">Popularity: {store.film.popularity} </p>
-                                <p className="">Vote Average: {store.film.vote_average} </p>
-                                <p className="">Original Language: {store.film.original_language} </p>
-                                <h2>Genres:</h2>
-                                <p>
-                                    {store.film.genres && store.film.genres.map((genre, index) => (
-                                        `${genre.name}${index < store.film.genres.length - 1 ? ', ' : ''}`
-                                    ))}
-                                </p>
-                                <h2>You can see this movie at :</h2>
-
-                                <p>Netflix, Disney+, HBO Max and Amazon Prime</p>
-
+                                <p className="display-6">First Air Date: {store.serie.first_air_date} </p>
+                                <p className="display-6">Number Of Chapters: {store.serie.number_of_episodes} </p>
+                                <p className="display-6">Number Of Seasons: {store.serie.number_of_seasons} </p>
+                                <p className="display-6">Popularity: {store.serie.popularity} </p>
                             </div>
+
+                            <h2>You can see this serie at :</h2>
+                            <p>Netflix, Disney+, HBO Max and Amazon Prime</p>
+
                         </div>
                     </div>
                     <div className="accordion-item over mb-3">
@@ -91,7 +85,7 @@ const DetailMovie = () => {
                         </h2>
                         <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                             <div className="accordion-body text1">
-                                <p className="">{store.film.overview}</p>
+                                <p className="">{store.serie.overview}</p>
                             </div>
                         </div>
                     </div>
@@ -102,7 +96,7 @@ const DetailMovie = () => {
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-                            <div className="movie-reviews">
+                            <div className="serie-reviews">
                                 {reviews && reviews.length > 0 && reviews.map((item) => {
                                     return (
                                         <div className="d-flex align-items-center row" key={item.id}>
@@ -117,11 +111,11 @@ const DetailMovie = () => {
                                             </div>
                                             <div className="col-1">
                                                 {store.currentUser && item.user === store.currentUser.full_name &&
-                                                    <button className="btn info-buton" type="button" onClick={() => handleDelete(item.id)}><i className="fa-solid fa-trash"></i></button>
+                                                    <button className="btn info-buton" type="button info-buton" onClick={() => handleDelete(item.id)}><i className="fa-solid fa-trash"></i></button>
                                                 }
                                             </div>
                                         </div>
-                                    );
+                                    )
                                 })}
                             </div>
                         </div>
@@ -136,7 +130,7 @@ const DetailMovie = () => {
                                 <div className="col-md-3">
                                     <label htmlFor="validationDefault04" className="form-label Fo-rev">Rate</label>
                                     <select className="form-select" id="validationDefault04" value={rate} required onChange={(e) => setRate(e.target.value)}>
-                                        <option selected disabled value="">Choose</option>
+                                        <option selected disabled value="">Choose...</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -155,9 +149,13 @@ const DetailMovie = () => {
                     }
                 </div>
                 <br />
+                <div><p></p>
+                </div>
             </div>
-        </div >
+        </div>
+
+
     )
 }
 
-export default DetailMovie
+export default DetailSerie

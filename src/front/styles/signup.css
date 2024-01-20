@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url(https://images.unsplash.com/photo-1512149154706-f9b30ded17ad?q=80&w=2588&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-image: url(https://img.freepik.com/foto-gratis/fondo-textura-hormigon-negro-grunge_53876-124541.jpg?w=740&t=st=1705277266~exp=1705277866~hmac=9ec89ab7043cc6ada7cd4f9d075c8acc2bc84714dd646dc534df501a5add9c55);
     /* background-size: cover; */
 }
 
@@ -13,7 +13,7 @@ body {
     display: flex;
     margin: auto;
     margin-top: 10%;
-    width: 70%;
+    width: 65%;
     height: 600px;
     border-radius: 20px;
     box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
@@ -25,8 +25,9 @@ body {
     justify-content: center;
     align-items: center;
     align-items: center;
-    width: 40%;
-    background-color: #c7eef3;
+    width: 55%;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -39,7 +40,7 @@ body {
 
 .info-childs h2 {
     font-size: 2.5rem;
-    color: #333;
+    color: rgb(234, 234, 234);
 }
 
 .info-childs p {
@@ -47,10 +48,10 @@ body {
     margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
-    color: #555;
+    color: rgb(234, 234, 234);
 }
 
-.button-login {
+/* .button-login {
     background-color: transparent;
     outline: none;
     border: solid 2px #9191bd;
@@ -59,15 +60,15 @@ body {
     color: #9191bd;
     cursor: pointer;
     transition: background-color .3s ease;
-}
+} */
 
-.button-login:hover {
+/* .button-login:hover {
     background-color: #9191bd;
     border: none;
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
 
-}
+} */
 
 .form-information {
     display: flex;
@@ -77,7 +78,7 @@ body {
     text-align: center;
     width: 60%;
     font-size: 20px;
-    background-color: #f8f8f8;
+    background-color: rgba(31, 215, 232, 0.873);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -88,7 +89,7 @@ body {
 
 .forminformation-childs h2 {
     font-size: 2.5rem;
-    color: #333;
+    color: rgb(234, 234, 234);
 }
 
 .icons {
@@ -144,31 +145,35 @@ body {
     color: #a7a7a7;
 }
 
-.input-submit {
-    background-color: rgb(119, 33, 141);
-    color: #fff;
-    border-radius: 20px;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+.sig-cont {
+    background-color: rgba(31, 215, 232, 0.873)
 }
 
-.input-submit:hover {
-    background-color: #fff;
-    color: rgb(119, 33, 141);
+.log-cont {
+    background-color: rgb(14, 14, 26);
+}
+
+.log-but {
+    background-color: rgba(31, 215, 232, 0.873);
+}
+
+.sig-but {
+    background-color: rgb(14, 14, 26);
+}
+
+.sig-but:hover {
+    background-color: rgb(14, 14, 26);
 }
 
 /* RESPONSIve FORM */
 
-@media screen and (max-width:750px) {
+@media screen and (max-width:1024px) {
     html {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:768px) {
     html {
         font-size: 10px;
     }

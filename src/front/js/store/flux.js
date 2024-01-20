@@ -1,4 +1,5 @@
 const apiUrl = process.env.BACKEND_URL + "/api"
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -12,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			OneActor: [],
 			favorites: [],
 			custom: [],
+			users:[],
 			currentEdit: {
 			},
 			pagesMovies: 1,
@@ -21,6 +23,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			pagesActors: 1,
 			totalPagesActors: 1,
 			loggedUserId: null,
+			idsMovies: [906126, 572802, 1029575, 1071215, 695721, 1131755, 848326, 872585, 753342, 787699, 1143183, 901362, 1020006, 891699, 866398, 520758, 940551, 976573, 853387, 940721, 1022796, 951491, 1008042, 893723, 870358, 678512, 1075175, 762430, 508883, 1072790, 792307, 496450, 1061181, 928833, 744857, 673593, 459003, 1123093, 945937, 1146143, 1209770, 1036619, 1072342, 927107, 1118824, 915935, 840430, 1206029, 1220655, 842675, 955916, 1214849, 1113278, 1050035, 798362, 956920, 942881, 1160164, 666277, 1024773, 1585, 875188, 1107979, 1160003, 1211199, 626412, 500, 862552, 802219, 10494, 1221118, 558915, 664341, 365620, 983507, 978870, 1217348, 313369, 736554, 1209772, 1180706, 562, 1206988, 1062807, 868660, 845111, 980026, 850165, 149, 1027073, 889675, 1026563, 1020969, 1224569, 944401, 634429, 1131438, 792293, 892530, 1016084],
+			idsSeries: [206559, 61818, 72879, 4614, 10980, 39351, 60625, 57041, 66465, 108978, 60694, 62643, 63770, 13897, 17610, 2625, 14944, 81329, 46952, 3269, 132544, 58841, 15260, 230525, 232937, 8514, 32798, 79061, 72649, 656, 32726, 12513, 47480, 4629, 209265, 235484, 60735, 14575, 651, 3782, 18347, 112470, 79744, 235493, 13881, 4419, 4057, 80748, 57243, 239559, 213026, 94372, 74016, 66840, 67136, 549, 30981, 62688, 37678, 239013, 215709, 43323, 32294, 216578, 240946, 108978, 141, 2691, 3452, 4583, 13895, 39297, 71790, 219109, 62649, 65503, 84910, 60059, 60797, 2153, 69050, 3437, 80350, 69158, 63247, 89293, 49011, 4606, 3828, 2181, 13893, 4333, 32632, 36361, 30984, 46260, 3673, 67667, 65763, 48891,]
+
 		},
 		actions: {
 			loadSomeFilm: async (numberOfPage = 1) => {
@@ -114,6 +119,86 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
 						.then(response => response.json())
 						.then(response => setStore({ film: response }))
+						.catch(err => console.error(err));
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
+
+			loadReviews: async (type, id) => {
+				console.log(id)
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${id}`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
+			addReview: async (type, reviewData) => {
+				try {
+					const response = await fetch(`${apiUrl}/reviews/${type}/${reviewData.id}`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + localStorage.getItem("token")
+						},
+						body: JSON.stringify(reviewData),
+					});
+
+					const res = await response.json();
+
+					if (!response.ok) {
+						throw new Error(res.msg || 'Failed to add review');
+					}
+					return true;
+				} catch (error) {
+					console.error('Error adding review', error);
+					return false;
+				}
+			},
+
+			deleteReview: async (reviewId) => {
+
+				try {
+					const token = localStorage.getItem("token");
+					const response = await fetch(`${apiUrl}/reviews/${reviewId}`, {
+						method: "DELETE",
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+
+					if (!response.ok) {
+						throw new Error("Unable to delete review");
+					}
+					return true;
+				} catch (error) {
+					console.error(error);
+					return false;
+				}
+			},
+
+			loadOneSerie: async (id,) => {
+				console.log(id)
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+					fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
+						.then(response => response.json())
+						.then(response => setStore({ serie: response }))
 						.catch(err => console.error(err));
 				} catch (error) {
 					console.log("Error loading message from backend", error);
@@ -222,17 +307,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			loadAllUsers: async () => {
+				try {
+					const response = await fetch(`${apiUrl}/users`)
+					console.log(response)
+					const res = await response.json()
+					console.log(res)
+					if (response.ok) {
+						setStore({ users: res })
+						return res
+					}
+					return false
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+					return false
+				}
+			},
+
 
 			addFavorite: async (item, type) => {
 				try {
-					const store = getStore();
+
 					const actions = getActions();
 					const token = localStorage.getItem("token");
 
 					const response = await fetch(apiUrl + '/user/favorites', {
 						body: JSON.stringify({
 							movie_id: type === "movie" ? item.id : null,
-							serie_id: type === "serie" ? item.id : null
+							serie_id: type === "serie" ? item.id : null,
+							url_img: item["backdrop_path"],
+							title: type === "movie" ? item["original_title"] : item["original_name"],
+							relese_data: type === "movie" ? item["relese_data"] : item["first_air_date"],
+							popularity: item.popularity,
+							vote_average: item["vote_average"]
 						}),
 						method: "POST",
 						headers: {
@@ -242,9 +349,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					if (response.ok) {
-						const res = await response.json();
-						console.log(res);
+						const data = await response.json();
+
+						// La respuesta tiene que ser el id y el type de la pelicula o la serie 
+						// lo va a guardar en el store  favoritos 
+						// y luego en la vista voy a llamar array favoritos usando useEffect y hago un fecth a cada 1 de los elementos que tiene ese array 
+						console.log(data);
 						actions.getFavorite();
+						const store = getStore();
+						setStore({ ...store, favorites: [...store.favorites, item] })
+
 					} else {
 						console.error("Failed to add favorite");
 					}
@@ -264,12 +378,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 
-
-					// if (!response.ok) {
-					// 	console.error(response.statusText)
-					// 	return
-					// }
 					const res = await response.json();
+					console.log(res)
 					// sacarle a res los ids y pedirle a la api externa las peliculas y series correspondientes a los mismos
 					// guardar este array peliculas / series en una propiedad store 
 					// mapear desde componentes favorito la propieadd store que fue creada  
@@ -279,6 +389,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(e);
 				}
 			},
+
+			// getFavoritesList: () => {
+			// 	try {
+
+			// 		const token = localStorage.getItem('token')
+			// 		const response 
+			//   const store = getStore();
+			//   const listOfFavorites = store.favorites.map((favorite) => ({
+			// 	id: favorite.id,
+			// 	title: favorite.title,
+			// 	// Puedes agregar más propiedades según las necesidades
+			//   }));
+
+			//   setStore({ listOfFavorites });
+
+
+			// 	} catch (error) {
+			// 	  console.error('Error getting favorites list:', error);
+			// 	}
+			//   },
 
 			updateFavorites: async (itemToRemove) => {
 				try {
@@ -306,7 +436,69 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			fetchMovieById: async (movieId) => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+
+					const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options);
+					const data = await response.json();
+
+					if (response.ok) {
+						return data;
+					} else {
+						console.error('Error fetching movie by ID:', data);
+						throw new Error('Failed to fetch movie by ID');
+					}
+				} catch (error) {
+					console.error('Error fetching movie by ID:', error);
+					throw error;
+				}
+			},
+
+			fetchSerieById: async (serieId) => {
+				try {
+					const options = {
+						method: 'GET',
+						headers: {
+							accept: 'application/json',
+							Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTNlY2YxZThlMDMwYzc1N2E5MGZlZWQ0NTgwNWY2MyIsInN1YiI6IjY1NzhmODUxZTkzZTk1MjE5MTA5OWE3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.353ayqR42w_v4GqICi8fG8idllMAa4F_l06HE-RZxGA'
+						}
+					};
+
+					const response = await fetch(`https://api.themoviedb.org/3/tv/${serieId}?language=en-US`, options);
+					const data = await response.json();
+
+					if (response.ok) {
+						return data;
+					} else {
+						console.error('Error fetching serie by ID:', data);
+						throw new Error('Failed to fetch serie by ID');
+					}
+				} catch (error) {
+					console.error('Error fetching serie by ID:', error);
+					throw error;
+				}
+			},
+
+			saveItemMovie: async (item) => {
+				const store = getStore();
+				setStore({ ...store, film: item })
+			},
+
+			saveItemSerie: async (item) => {
+				const store = getStore();
+				setStore({ ...store, serie: item })
+			},
+
+
 		}
+
 	};
 };
 

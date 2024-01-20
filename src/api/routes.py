@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import request, jsonify, url_for, Blueprint
-from api.models import db, User, Favorites
+from api.models import db, User, Favorites, Review 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
@@ -78,6 +78,15 @@ def login():
 
         return jsonify({"error": f"Ocurrió un error al procesar la solicitud: {str(e)}"}), 500
 
+@api.route('/users', methods=['GET'])
+def users():
+    users = User.query.all()
+    if users:
+        serialized_users = [user.serialize() for user in users]
+        return jsonify(serialized_users), 200
+    else:
+        return jsonify({"msg": "No users found"}), 404
+
 @api.route('/isAuth', methods=['GET'])
 @jwt_required()
 def is_auth():
@@ -104,16 +113,22 @@ def add_favorites():
     body = request.json 
 
     if not body.get("movie_id") and not body.get("serie_id"):
-        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos"}), 400
+        return jsonify({"error": "Se requiere 'movie_id' o 'serie_id' para agregar a favoritos", "ok": False}), 400
     
     new_favorite = Favorites(
         user_id = user_id,
         movie_id = body.get("movie_id"),
         serie_id = body.get("serie_id"),
+        url_img = body.get("url_img"),
+        title = body.get("title"),
+        relese_data = body.get("relese_data"),
+        popularity = body.get("popularity"),
+        vote_average = body.get("vote_average"),
+
     )
     db.session.add(new_favorite)
     db.session.commit()
-    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize()})
+    return jsonify({"msg": "Agregado exitosamente", "added_favorite": new_favorite.serialize(), "ok": True}), 200
 
 @api.route('/user/favorite', methods=['DELETE'])
 @jwt_required()
@@ -121,7 +136,6 @@ def delete_favorite():
     user_id = get_jwt_identity()
     body = request.json
 
-    # Verificar si el body tiene la clave 'movie_id' o 'serie_id'
     if "movie_id" in body:
         if body["movie_id"] is not None:
             favorite = Favorites.query.filter_by(movie_id=body["movie_id"], user_id=user_id).first()
@@ -152,7 +166,57 @@ def add_():
     db.session.commit()
     return jsonify({"msg": "Modificado exitosamente"})
 
-#debajo de estas líneas no puede haber nada
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['GET'])
+def get_all_reviews(type, media_id):
+    if type == "movie":
+        reviews = Review.query.filter_by(movie_id = media_id).all()
+    elif type == "serie":
+        reviews = Review.query.filter_by(serie_id = media_id).all()
+    if len(reviews) < 1:
+        return jsonify({"msg": "not found"}), 404
+    serialized_reviews = list(map(lambda x: x.serialize(), reviews))
+    return serialized_reviews, 200
+
+@api.route('/reviews/<string:type>/<int:media_id>', methods=['POST'])
+@jwt_required()
+def add_review(type, media_id):
+    
+    data = request.json
+    comment = data.get('comment')
+    rate = data.get('rate')
+    user_id = get_jwt_identity()
+
+    if type == "movie":
+        new_review = Review(movie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+    elif type == "serie":
+        new_review = Review(serie_id=media_id, comment=comment, rate=rate, user_id=user_id)
+
+    db.session.add(new_review)
+    db.session.commit()
+
+    return jsonify({"msg": "review added successfully"}), 201
+
+@api.route('/reviews/<int:review_id>', methods=['DELETE'])
+@jwt_required()
+def delete_review(review_id):
+    try:
+        user_id = get_jwt_identity()
+
+        review = Review.query.filter_by(id=review_id, user_id=user_id).first()
+        
+        if review is None:
+            return jsonify({"msg": "Review not found"}), 404
+
+        db.session.delete(review)
+        db.session.commit()
+
+        return jsonify({"msg": "Review successfully deleted"}), 200
+
+    except Exception as e:
+        print(f"Error deleting review: {str(e)}")
+        return jsonify({"error": "An error occurred while processing the request"}), 500
+
+
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     api.run(host='0.0.0.0', port=PORT, debug=False)
