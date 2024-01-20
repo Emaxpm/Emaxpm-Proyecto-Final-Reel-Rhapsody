@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/details.css"
@@ -17,41 +18,73 @@ const DetailMovie = () => {
             id: params.id,
             comment: comment,
             rate: rate
-        }
-        const res = await actions.addReview("movie", data)
-        if (res == true) {
-            setComment("")
-            setRate("")
-            setLoadReviews(!loadReviews)
-            alert("Review added successfully")
-        } else {
-            alert("Error")
+        };
+
+        try {
+            const res = await actions.addReview("movie", data);
+
+            if (res === true) {
+                setComment("");
+                setRate("");
+                setLoadReviews(!loadReviews);
+
+                // Use SweetAlert for success message
+                Swal.fire({
+                    icon: "success",
+                    title: "Review added successfully",
+                    timer: 1500, // Timer in milliseconds (1.5 seconds)
+                    showConfirmButton: false
+                });
+            } else {
+                // Use SweetAlert for error message
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "An error occurred while adding the review."
+                });
+            }
+        } catch (error) {
+            console.error("Error adding review:", error);
         }
     };
 
     const handleDelete = async (reviewId) => {
-        const res = await actions.deleteReview(reviewId);
-        if (res === true) {
-            setLoadReviews(!loadReviews);
-            alert("Review deleted successfully");
-        } else {
-            alert("Error actual");
+        try {
+            const res = await actions.deleteReview(reviewId);
+
+            if (res === true) {
+                setLoadReviews(!loadReviews);
+
+                // Use SweetAlert for success message
+                Swal.fire({
+                    icon: "success",
+                    title: "Review deleted successfully",
+                    timer: 1500, // Timer in milliseconds (1.5 seconds)
+                    showConfirmButton: false
+                });
+            } else {
+                // Use SweetAlert for error message
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "An error occurred while deleting the review."
+                });
+            }
+        } catch (error) {
+            console.error("Error deleting review:", error);
         }
     };
 
     useEffect(() => {
-        actions.loadOneMovie(params.id)
-    }, [])
-    console.log(store.film)
+        actions.loadOneMovie(params.id);
+    }, []);
 
     useEffect(() => {
-
         const getData = async () => {
-            setReviews(await actions.loadReviews("movie", params.id))
-        }
-        getData()
-    }, [loadReviews])
-    console.log(reviews)
+            setReviews(await actions.loadReviews("movie", params.id));
+        };
+        getData();
+    }, [loadReviews]);
 
     return (
 
