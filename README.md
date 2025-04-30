@@ -35,6 +35,8 @@ Vista detallada de películas, series y actores
 
 Búsqueda aleatoria de contenido con un solo clic
 
+Integración con PayPal para procesar pagos
+
 ⚙️ Instalación del Backend
 Requiere Python 3.8+, Pipenv, y MySQL (o cualquier motor compatible).
 
