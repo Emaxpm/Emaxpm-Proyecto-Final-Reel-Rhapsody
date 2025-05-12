@@ -83,3 +83,11 @@ npm run start
 
 ---
 
+![Inicio](https://github.com/user-attachments/assets/a2f9de98-874a-4242-8452-044dedf7ed05)
+
+![Registro](https://github.com/user-attachments/assets/cee47cc9-1f48-4d6a-8bcc-b09f25309625)
+
+![Paginación de Peliculas](https://github.com/user-attachments/assets/54a515d9-6ad0-43da-8434-e95814afd371)
+
+
+
