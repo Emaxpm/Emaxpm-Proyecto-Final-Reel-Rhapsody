@@ -1,126 +1,85 @@
-🎬 WebApp - Recomendador de Películas y Series
-Aplicación web full-stack desarrollada con React.js en el frontend y Python/Flask en el backend. Permite a los usuarios explorar, buscar y guardar películas y series, así como dejar comentarios y personalizar su perfil.
+🎬 WebApp - Reel-Rhapsody
+Recomendador de Películas y Series.
+Aplicación web full-stack desarrollada con React.js en el frontend y Python/Flask en el backend.
+Permite a los usuarios explorar, buscar y guardar películas y series, dejar comentarios y personalizar su perfil.
 
-Recomendación y visualización de películas, series y actores.
+---
 
-Uso de API externa para obtener información multimedia y API local para la gestión de usuarios y datos internos.
+🌟 Características principales
+🔍 Recomendación y visualización de películas, series y actores
 
-Proyecto basado en el boilerplate de 4Geeks Academy.
+🔗 Integración con API externa para información multimedia
+
+🗄️ API propia para gestión de usuarios y datos internos
+
+🎛️ Basada en el boilerplate de 4Geeks Academy
+
+---
 
 🚀 Tecnologías utilizadas
-Frontend: React, Bootstrap
+Categoría	  Tecnología
+Frontend:	  React, Bootstrap
+Backend:	    Python, Flask
+Base de datos:	MySQL
+ORM:	        SQLAlchemy
+Autenticación:	JWT + sesiones
+Extras:	  Paginación, rutas privadas, búsqueda aleatoria, PayPal
 
-Backend: Python, Flask
-
-Base de datos: MySQL
-
-ORM: SQLAlchemy
-
-Autenticación: JWT + sesiones
-
-Extras: Paginación, rutas privadas, búsqueda aleatoria de contenido
+---
 
 🔐 Funcionalidades clave
-Registro e inicio de sesión
+Registro e inicio de sesión de usuarios
 
-Acceso a rutas privadas solo para usuarios autenticados
+Acceso a rutas privadas para usuarios autenticados
 
 Comentarios y reseñas sobre películas y series
 
-Lista de favoritos personalizable
+Lista de favoritos personalizada
 
 Perfil de usuario editable
 
 Vista detallada de películas, series y actores
 
-Búsqueda aleatoria de contenido con un solo clic
+Búsqueda aleatoria con un solo clic
 
-Integración con PayPal para procesar pagos
+Integración con PayPal para pagos
 
-⚙️ Instalación del Backend
-Requiere Python 3.8+, Pipenv, y MySQL (o cualquier motor compatible).
+---
 
-Clona el repositorio:
+⚙️ Instalación
+Backend:
 
-bash
-Copiar
-Editar
-git clone [https://github.com/tu-usuario/tu-repo.git](https://github.com/Emaxpm/Emaxpm-Proyecto-Final-Reel-Rhapsody.git)
-Instala los paquetes de Python:
-
-bash
-Copiar
-Editar
+# Instalar dependencias
 pipenv install
-Crea el archivo .env desde el ejemplo:
 
-bash
-Copiar
-Editar
+# Crear archivo de entorno
 cp .env.example .env
-Configura tu base de datos y establece DATABASE_URL en .env. Ejemplos:
 
-Motor	URL de conexión
-SQLite	sqlite:///test.db
-MySQL	mysql://usuario:contraseña@localhost:3306/nombre_db
-PostgreSQL	postgres://usuario:contraseña@localhost:5432/nombre_db
+# Configurar tu base de datos en el archivo .env
+# Ejemplos:
+# SQLite     -> sqlite:///test.db
+# MySQL      -> mysql://usuario:contraseña@localhost:3306/nombre_db
+# PostgreSQL -> postgres://usuario:contraseña@localhost:5432/nombre_db
 
-Ejecuta migraciones:
-
-bash
-Copiar
-Editar
+# Ejecutar migraciones
 pipenv run migrate
 pipenv run upgrade
-Ejecuta la aplicación:
 
-bash
-Copiar
-Editar
+# Iniciar la aplicación
 pipenv run start
-⚙️ Instalación del Frontend
-Asegúrate de tener Node.js 14+ instalado.
 
-Dirígete a la carpeta del frontend:
+---
 
-bash
-Copiar
-Editar
-cd frontend
-Instala las dependencias:
+Frontend:
+Requisitos:
 
-bash
-Copiar
-Editar
+Node.js 14+
+
+# Instalar dependencias
 npm install
-Ejecuta el servidor de desarrollo:
 
-bash
-Copiar
-Editar
+# Iniciar servidor de desarrollo
 npm run start
-📄 Comandos útiles
-Deshacer una migración
-bash
-Copiar
-Editar
-pipenv run downgrade
-Insertar usuarios de prueba
-bash
-Copiar
-Editar
-flask insert-test-users 5
-Insertar datos personalizados
-Edita la función insert_test_data en src/api/commands.py y luego ejecuta:
 
-bash
-Copiar
-Editar
-pipenv run insert-test-data
-🌍 Despliegue
-Esta aplicación es compatible con Heroku, Render.com y otras plataformas. Consulta esta guía oficial de despliegue para más detalles.
+---
 
-🤝 Contribuciones
-Proyecto basado en el template de 4Geeks Academy y adaptado para una aplicación personalizada de recomendación de contenido audiovisual. Abierto a mejoras y colaboraciones.
-
-Encuentra más recursos y plantillas en el GitHub de 4Geeks Academy.
